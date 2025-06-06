@@ -298,9 +298,9 @@ async function performCoveoSearch(query, options = {}) {
     enableDidYouMean: true,
     enableQuerySyntax: false,
     facets: [
-      { field: '@filetype', numberOfValues: 8 },
-      { field: '@author', numberOfValues: 6 },
-      { field: '@source', numberOfValues: 5 }
+      { field: 'filetype', numberOfValues: 8 },
+      { field: 'author', numberOfValues: 6 },
+      { field: 'source', numberOfValues: 5 }
     ],
     // Apply filters if provided
     aq: options.filters ? buildAdvancedQuery(options.filters) : ''
