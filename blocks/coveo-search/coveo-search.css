@@ -1,0 +1,60 @@
+.coveo-search {
+  width: 100%;
+  margin: 0;
+}
+
+.coveo-search .header-bg {
+  background-color: var(--atomic-neutral-light);
+  grid-area: 1 / -1 / 1 / 1;
+}
+
+.coveo-search atomic-search-layout {
+  row-gap: var(--atomic-layout-spacing-y);
+}
+
+/* Color facet customizations */
+.coveo-search atomic-color-facet::part(default-color-value) {
+  background-image: url('/icons/document.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: rgb(144, 144, 144);
+}
+
+.coveo-search atomic-color-facet::part(value-html) {
+  background-image: url('/icons/html.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: transparent;
+}
+
+/* Result template styles */
+.coveo-search .field {
+  display: inline-flex;
+  align-items: center;
+}
+
+.coveo-search .field-label {
+  font-weight: bold;
+  margin-right: 0.25rem;
+}
+
+.coveo-search .thumbnail {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.coveo-search .icon {
+  display: none;
+}
+
+.coveo-search .result-root.image-small .thumbnail,
+.coveo-search .result-root.image-large .thumbnail {
+  display: inline-block;
+}
+
+.coveo-search .result-root.image-icon .icon {
+  display: inline-block;
+}
