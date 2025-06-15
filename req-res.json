@@ -1,0 +1,1689 @@
+{
+
+  "Request URL": "https://searchuisamples.org.coveo.com/rest/search/v2"
+  
+
+}
+
+
+
+
+
+{
+  "q": "product management",
+  "numberOfResults": 8,
+  "firstResult": 0,
+  "searchHub": "default",
+  "pipeline": "default",
+  "enableDidYouMean": true,
+  "enableQuerySyntax": false,
+  "facets": [
+    { "field": "filetype", "numberOfValues": 8 },
+    { "field": "author", "numberOfValues": 6 },
+    { "field": "source", "numberOfValues": 5 }
+  ],
+  "aq": ""
+}
+
+
+
+{
+  "totalCount": 3894,
+  "totalCountFiltered": 3894,
+  "duration": 29,
+  "indexDuration": 248,
+  "requestDuration": 2,
+  "searchUid": "65c4d3b7-0c32-4b82-842d-b7fd571cf435",
+  "pipeline": "default",
+  "apiVersion": 2,
+  "queryCorrections": [
+  ],
+  "index": "cache",
+  "refinedKeywords": [
+  ],
+  "triggers": [
+  ],
+  "termsToHighlight": {
+      "product": [
+          "production",
+          "productions",
+          "productive",
+          "productivity",
+          "productized",
+          "products"
+      ],
+      "management": [
+          "manage",
+          "manageable",
+          "managed",
+          "managements",
+          "manager",
+          "managers",
+          "manages",
+          "managing"
+      ]
+  },
+  "phrasesToHighlight": {
+  },
+  "groupByResults": [
+  ],
+  "facets": [
+      {
+          "field": "filetype",
+          "moreValuesAvailable": true,
+          "values": [
+              {
+                  "value": "lithiummessage",
+                  "state": "idle",
+                  "numberOfResults": 3237
+              },
+              {
+                  "value": "lithiumthread",
+                  "state": "idle",
+                  "numberOfResults": 336
+              },
+              {
+                  "value": "lithiumuser",
+                  "state": "idle",
+                  "numberOfResults": 184
+              },
+              {
+                  "value": "pdf",
+                  "state": "idle",
+                  "numberOfResults": 28
+              },
+              {
+                  "value": "lithiumboard",
+                  "state": "idle",
+                  "numberOfResults": 1
+              },
+              {
+                  "value": "doc",
+                  "state": "idle",
+                  "numberOfResults": 12
+              },
+              {
+                  "value": "xls",
+                  "state": "idle",
+                  "numberOfResults": 20
+              },
+              {
+                  "value": "Image",
+                  "state": "idle",
+                  "numberOfResults": 46
+              }
+          ],
+          "indexScore": 0.10000044011759944
+      },
+      {
+          "field": "source",
+          "moreValuesAvailable": false,
+          "values": [
+              {
+                  "value": "Coveo Sample - Lithium Community",
+                  "state": "idle",
+                  "numberOfResults": 3862
+              },
+              {
+                  "value": "Coveo Sample - SF lvu08",
+                  "state": "idle",
+                  "numberOfResults": 4
+              },
+              {
+                  "value": "Coveo Samples - Youtube BBC News",
+                  "state": "idle",
+                  "numberOfResults": 21
+              },
+              {
+                  "value": "https://www.kcprofessional.com/",
+                  "state": "idle",
+                  "numberOfResults": 1
+              },
+              {
+                  "value": "ServiceNow Speedbit",
+                  "state": "idle",
+                  "numberOfResults": 6
+              }
+          ],
+          "indexScore": 0.1
+      },
+      {
+          "field": "author",
+          "moreValuesAvailable": true,
+          "values": [
+              {
+                  "value": "Landra Cunningham",
+                  "state": "idle",
+                  "numberOfResults": 1
+              },
+              {
+                  "value": "Jesseca Zahn",
+                  "state": "idle",
+                  "numberOfResults": 1
+              },
+              {
+                  "value": "salesforce.com, inc.",
+                  "state": "idle",
+                  "numberOfResults": 2
+              },
+              {
+                  "value": "Kerry Hassen",
+                  "state": "idle",
+                  "numberOfResults": 1
+              },
+              {
+                  "value": "Susan Cook",
+                  "state": "idle",
+                  "numberOfResults": 3
+              },
+              {
+                  "value": "CEBALLOS BUSTAMANTE, GRETEL OESX",
+                  "state": "idle",
+                  "numberOfResults": 1
+              }
+          ],
+          "indexScore": 0.0
+      }
+  ],
+  "suggestedFacets": [
+  ],
+  "categoryFacets": [
+  ],
+  "results": [
+      {
+          "title": "Aurora Product Coaching Session: Spam Management Best Practices",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+          "clickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+          "excerpt": "Aurora Product Coaching Session: Spam Management Best Practices ... Overview of Aurora spam settings and functionality Manage Content dashboard related to spam management and its features",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasHtmlVersion;HasAllMetaDataStream",
+          "hasHtmlVersion": true,
+          "hasMobileHtmlVersion": false,
+          "score": 5966,
+          "percentScore": 78.55084,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 7,
+                  "offset": 7
+              },
+              {
+                  "length": 10,
+                  "offset": 38
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+              {
+                  "length": 7,
+                  "offset": 7
+              },
+              {
+                  "length": 10,
+                  "offset": 38
+              },
+              {
+                  "length": 6,
+                  "offset": 119
+              },
+              {
+                  "length": 10,
+                  "offset": 160
+              }
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "Aurora Product Coaching Session: Spam Management Best Practices",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "qVRqRwYdU3A9bpCc",
+              "licategorytitle": "Learn",
+              "urihash": "qVRqRwYdU3A9bpCc",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora product coaching session: spam management best practices\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500\" /><parent name=\"aurora product coaching session: spam management best practices\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500\" /></parents>",
+              "limessagekudoscount": 1,
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+              "limessageurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+              "systransactionid": 888065,
+              "sysauthorloginname": "RishiA",
+              "litopickudoscount": 1,
+              "litopicsubject": "Aurora Product Coaching Session: Spam Management Best Practices",
+              "limessageistopic": "True",
+              "licategoryid": "products",
+              "sysconcepts": [
+                  "coaching session ",
+                  " spam ",
+                  " community ",
+                  " settings ",
+                  " filter ",
+                  " Related Resources ",
+                  " Admin permissions ",
+                  " platform offers ",
+                  " functionality"
+              ],
+              "licategorydescription": "Access training and documentation for all of our products",
+              "concepts": [
+                  "coaching session ",
+                  " spam ",
+                  " community ",
+                  " settings ",
+                  " filter ",
+                  " Related Resources ",
+                  " Admin permissions ",
+                  " platform offers ",
+                  " functionality"
+              ],
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+              "limessageposttime": 1733160177000,
+              "documenttype": "message",
+              "liboardurl": "https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs",
+              "limessagelastedittime": 1743607538000,
+              "limessagebody": "<P>Khoros Communities platform offers several settings and features that allow you to mitigate Spam in your community. Join our&nbsp;<STRONG>Spam Management Best Practices</STRONG> coaching session to identify, filter and deal with spam effectively. Our coaching session will guide you through the practical tips and techniques to help combat spam and help maintain the hygiene of your community.</P>\n<span class=\"lia-media-object lia-media-is-center lia-media-size-default\" data-image-alt=\"\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03Njc1MDAtaFdKMDhN?image-dimensions=600x264&amp;revision=15\" width=\"600\" height=\"264\" alt=\"\" /></button></span>\n<P><STRONG>Topics covered in the coaching session</STRONG></P>\n<UL>\n<LI>Overview of Aurora spam settings and functionality</LI>\n<LI>Manage Content dashboard related to spam management and its features</LI>\n<LI>Using roles and ranks to configure permissions to check spammers</LI>\n<LI>Content Filters&nbsp;</LI>\n<LI>Best practice tips</LI>\n</UL>\n<P>Notes - Admin permissions are required to conduct the call.</P>\n<H2 id=\"community-767500-toc-hId-1793481373\"><A class=\"lia-external-url\" href=\"https://calendly.com/khoros-product-coaching-community-use-cases/khoros-communities-aurora-spam-management?utm_source=atlas\" target=\"_blank\" rel=\"noopener nofollow noreferrer\"><STRONG>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</STRONG>Click here to Sign Up</A>&nbsp;</H2>\n<P><STRONG>Related Resources</STRONG></P>\n<UL>\n<LI><A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-tkb\" href=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532\" target=\"_blank\" rel=\"noopener noreferrer\" data-lia-auto-title=\"Enable Spam Management\" data-lia-auto-title-active=\"0\">Enable Spam Management</A></LI>\n<LI><A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-tkb\" href=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360\" target=\"_blank\" rel=\"noopener noreferrer\" data-lia-auto-title=\"Community Spam Management\" data-lia-auto-title-active=\"0\">Community Spam Management</A></LI>\n<LI><A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-tkb\" href=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-review-posts-captured-as-spam/720368\" target=\"_blank\" rel=\"noopener noreferrer\" data-lia-auto-title=\"Review Posts Captured as Spam\" data-lia-auto-title-active=\"0\">Review Posts Captured as Spam</A></LI>\n<LI><A class=\"lia-external-url\" href=\"https://academy.khoros.com/course/15982303?r=False&amp;ts=638687569316138078\" target=\"_blank\" rel=\"noopener noreferrer\">Khoros Academy: Communities Moderation Essentials</A></LI>\n<LI><A class=\"lia-external-url\" href=\"https://academy.khoros.com/course/18989802?r=False&amp;ts=638687568356867760\" target=\"_blank\" rel=\"noopener noreferrer\">Khoros Academy Instructor Led Training: Spam Management for Communities Aurora</A></LI>\n</UL>",
+              "litopicurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+              "limessageviewcount": 189,
+              "sysindexeddate": 1748089416000,
+              "permanentid": "f294971477df1c450d1a3ce6843a13ce21af9b4d23d6814ff6764bdca97b",
+              "limessageissolution": "False",
+              "syslanguage": [
+                  "English"
+              ],
+              "transactionid": 888065,
+              "title": "Aurora Product Coaching Session: Spam Management Best Practices",
+              "limessagelabels": "community management;content management;Getting Started;moderation;Product Coaching;spam",
+              "date": 1733160177000,
+              "objecttype": "Message",
+              "foldingcollection": "da49bb1bba896b919ea014975bca5dd9f3b9700ca2be0c98290a900e326f",
+              "liboardid": "khoros-communities-aurora-docs",
+              "limessagerating": 0.0,
+              "litopicviewcount": 189,
+              "litopiclabels": "community management;content management;Getting Started;moderation;Product Coaching;spam",
+              "litopiclastedittime": 1743607538000,
+              "liboarddescription": "Learn the Aurora version of Khoros Communities. Utilize user guides to navigate to helpful content.",
+              "limessageauthorurl": "https://community.khoros.com/users/RishiA/142717",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 767500,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "RishiA",
+              "lithreadreplycount": 0,
+              "rowid": 1748089416903353629,
+              "lithreadhassolution": "false",
+              "limessageauthor": "RishiA",
+              "licommunitytitle": "Atlas",
+              "limessagelasteditauthor": "RishiA",
+              "limessagesubject": "Aurora Product Coaching Session: Spam Management Best Practices",
+              "lithreadmessagecount": 1,
+              "size": 7363,
+              "sysdocumenttype": "message",
+              "clickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212614892608388733,
+              "syssize": 7363,
+              "sysdate": 1733160177000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora product coaching session: spam management best practices\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500\" /><parent name=\"aurora product coaching session: spam management best practices\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/RishiA/142717",
+              "licommunityshorttitle": "Atlas",
+              "limessageisreadonly": "False",
+              "liboardinteractionstyle": "tkb",
+              "litopicposttime": 1733160177000,
+              "limessagelasteditauthorurl": "https://community.khoros.com/users/RishiA/142717",
+              "foldingchild": "da49bb1bba896b919ea014975bca5dd9f3b9700ca2be0c98290a900e326f",
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/RishiA/142717",
+              "primaryid": "OFLFE4KSO5MWIVJTIE4WE4CDMMXDGOBSGU2C4ZDFMZQXK3DU",
+              "wordcount": 84,
+              "litopicauthor": "RishiA",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Khoros Communities - Aurora Docs",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1748089416000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiummessage",
+              "sysclickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+              "limessageid": 767500,
+              "sysfiletype": "lithiummessage",
+              "language": [
+                  "English"
+              ],
+              "liboardtitle": "Khoros Communities - Aurora Docs",
+              "authorloginname": "RishiA",
+              "sysrowid": 1748089416903353629,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+              "syscollection": "default"
+          },
+          "Title": "Aurora Product Coaching Session: Spam Management Best Practices",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+          "ClickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500/message:767500",
+          "Excerpt": "Aurora Product Coaching Session: Spam Management Best Practices ... Overview of Aurora spam settings and functionality Manage Content dashboard related to spam management and its features",
+          "FirstSentences": null
+      },
+      {
+          "title": "Aurora Product Coaching Session: Spam Management Best Practices",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+          "clickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+          "excerpt": "",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasAllMetaDataStream",
+          "hasHtmlVersion": false,
+          "hasMobileHtmlVersion": false,
+          "score": 5639,
+          "percentScore": 76.3678,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 7,
+                  "offset": 7
+              },
+              {
+                  "length": 10,
+                  "offset": 38
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "Aurora Product Coaching Session: Spam Management Best Practices",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "w0yqsR7ELzf0rYNc",
+              "licategorytitle": "Learn",
+              "urihash": "w0yqsR7ELzf0rYNc",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora product coaching session: spam management best practices\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500\" /></parents>",
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+              "systransactionid": 888065,
+              "sysauthorloginname": "RishiA",
+              "litopickudoscount": 1,
+              "litopicsubject": "Aurora Product Coaching Session: Spam Management Best Practices",
+              "licategoryid": "products",
+              "licategorydescription": "Access training and documentation for all of our products",
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+              "documenttype": "thread",
+              "liboardurl": "https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs",
+              "litopicurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+              "sysindexeddate": 1748089416000,
+              "permanentid": "64ca9bcc6aabee10d9bba984583a17372086126541c0d78fd480ac8ecb55",
+              "transactionid": 888065,
+              "title": "Aurora Product Coaching Session: Spam Management Best Practices",
+              "date": 1733160177000,
+              "objecttype": "Thread",
+              "liboardid": "khoros-communities-aurora-docs",
+              "litopicviewcount": 189,
+              "litopiclabels": "community management;content management;Getting Started;moderation;Product Coaching;spam",
+              "litopiclastedittime": 1743607538000,
+              "liboarddescription": "Learn the Aurora version of Khoros Communities. Utilize user guides to navigate to helpful content.",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 767500,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "RishiA",
+              "lithreadreplycount": 0,
+              "rowid": 1748089416852590726,
+              "lithreadhassolution": "false",
+              "licommunitytitle": "Atlas",
+              "lithreadmessagecount": 1,
+              "size": 2886,
+              "sysdocumenttype": "thread",
+              "clickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212614892608388250,
+              "syssize": 2886,
+              "sysdate": 1733160177000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora product coaching session: spam management best practices\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/RishiA/142717",
+              "licommunityshorttitle": "Atlas",
+              "liboardinteractionstyle": "tkb",
+              "litopicposttime": 1733160177000,
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/RishiA/142717",
+              "primaryid": "O4YHS4LTKI3UKTD2MYYHEWKOMMXDGOBSGU2C4ZDFMZQXK3DU",
+              "wordcount": 0,
+              "litopicauthor": "RishiA",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Khoros Communities - Aurora Docs",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1748089416000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiumthread",
+              "sysclickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+              "sysfiletype": "lithiumthread",
+              "liboardtitle": "Khoros Communities - Aurora Docs",
+              "authorloginname": "RishiA",
+              "sysrowid": 1748089416852590726,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+              "syscollection": "default"
+          },
+          "Title": "Aurora Product Coaching Session: Spam Management Best Practices",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+          "ClickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practices/767500",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:767500",
+          "Excerpt": "",
+          "FirstSentences": null
+      },
+      {
+          "title": "About Aurora Communities spam management",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+          "clickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+          "excerpt": "Enable spam management Content Management Dashboard Abuse management Recap how to mark, report, and manage spam posts with this on-demand Instructor-Led Training on Spam Management:",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasHtmlVersion;HasAllMetaDataStream",
+          "hasHtmlVersion": true,
+          "hasMobileHtmlVersion": false,
+          "score": 5326,
+          "percentScore": 74.218094,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 10,
+                  "offset": 30
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+              {
+                  "length": 10,
+                  "offset": 12
+              },
+              {
+                  "length": 10,
+                  "offset": 31
+              },
+              {
+                  "length": 10,
+                  "offset": 58
+              },
+              {
+                  "length": 6,
+                  "offset": 100
+              },
+              {
+                  "length": 10,
+                  "offset": 170
+              }
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "About Aurora Communities spam management",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "Sn05djdERjLaegpS",
+              "licategorytitle": "Learn",
+              "urihash": "Sn05djdERjLaegpS",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"about aurora communities spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360\" /><parent name=\"about aurora communities spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360\" /></parents>",
+              "limessagekudoscount": 0,
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+              "limessageurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+              "systransactionid": 891189,
+              "sysauthorloginname": "BhuvanaM",
+              "litopickudoscount": 0,
+              "litopicsubject": "About Aurora Communities spam management",
+              "limessageistopic": "True",
+              "licategoryid": "products",
+              "sysconcepts": [
+                  "spam management ",
+                  " posts ",
+                  " moderators ",
+                  " admins ",
+                  " communities ",
+                  " coaching session ",
+                  " Related topics ",
+                  " complex set ",
+                  " new message ",
+                  " highest-value"
+              ],
+              "limessageteaser": "<P>Khoros Community spam management tools run in the background, where each new message is logged and tested for spam. Additionally, our system learns about your site content as it monitors all your boards and forums, enabling it to improve its content filtering over time.</P>",
+              "licategorydescription": "Access training and documentation for all of our products",
+              "concepts": [
+                  "spam management ",
+                  " posts ",
+                  " moderators ",
+                  " admins ",
+                  " communities ",
+                  " coaching session ",
+                  " Related topics ",
+                  " complex set ",
+                  " new message ",
+                  " highest-value"
+              ],
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+              "limessageposttime": 1667795717000,
+              "documenttype": "message",
+              "liboardurl": "https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs",
+              "limessagelastedittime": 1734013847000,
+              "limessagebody": "<DIV class=\"lia-message-template-content-zone\">\n<P>Khoros is committed to making sure that your communities serve up the highest-value content to your community members. To meet that promise, we continue to look for ways to help you combat spam.</P>\n<P>Aurora Community spam management tools run in the background where each new message is logged and tested for spam. Additionally, our system learns about your site content as it monitors all your boards and forums, enabling it to improve its content filtering over time.</P>\n<P>Admins and moderators can manually mark any posts or replies to the posts as spam using the&nbsp;<STRONG>Reject &gt; Spam</STRONG> option available in the&nbsp;<STRONG>Options</STRONG> menu for respective posts or replies:</P>\n<span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"BhuvanaM_0-1668403582414.png\"><button aria-labelledby=\"197226i377E9E155A6ADCE3_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1668403582414.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjAzNjAtMTk3MjI2aTM3N0U5RTE1NUE2QURDRTM?image-dimensions=600x365&amp;revision=16\" width=\"600\" height=\"365\" alt=\"BhuvanaM_0-1668403582414.png\" /></button><span class=\"lia-media-caption-text\" id=\"197226i377E9E155A6ADCE3_caption\"></span></span>\n<P><BR />If any post or reply is mistakenly marked as spam, you can recover it on the respective page itself by clicking the <STRONG style=\"font-family: inherit; background-color: #ffffff;\">Mark as Not Spam</STRONG> option:</P>\n<DIV id=\"tinyMceEditorBhuvanaM_1\" class=\"mceNonEditable lia-copypaste-placeholder\"></DIV>\n<span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"BhuvanaM_2-1668403617818.png\"><button aria-labelledby=\"197227i90B911A1C6E3C5D2_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_2-1668403617818.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjAzNjAtMTk3MjI3aTkwQjkxMUExQzZFM0M1RDI?image-dimensions=600x254&amp;revision=16\" width=\"600\" height=\"254\" alt=\"BhuvanaM_2-1668403617818.png\" /></button><span class=\"lia-media-caption-text\" id=\"197227i90B911A1C6E3C5D2_caption\"></span></span>\n<P><BR />The spam management tools automatically test posts against a complex set of rules. All posts classified as spam are moved into a <STRONG>Spam</STRONG> management page where admins and moderators can review and recover the spammed posts if needed.</P>\n<P>All posts classified as spam are moved to the <STRONG>Content Management</STRONG> dashboard&nbsp;<STRONG>Spam</STRONG> tab. Admins and moderators can review and recover the spammed posts if needed:</P>\n<span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"BhuvanaM_0-1687763277826.png\"><button aria-labelledby=\"202675i7CC86201E42C0F97_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1687763277826.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjAzNjAtMjAyNjc1aTdDQzg2MjAxRTQyQzBGOTc?image-dimensions=600x245&amp;revision=16\" width=\"600\" height=\"245\" alt=\"BhuvanaM_0-1687763277826.png\" /></button><span class=\"lia-media-caption-text\" id=\"202675i7CC86201E42C0F97_caption\"></span></span>\n<P><BR />With spam management tools, you can:</P>\n<UL>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><A href=\"https://community.khoros.com/t5/Moderation/Reject-individual-posts-or-replies-as-spam/ta-p/720609\" target=\"_self\" rel=\"noopener noreferrer\"><SPAN style=\"color: #3366ff;\"><SPAN style=\"color: #0000ff;\">Reject individual posts as spam</SPAN></SPAN></A></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN style=\"color: #3366ff;\"><A href=\"https://community.khoros.com/t5/Moderation/Review-posts-captured-as-spam/ta-p/720368\" target=\"_self\" rel=\"noopener noreferrer\">Review posts that are marked as spam</A></SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN style=\"color: #3366ff;\"><A href=\"https://community.khoros.com/t5/Moderation/Recover-a-post-mistakenly-marked-as-spam/ta-p/720376\" target=\"_self\" rel=\"noopener noreferrer\">Recover posts that are mistakenly marked as spam</A></SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN style=\"color: #3366ff;\"><A href=\"https://community.khoros.com/t5/Moderation/Hide-reviewed-spam-posts/ta-p/720381\" target=\"_self\" rel=\"noopener noreferrer\">Hide posts that are marked as spam</A></SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN style=\"color: #000000;\"><A href=\"https://community.khoros.com/t5/Moderation/Search-for-specific-content-in-Spam-management-page/ta-p/720372\" target=\"_blank\" rel=\"noopener noreferrer\">Search for specific content in the Spam Management page</A></SPAN></LI>\n</UL>\n<P class=\"lia-indent-padding-left-30px\" style=\"padding-left : 30px;\"><STRONG>Note:</STRONG>&nbsp; Spam posts are removed from view after 30 days on the <STRONG>Spam</STRONG> management list, but you can still find them by searching for them.</P>\n<P><STRONG>Related topics:</STRONG></P>\n<UL>\n<LI class=\"\"><A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-tkb\" href=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532\" target=\"_self\" data-lia-auto-title=\"Enable spam management\" data-lia-auto-title-active=\"0\" rel=\"noopener noreferrer\">Enable spam management</A></LI>\n<LI><A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-tkb\" href=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402\" target=\"_self\" data-lia-auto-title=\"Content Management Dashboard\" data-lia-auto-title-active=\"0\" rel=\"noopener noreferrer\">Content Management Dashboard</A></LI>\n<LI><A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-tkb\" href=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-abuse-management/720485\" target=\"_self\" data-lia-auto-title=\"Abuse management\" data-lia-auto-title-active=\"0\" rel=\"noopener noreferrer\">Abuse management</A></LI>\n<LI>Recap how to mark, report, and manage spam posts with this on-demand Instructor-Led Training on Spam Management: <A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-occasion\" style=\"font-style: var(--lia-tkb-font-style); font-weight: var(--lia-tkb-font-weight); font-family: var(--lia-tkb-font-family); font-size: var(--lia-bs-font-size-base);\" href=\"https://community.khoros.com/event/productwebinars/instructor-led-training-on-spam-management-for-khoros-communities-aurora/766587\" data-lia-auto-title=\"Khoros Communities Aurora Spam Management&nbsp;\" data-lia-auto-title-active=\"0\" target=\"_blank\" rel=\"noopener noreferrer\">Khoros Communities Aurora Spam Management </A></LI>\n<LI class=\"\">Sign up for 1-to-1 training in Aurora spam management with our&nbsp;<A class=\"lia-internal-link lia-internal-url lia-internal-url-content-type-tkb\" style=\"font-style: var(--lia-tkb-font-style); font-weight: var(--lia-tkb-font-weight); font-family: var(--lia-tkb-font-family); font-size: var(--lia-bs-font-size-base);\" href=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-product-coaching-session-spam-management-best-practise/767500\" data-lia-auto-title=\"product coaching session\" data-lia-auto-title-active=\"0\" target=\"_blank\" rel=\"noopener noreferrer\">product coaching session</A></LI>\n</UL>\n</DIV>",
+              "litopicurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360",
+              "limessageviewcount": 465,
+              "sysindexeddate": 1749298804000,
+              "permanentid": "fdd861d65efa1e9ac6f1a5d27831c6aefa47e80b53d2b1151ace1c1311ed",
+              "limessageissolution": "False",
+              "syslanguage": [
+                  "English"
+              ],
+              "transactionid": 891189,
+              "title": "About Aurora Communities spam management",
+              "limessagelabels": "communities aurora;moderation;spam",
+              "date": 1667795717000,
+              "objecttype": "Message",
+              "foldingcollection": "de25696da8370fd158bae0d50400b2bd9732748208dbbce11e4b0713f26a",
+              "liboardid": "khoros-communities-aurora-docs",
+              "limessagerating": 0.0,
+              "litopicviewcount": 465,
+              "litopiclabels": "communities aurora;moderation;spam",
+              "litopiclastedittime": 1734013847000,
+              "liboarddescription": "Learn the Aurora version of Khoros Communities. Utilize user guides to navigate to helpful content.",
+              "limessageauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 720360,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "LauraV",
+              "lithreadreplycount": 0,
+              "rowid": 1749298804565446748,
+              "lithreadhassolution": "false",
+              "limessageauthor": "BhuvanaM",
+              "licommunitytitle": "Atlas",
+              "limessagelasteditauthor": "LauraV",
+              "limessagesubject": "About Aurora Communities spam management",
+              "lithreadmessagecount": 1,
+              "size": 11859,
+              "sysdocumenttype": "message",
+              "clickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212616101944094707,
+              "syssize": 11859,
+              "sysdate": 1667795717000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"about aurora communities spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360\" /><parent name=\"about aurora communities spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "litopicteaser": "<P>Khoros Community spam management tools run in the background, where each new message is logged and tested for spam. Additionally, our system learns about your site content as it monitors all your boards and forums, enabling it to improve its content filtering over time.</P>",
+              "licommunityshorttitle": "Atlas",
+              "limessageisreadonly": "False",
+              "liboardinteractionstyle": "tkb",
+              "litopicposttime": 1667795717000,
+              "limessagelasteditauthorurl": "https://community.khoros.com/users/LauraV/107047",
+              "foldingchild": "de25696da8370fd158bae0d50400b2bd9732748208dbbce11e4b0713f26a",
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/LauraV/107047",
+              "primaryid": "KNXDANLENJSEKUTKJRQWKZ3QKMXDGOBSGU2C4ZDFMZQXK3DU",
+              "wordcount": 140,
+              "litopicauthor": "BhuvanaM",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Khoros Communities - Aurora Docs",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1749298804000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiummessage",
+              "sysclickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360",
+              "limessageid": 720360,
+              "sysfiletype": "lithiummessage",
+              "language": [
+                  "English"
+              ],
+              "liboardtitle": "Khoros Communities - Aurora Docs",
+              "authorloginname": "BhuvanaM",
+              "sysrowid": 1749298804565446748,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+              "syscollection": "default"
+          },
+          "Title": "About Aurora Communities spam management",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+          "ClickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/about-aurora-communities-spam-management/720360",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720360/message:720360",
+          "Excerpt": "Enable spam management Content Management Dashboard Abuse management Recap how to mark, report, and manage spam posts with this on-demand Instructor-Led Training on Spam Management:",
+          "FirstSentences": null
+      },
+      {
+          "title": "Take a tour of our Accelerated Community Management solution",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+          "clickUri": "https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+          "excerpt": "... our Care product, our customers can confidently manage cross-channel conversations, agent ... Take an interactive product tour of our Accelerated Community Management solution to see how our ...",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasHtmlVersion;HasAllMetaDataStream",
+          "hasHtmlVersion": true,
+          "hasMobileHtmlVersion": false,
+          "score": 5261,
+          "percentScore": 73.76382,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 10,
+                  "offset": 41
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+              {
+                  "length": 7,
+                  "offset": 13
+              },
+              {
+                  "length": 6,
+                  "offset": 52
+              },
+              {
+                  "length": 7,
+                  "offset": 118
+              },
+              {
+                  "length": 10,
+                  "offset": 160
+              }
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "Take a tour of our Accelerated Community Management solution",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "KL0OxjkL4Y9kguVz",
+              "licategorytitle": "Learn",
+              "urihash": "KL0OxjkL4Y9kguVz",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"release notes &amp; updates\" uri=\"https://community.khoros.com/category/products/blog/release-notes\" /><parent name=\"take a tour of our accelerated community management solution\" uri=\"https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292\" /><parent name=\"take a tour of our accelerated community management solution\" uri=\"https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292\" /></parents>",
+              "limessagekudoscount": 1,
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+              "limessageurl": "https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+              "systransactionid": 891176,
+              "sysauthorloginname": "MollyJ",
+              "litopickudoscount": 1,
+              "litopicsubject": "Take a tour of our Accelerated Community Management solution",
+              "limessageistopic": "True",
+              "licategoryid": "products",
+              "sysconcepts": [
+                  "community ",
+                  " management ",
+                  " moderation ",
+                  " capacity ",
+                  " resources ",
+                  " interactions ",
+                  " Khoros Accelerated ",
+                  " customers ",
+                  " response times ",
+                  " cross-channel conversations ",
+                  " manual routing ",
+                  " Messy peer-to-peer ",
+                  " brand-owned online ",
+                  " self service"
+              ],
+              "limessageteaser": "<P><span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"Tour.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image Tour.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MTYyOTItMTk1ODE1aUZDNjMwNjY3NEEyRjc0Njc?image-dimensions=999x999&amp;revision=7\" width=\"999\" height=\"999\" alt=\"Tour.png\" /></button></span></P>\n<P><SPAN>Check out the interactive product tour of our Accelerated Community Management solution</SPAN><SPAN>&nbsp;to see how our comprehensive moderation and management tools provide faster and more flexible customer support operations.&nbsp;</SPAN></P>",
+              "licategorydescription": "Access training and documentation for all of our products",
+              "concepts": [
+                  "community ",
+                  " management ",
+                  " moderation ",
+                  " capacity ",
+                  " resources ",
+                  " interactions ",
+                  " Khoros Accelerated ",
+                  " customers ",
+                  " response times ",
+                  " cross-channel conversations ",
+                  " manual routing ",
+                  " Messy peer-to-peer ",
+                  " brand-owned online ",
+                  " self service"
+              ],
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+              "limessageposttime": 1664294400000,
+              "documenttype": "message",
+              "liboardurl": "https://community.khoros.com/category/products/blog/release-notes",
+              "limessagelastedittime": 1718989207000,
+              "limessagebody": "<P><SPAN>One of the most effective channels for self service is a brand-owned online community. Communities are engines for matching people with needs to people with resources; questions with answers, experts with novices, and emotional needs with those who have the capacity to give<span class=\"lia-media-object lia-media-is-inline lia-media-size-small\" data-image-alt=\"Tour.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image Tour.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MTYyOTItMTk1ODE1aUZDNjMwNjY3NEEyRjc0Njc?image-dimensions=5x3&amp;revision=7\" width=\"5\" height=\"3\" alt=\"Tour.png\" /></button></span></SPAN></P>\n<P><SPAN>However, managing a community is equal parts art and science. Messy peer-to-peer interactions cannot be fully automated by algorithms and human managers cannot handle a large volume by themselves. Without operational tools to accelerate moderation and management tasks, a community cannot grow efficiently.</SPAN></P>\n<P data-unlink=\"true\"><SPAN>With </SPAN><SPAN>Khoros Accelerated Community Management</SPAN><SPAN>, our customers can say goodbye to manual routing and switching between their Community and Care instance to manage responses. And with community response analytics built into our Care product, our customers can confidently manage cross-channel conversations, agent capacity, and response times.&nbsp;</SPAN></P>\n<P><STRONG><A href=\"https://khoros.com/resources/accelerated-community-management\" target=\"_blank\" rel=\"noopener noreferrer\">Take an interactive product tour of our Accelerated Community Management solution</A></STRONG><SPAN> to see how our comprehensive moderation and management tools provide faster and more flexible customer support operations.&nbsp;</SPAN></P>\n<P><SPAN><A href=\"https://khoros.com/resources/accelerated-community-management\" target=\"_self\" rel=\"noopener noreferrer\"><span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"product tour.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image product tour.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MTYyOTItMTk1ODE0aUQyNEIyMEM4NTVFQzFCMzA?image-dimensions=895x481&amp;revision=7\" width=\"895\" height=\"481\" alt=\"product tour.png\" /></button></span></A></SPAN></P>\n<P>Check out these resources to learn more about Accelerated Community Management</P>\n<UL>\n<LI><FONT size=\"3\"><A href=\"https://community.khoros.com/t5/Khoros-Care-Blog/Community-Self-Service-Accelerated-Community-Management/ba-p/693679\" target=\"_self\" rel=\"noopener noreferrer\">Community Self-Service + Accelerated Community Management</A></FONT></LI>\n<LI><FONT size=\"3\"><A href=\"https://community.khoros.com/t5/Khoros-Care-Blog/The-Hybrid-Future-is-Here-Let-s-modernize-your-agent-s/ba-p/693678\" target=\"_self\" rel=\"noopener noreferrer\">The Hybrid Future is Here: Let’s modernize your agent's experience</A></FONT></LI>\n<LI><A href=\"https://community.khoros.com/t5/Manage-View-Basics/Community-Moderation-in-Manage-View/ta-p/609089\" target=\"_self\" rel=\"noopener noreferrer\"><FONT size=\"3\">Getting started with Community Moderation in Manage View</FONT></A></LI>\n</UL>",
+              "litopicurl": "https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292",
+              "limessageviewcount": 2832,
+              "sysindexeddate": 1749298216000,
+              "permanentid": "58aab2a17e0b96acfa4a0c2f4eebb25b708bc163c09f1e1a3337a54d0bca",
+              "limessageissolution": "False",
+              "syslanguage": [
+                  "English"
+              ],
+              "transactionid": 891176,
+              "title": "Take a tour of our Accelerated Community Management solution",
+              "limessagelabels": "care;communities classic;Strategy",
+              "date": 1664294400000,
+              "objecttype": "Message",
+              "foldingcollection": "c2eee3e0a45d3e052cdbd50e4959493e8b2e7593882776f8523fe2a49539",
+              "liboardid": "release-notes",
+              "limessagerating": 0.0,
+              "litopicviewcount": 2832,
+              "litopiclabels": "care;communities classic;Strategy",
+              "litopiclastedittime": 1718989207000,
+              "liboarddescription": "Review release notes and updates for all of our products! Select a tag to browse by product or resource type.",
+              "limessageauthorurl": "https://community.khoros.com/users/MollyJ/106489",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 716292,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "CoryD",
+              "lithreadreplycount": 0,
+              "rowid": 1749298216081983109,
+              "lithreadhassolution": "false",
+              "limessageauthor": "MollyJ",
+              "licommunitytitle": "Atlas",
+              "limessagelasteditauthor": "CoryD",
+              "limessagesubject": "Take a tour of our Accelerated Community Management solution",
+              "lithreadmessagecount": 1,
+              "size": 8415,
+              "sysdocumenttype": "message",
+              "clickableuri": "https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212616101299158530,
+              "syssize": 8415,
+              "sysdate": 1664294400000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"release notes &amp; updates\" uri=\"https://community.khoros.com/category/products/blog/release-notes\" /><parent name=\"take a tour of our accelerated community management solution\" uri=\"https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292\" /><parent name=\"take a tour of our accelerated community management solution\" uri=\"https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/MollyJ/106489",
+              "litopicteaser": "<P><span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"Tour.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image Tour.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MTYyOTItMTk1ODE1aUZDNjMwNjY3NEEyRjc0Njc?image-dimensions=999x999&amp;revision=7\" width=\"999\" height=\"999\" alt=\"Tour.png\" /></button></span></P>\n<P><SPAN>Check out the interactive product tour of our Accelerated Community Management solution</SPAN><SPAN>&nbsp;to see how our comprehensive moderation and management tools provide faster and more flexible customer support operations.&nbsp;</SPAN></P>",
+              "licommunityshorttitle": "Atlas",
+              "limessageisreadonly": "False",
+              "liboardinteractionstyle": "blog",
+              "litopicposttime": 1664294400000,
+              "limessagelasteditauthorurl": "https://community.khoros.com/users/CoryD/93567",
+              "foldingchild": "c2eee3e0a45d3e052cdbd50e4959493e8b2e7593882776f8523fe2a49539",
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/CoryD/93567",
+              "primaryid": "JNGDAT3YNJVUYNCZHFVWO5KWPIXDGOBSGU2C4ZDFMZQXK3DU",
+              "wordcount": 124,
+              "litopicauthor": "MollyJ",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Release Notes",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1749298216000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiummessage",
+              "sysclickableuri": "https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292",
+              "limessageid": 716292,
+              "sysfiletype": "lithiummessage",
+              "language": [
+                  "English"
+              ],
+              "liboardtitle": "Release Notes & Updates",
+              "authorloginname": "MollyJ",
+              "sysrowid": 1749298216081983109,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+              "syscollection": "default"
+          },
+          "Title": "Take a tour of our Accelerated Community Management solution",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+          "ClickUri": "https://community.khoros.com/blog/release-notes/take-a-tour-of-our-accelerated-community-management-solution/716292",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:release-notes/thread:716292/message:716292",
+          "Excerpt": "... our Care product, our customers can confidently manage cross-channel conversations, agent ... Take an interactive product tour of our Accelerated Community Management solution to see how our ...",
+          "FirstSentences": null
+      },
+      {
+          "title": "Aurora: Enable spam management",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+          "clickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+          "excerpt": "... individual posts and replies as spam and manage these posts in the Spam management tab of the Manage Content dashboard. ... To enable spam management, toggle on the Spam management option.",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasHtmlVersion;HasAllMetaDataStream",
+          "hasHtmlVersion": true,
+          "hasMobileHtmlVersion": false,
+          "score": 5208,
+          "percentScore": 73.39132,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 10,
+                  "offset": 20
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+              {
+                  "length": 6,
+                  "offset": 45
+              },
+              {
+                  "length": 10,
+                  "offset": 76
+              },
+              {
+                  "length": 6,
+                  "offset": 98
+              },
+              {
+                  "length": 10,
+                  "offset": 143
+              },
+              {
+                  "length": 10,
+                  "offset": 174
+              }
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "Aurora: Enable spam management",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "3zLya3ðyQO5NrX9p",
+              "licategorytitle": "Learn",
+              "urihash": "3zLya3ðyQO5NrX9p",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: enable spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532\" /><parent name=\"aurora: enable spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532\" /></parents>",
+              "limessagekudoscount": 0,
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+              "limessageurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+              "systransactionid": 891189,
+              "sysauthorloginname": "BhuvanaM",
+              "litopickudoscount": 0,
+              "litopicsubject": "Aurora: Enable spam management",
+              "limessageistopic": "True",
+              "licategoryid": "products",
+              "sysconcepts": [
+                  "spam management ",
+                  " community level ",
+                  " moderators ",
+                  " dashboard ",
+                  " posts ",
+                  " replies ",
+                  " settings ",
+                  " toggle ",
+                  " ongoing task ",
+                  " solicitation ",
+                  " inappropriate"
+              ],
+              "licategorydescription": "Access training and documentation for all of our products",
+              "concepts": [
+                  "spam management ",
+                  " community level ",
+                  " moderators ",
+                  " dashboard ",
+                  " posts ",
+                  " replies ",
+                  " settings ",
+                  " toggle ",
+                  " ongoing task ",
+                  " solicitation ",
+                  " inappropriate"
+              ],
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+              "limessageposttime": 1677250757000,
+              "documenttype": "message",
+              "liboardurl": "https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs",
+              "limessagelastedittime": 1718880474000,
+              "limessagebody": "<DIV class=\"lia-message-template-content-zone\">\n<P><SPAN>Combating spam is an ongoing task for a community manager and their moderation team. It’s important to keep inappropriate content (solicitation, baiting, or irrelevant) off your site so it doesn’t bother or offend your community members.&nbsp;</SPAN></P>\n<P><SPAN>When spam management is enabled in Aurora communities, moderators can reject individual posts and replies as spam and manage these posts in the <STRONG>Spam</STRONG> management tab of the <STRONG>Manage Content</STRONG>&nbsp;dashboard.</SPAN><SPAN><BR /></SPAN></P>\n<span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"BhuvanaM_0-1687762425456.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1687762425456.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03Mjk1MzItMjAyNjc0aTk1MkU5QkI2RkY3MjI5MzY?image-dimensions=999x999&amp;revision=9\" width=\"999\" height=\"999\" alt=\"BhuvanaM_0-1687762425456.png\" /></button></span>\n<P><SPAN><BR />You can enable spam management at the community level and/or selectively turn it on/off at the category, group, or board level. Turning off spam management at the community level prevents any content being marked as spam and hides the <STRONG>Spam</STRONG> management dashboard.</SPAN></P>\n<P><SPAN>The amount of spam you get or expect to get on your community or in specific places may inform how best to configure spam management for your community. You may want to enable globally and then turn it off in specific places where you don’t expect spam. Or, you might want to turn it off globally and then enable spam management in the specific places where you think it might present a problem. It’s up to you.</SPAN></P>\n<P><SPAN><A href=\"https://community.khoros.com/t5/Moderation/Reject-individual-posts-or-replies-as-spam/ta-p/720609\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about rejecting content as spam</A>.</SPAN></P>\n<H2 id=\"community-729532-toc-hId-1789846966\"><STRONG>Enable spam management at the community level</STRONG></H2>\n<OL>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>Sign in to the community as an Admin.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>Open the </SPAN><STRONG>Account</STRONG><SPAN> menu and go to </SPAN><STRONG>Settings</STRONG><SPAN> &gt; </SPAN><STRONG>Features</STRONG><SPAN>.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>Click </SPAN><STRONG>Moderation</STRONG><SPAN><SPAN>.<BR /><span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"BhuvanaM_0-1677150003859.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1677150003859.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03Mjk1MzItMTk5MzczaTJGREEwOTY0MTUwNTc2MTA?image-dimensions=999x999&amp;revision=9\" width=\"999\" height=\"999\" alt=\"BhuvanaM_0-1677150003859.png\" /></button></span><BR /><SPAN>The </SPAN><STRONG style=\"font-family: inherit; background-color: #ffffff;\">General</STRONG><SPAN> settings page displays spam and content moderation settings.&nbsp;<BR /></SPAN></SPAN></SPAN><SPAN><SPAN><BR /></SPAN></SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN><SPAN><SPAN><SPAN>To enable spam management, toggle on the</SPAN><STRONG style=\"font-family: inherit; background-color: #ffffff;\">&nbsp;Spam management&nbsp;</STRONG><SPAN>option.&nbsp;<BR /></SPAN></SPAN></SPAN></SPAN><span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"BhuvanaM_2-1686726071844.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_2-1686726071844.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03Mjk1MzItMjAyMTEzaTNCNUI0Qzc5ODczQzY2Mjk?image-dimensions=999x999&amp;revision=9\" width=\"999\" height=\"999\" alt=\"BhuvanaM_2-1686726071844.png\" /></button></span></LI>\n</OL>\n<H2 id=\"community-729532-toc-hId--762309995\"><STRONG>Configure spam management at the category, group, or board level</STRONG></H2>\n<P><SPAN>The community-level </SPAN><STRONG>Spam management</STRONG><SPAN> setting is inherited by the category, group, and board levels. You can override this setting as needed.&nbsp;</SPAN></P>\n<P class=\"lia-indent-padding-left-30px\" style=\"padding-left : 30px;\"><STRONG>Note</STRONG><SPAN>: If <STRONG>Spam management</STRONG> is turned off at the community level and enabled only in specific places (categories, groups, or boards), the <STRONG>Spam</STRONG> management tab in the <STRONG>Content Management</STRONG> dashboard lists posts and replies that are rejected as spam only for those places.</SPAN></P>\n<P><SPAN>Let’s look at an example where spam management is on for the entire community and you want to turn it off for a specific category.</SPAN></P>\n<P><STRONG>To turn off spam management for a specific category:</STRONG></P>\n<OL>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>Open the </SPAN><STRONG>Account</STRONG><SPAN> menu and go to </SPAN><STRONG>Settings</STRONG><SPAN> &gt; </SPAN><STRONG>Community Structure</STRONG><SPAN>.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>On the&nbsp;</SPAN><STRONG>Community Structure&nbsp;</STRONG>page,&nbsp;<SPAN>click the category where you want to turn off spam management.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>In Category settings, go to the </SPAN><STRONG>Moderation</STRONG><SPAN> section and toggle off the</SPAN><STRONG>&nbsp;Spam management </STRONG><SPAN><SPAN>option.<BR /></SPAN></SPAN><span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"BhuvanaM_1-1686726017547.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_1-1686726017547.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03Mjk1MzItMjAyMTEyaTM4MzFCNjdGMDAyREJFQTk?image-dimensions=999x999&amp;revision=9\" width=\"999\" height=\"999\" alt=\"BhuvanaM_1-1686726017547.png\" /></button></span></LI>\n</OL>\n</DIV>",
+              "litopicurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532",
+              "limessageviewcount": 288,
+              "sysindexeddate": 1749298803000,
+              "permanentid": "bd819cb7ffc600beb1d0a425ce0b005a0484e1bb04b3883b60db3c570177",
+              "limessageissolution": "False",
+              "syslanguage": [
+                  "English"
+              ],
+              "transactionid": 891189,
+              "title": "Aurora: Enable spam management",
+              "limessagelabels": "communities aurora;moderation;spam",
+              "date": 1677250757000,
+              "objecttype": "Message",
+              "foldingcollection": "282669548da88e9eb51d7530742384c51ce7402fbe569389720b8d050167",
+              "liboardid": "khoros-communities-aurora-docs",
+              "limessagerating": 0.0,
+              "litopicviewcount": 288,
+              "litopiclabels": "communities aurora;moderation;spam",
+              "litopiclastedittime": 1718880474000,
+              "liboarddescription": "Learn the Aurora version of Khoros Communities. Utilize user guides to navigate to helpful content.",
+              "limessageauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 729532,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "BhuvanaM",
+              "lithreadreplycount": 0,
+              "rowid": 1749298803946555358,
+              "lithreadhassolution": "false",
+              "limessageauthor": "BhuvanaM",
+              "licommunitytitle": "Atlas",
+              "limessagelasteditauthor": "BhuvanaM",
+              "limessagesubject": "Aurora: Enable spam management",
+              "lithreadmessagecount": 1,
+              "size": 9847,
+              "sysdocumenttype": "message",
+              "clickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212616101921563967,
+              "syssize": 9847,
+              "sysdate": 1677250757000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: enable spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532\" /><parent name=\"aurora: enable spam management\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "licommunityshorttitle": "Atlas",
+              "limessageisreadonly": "False",
+              "liboardinteractionstyle": "tkb",
+              "litopicposttime": 1677250757000,
+              "limessagelasteditauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "foldingchild": "282669548da88e9eb51d7530742384c51ce7402fbe569389720b8d050167",
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "primaryid": "GN5EY6LBGPB3A6KRJ42U44SYHFYC4MZYGI2TILTEMVTGC5LMOQ",
+              "wordcount": 132,
+              "litopicauthor": "BhuvanaM",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Khoros Communities - Aurora Docs",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1749298803000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiummessage",
+              "sysclickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532",
+              "limessageid": 729532,
+              "sysfiletype": "lithiummessage",
+              "language": [
+                  "English"
+              ],
+              "liboardtitle": "Khoros Communities - Aurora Docs",
+              "authorloginname": "BhuvanaM",
+              "sysrowid": 1749298803946555358,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+              "syscollection": "default"
+          },
+          "Title": "Aurora: Enable spam management",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+          "ClickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-enable-spam-management/729532",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:729532/message:729532",
+          "Excerpt": "... individual posts and replies as spam and manage these posts in the Spam management tab of the Manage Content dashboard. ... To enable spam management, toggle on the Spam management option.",
+          "FirstSentences": null
+      },
+      {
+          "title": "Aurora: Search for specific content in Spam management tab",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+          "clickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+          "excerpt": "On the Spam management tab, you can filter and search for specific content that is marked as spam. ... Open the Account menu and go to Manage > Spam. ... Title of the post, enter the Title.",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasHtmlVersion;HasAllMetaDataStream",
+          "hasHtmlVersion": true,
+          "hasMobileHtmlVersion": false,
+          "score": 5118,
+          "percentScore": 72.75442,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 10,
+                  "offset": 44
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+              {
+                  "length": 10,
+                  "offset": 12
+              },
+              {
+                  "length": 6,
+                  "offset": 135
+              }
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "Aurora: Search for specific content in Spam management tab",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "LaðrI2e6xsD5a3Lc",
+              "licategorytitle": "Learn",
+              "urihash": "LaðrI2e6xsD5a3Lc",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: search for specific content in spam management tab\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372\" /><parent name=\"aurora: search for specific content in spam management tab\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372\" /></parents>",
+              "limessagekudoscount": 0,
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+              "limessageurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+              "systransactionid": 891189,
+              "sysauthorloginname": "BhuvanaM",
+              "litopickudoscount": 0,
+              "litopicsubject": "Aurora: Search for specific content in Spam management tab",
+              "limessageistopic": "True",
+              "licategoryid": "products",
+              "sysconcepts": [
+                  "Spam management ",
+                  " posts ",
+                  " member ",
+                  " community ",
+                  " search criteria ",
+                  " selected option ",
+                  " Filters ",
+                  " Moderator"
+              ],
+              "limessageteaser": "<P><SPAN>On the Spam management page, you can filter and search for specific content that is marked as spam. You can filter by Title or Author, as well as by who reported the spam (System, Member, or Both).</SPAN></P>",
+              "licategorydescription": "Access training and documentation for all of our products",
+              "concepts": [
+                  "Spam management ",
+                  " posts ",
+                  " member ",
+                  " community ",
+                  " search criteria ",
+                  " selected option ",
+                  " Filters ",
+                  " Moderator"
+              ],
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+              "limessageposttime": 1667799775000,
+              "documenttype": "message",
+              "liboardurl": "https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs",
+              "limessagelastedittime": 1718880508000,
+              "limessagebody": "<DIV class=\"lia-message-template-content-zone\">\n<P><SPAN>On the <STRONG>Spam</STRONG> management tab, you can filter and search for specific content that is marked as spam. You can filter by Title or Author as well as by who reported the spam (System, Member, or Both).</SPAN></P>\n<P><STRONG>To filter and search for specific content in Spam management tab:</STRONG></P>\n<OL>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>Sign in to your community as an Admin or Moderator.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>Open the </SPAN><STRONG>Account</STRONG><SPAN> menu and go to </SPAN><STRONG>Manage </STRONG>&gt;<STRONG> Spam</STRONG><SPAN>.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>To filter posts based on who reported the spam, click </SPAN><STRONG>Filters</STRONG><SPAN><SPAN>.<BR /></SPAN></SPAN><span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"BhuvanaM_0-1687764108714.png\"><button class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1687764108714.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjAzNzItMjAyNjgyaUU3QkZFQzdERUIwQUVEQUM?image-dimensions=999x999&amp;revision=9\" width=\"999\" height=\"999\" alt=\"BhuvanaM_0-1687764108714.png\" /></button></span></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\">Under&nbsp;<SPAN><STRONG>Moderator</STRONG>,</SPAN><SPAN>&nbsp;select any of the following:</SPAN>\n<UL style=\"font-weight: 400;\">\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG>All</STRONG>:<SPAN>&nbsp;Displays all posts that are marked as spam</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG>System</STRONG>:&nbsp;<SPAN>Displays posts that are identified as spam by the system.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG style=\"font-family: inherit; background-color: #ffffff;\">Member</STRONG>:<SPAN>&nbsp;Displays posts that are marked as spam by a community member.&nbsp;</SPAN>The <STRONG>Spam</STRONG> management page is filtered based on the selected option.</LI>\n</UL>\n</LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\">To search based on the <STRONG style=\"font-family: inherit; background-color: #ffffff;\">Title </STRONG><SPAN>of the post, enter the </SPAN><STRONG style=\"font-family: inherit; background-color: #ffffff;\">Title</STRONG><SPAN>.</SPAN></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><SPAN>To search based on the </SPAN><STRONG>Author</STRONG><SPAN> of the post, enter the </SPAN><STRONG>Author</STRONG><SPAN> name.<BR /></SPAN>The <STRONG>Spam</STRONG> management list is updated based on the provided search criteria.</LI>\n</OL>\n</DIV>",
+              "litopicurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372",
+              "limessageviewcount": 163,
+              "sysindexeddate": 1749298802000,
+              "permanentid": "fc46e42905d8de96013b7d81267fd4a3082833f4ccd7ddf0b6309570209c",
+              "limessageissolution": "False",
+              "syslanguage": [
+                  "English"
+              ],
+              "transactionid": 891189,
+              "title": "Aurora: Search for specific content in Spam management tab",
+              "limessagelabels": "communities aurora;moderation;spam",
+              "date": 1667799775000,
+              "objecttype": "Message",
+              "foldingcollection": "3bf11309b162c5697698ee52bb5def121200f1465a3579bad9d80e3eeff4",
+              "liboardid": "khoros-communities-aurora-docs",
+              "limessagerating": 0.0,
+              "litopicviewcount": 163,
+              "litopiclabels": "communities aurora;moderation;spam",
+              "litopiclastedittime": 1718880508000,
+              "liboarddescription": "Learn the Aurora version of Khoros Communities. Utilize user guides to navigate to helpful content.",
+              "limessageauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 720372,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "BhuvanaM",
+              "lithreadreplycount": 0,
+              "rowid": 1749298801987163033,
+              "lithreadhassolution": "false",
+              "limessageauthor": "BhuvanaM",
+              "licommunitytitle": "Atlas",
+              "limessagelasteditauthor": "BhuvanaM",
+              "limessagesubject": "Aurora: Search for specific content in Spam management tab",
+              "lithreadmessagecount": 1,
+              "size": 7112,
+              "sysdocumenttype": "message",
+              "clickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212616101944090855,
+              "syssize": 7112,
+              "sysdate": 1667799775000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: search for specific content in spam management tab\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372\" /><parent name=\"aurora: search for specific content in spam management tab\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "litopicteaser": "<P><SPAN>On the Spam management page, you can filter and search for specific content that is marked as spam. You can filter by Title or Author, as well as by who reported the spam (System, Member, or Both).</SPAN></P>",
+              "licommunityshorttitle": "Atlas",
+              "limessageisreadonly": "False",
+              "liboardinteractionstyle": "tkb",
+              "litopicposttime": 1667799775000,
+              "limessagelasteditauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "foldingchild": "3bf11309b162c5697698ee52bb5def121200f1465a3579bad9d80e3eeff4",
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "primaryid": "JRQ4HMDSJEZGKNTYONCDKYJTJRRS4MZYGI2TILTEMVTGC5LMOQ",
+              "wordcount": 66,
+              "litopicauthor": "BhuvanaM",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Khoros Communities - Aurora Docs",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1749298802000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiummessage",
+              "sysclickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372",
+              "limessageid": 720372,
+              "sysfiletype": "lithiummessage",
+              "language": [
+                  "English"
+              ],
+              "liboardtitle": "Khoros Communities - Aurora Docs",
+              "authorloginname": "BhuvanaM",
+              "sysrowid": 1749298801987163033,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+              "syscollection": "default"
+          },
+          "Title": "Aurora: Search for specific content in Spam management tab",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+          "ClickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-search-for-specific-content-in-spam-management-tab/720372",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720372/message:720372",
+          "Excerpt": "On the Spam management tab, you can filter and search for specific content that is marked as spam. ... Open the Account menu and go to Manage > Spam. ... Title of the post, enter the Title.",
+          "FirstSentences": null
+      },
+      {
+          "title": "Aurora: Managing spam in your community",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+          "clickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+          "excerpt": "Managing spam in your community is integral part of keeping it safe and relevant for your members. The Manage Content page Spam management tab lists content that has been identified as ...",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasHtmlVersion;HasAllMetaDataStream",
+          "hasHtmlVersion": true,
+          "hasMobileHtmlVersion": false,
+          "score": 5108,
+          "percentScore": 72.683304,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 8,
+                  "offset": 8
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+              {
+                  "length": 8,
+                  "offset": 0
+              },
+              {
+                  "length": 6,
+                  "offset": 103
+              },
+              {
+                  "length": 10,
+                  "offset": 128
+              }
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "Aurora: Managing spam in your community",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "bcKBleH3l33WEKTB",
+              "licategorytitle": "Learn",
+              "urihash": "bcKBleH3l33WEKTB",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: managing spam in your community\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365\" /><parent name=\"aurora: managing spam in your community\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365\" /></parents>",
+              "limessagekudoscount": 0,
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+              "limessageurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+              "systransactionid": 889733,
+              "sysauthorloginname": "BhuvanaM",
+              "litopickudoscount": 0,
+              "litopicsubject": "Aurora: Managing spam in your community",
+              "limessageistopic": "True",
+              "licategoryid": "products",
+              "sysconcepts": [
+                  "Spam management ",
+                  " posts ",
+                  " lists ",
+                  " Hiding ",
+                  " members ",
+                  " column header ",
+                  " multiple times ",
+                  " descending ",
+                  " ascending ",
+                  " re-evaluating ",
+                  " Moderator ",
+                  " dashboard ",
+                  " permissions ",
+                  " community"
+              ],
+              "licategorydescription": "Access training and documentation for all of our products",
+              "concepts": [
+                  "Spam management ",
+                  " posts ",
+                  " lists ",
+                  " Hiding ",
+                  " members ",
+                  " column header ",
+                  " multiple times ",
+                  " descending ",
+                  " ascending ",
+                  " re-evaluating ",
+                  " Moderator ",
+                  " dashboard ",
+                  " permissions ",
+                  " community"
+              ],
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+              "limessageposttime": 1667797814000,
+              "documenttype": "message",
+              "liboardurl": "https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs",
+              "limessagelastedittime": 1730473526000,
+              "limessagebody": "<DIV class=\"lia-message-template-content-zone\">\n<P class=\"\">Managing spam in your community is integral part of keeping it safe and relevant for your members. The<STRONG> Manage Content&nbsp;</STRONG>page&nbsp;<STRONG>Spam</STRONG> management tab lists content that has been identified as spam. From this page, you can manage content marked as spam and take a variety of actions on this content. We recommend monitoring this page daily.</P>\n<P class=\"\">To assist with effectively managing posts that have been marked as spam, we also recommend you select&nbsp;<STRONG>Hide from View</STRONG> for posts that have been reviewed and confirmed as spam. They can still be found by author or keywords in the&nbsp;<STRONG>Filters</STRONG> section of the <STRONG>Manage Content</STRONG> page.</P>\n<P>If you have been granted the appropriate permissions, you can access the <STRONG>Spam</STRONG> management page via <STRONG>Manage Content</STRONG> dashboard as shown here:</P>\n<span class=\"lia-media-object lia-media-is-center lia-media-size-large\" data-image-alt=\"BhuvanaM_0-1687763628014.png\"><button aria-labelledby=\"202678i7EF54E854DF6BB09_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1687763628014.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjAzNjUtMjAyNjc4aTdFRjU0RTg1NERGNkJCMDk?image-dimensions=600x245&amp;revision=13\" width=\"600\" height=\"245\" alt=\"BhuvanaM_0-1687763628014.png\" /></button><span class=\"lia-media-caption-text\" id=\"202678i7EF54E854DF6BB09_caption\"></span></span>\n<P><BR />The page lists:</P>\n<UL>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG>Title</STRONG>:&nbsp;titles of posts marked as spam</LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG>Author</STRONG>:&nbsp;authors of posts marked as spam</LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG>Date Rejected</STRONG>:&nbsp;the date on which posts were rejected as spam; you can sort the list based on this&nbsp;column</LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG>Moderator</STRONG>:&nbsp;the member who reported the spam</LI>\n</UL>\n<P class=\"lia-indent-padding-left-30px\" style=\"padding-left : 30px;\"><STRONG>Note</STRONG>: Spam is removed from this view after 30 days, but you can still find it by searching.</P>\n</DIV>\n<DIV class=\"lia-message-template-content-zone\">\n<H2 id=\"community-720365-toc-hId-1789577021\"><STRONG>Manage spam</STRONG></H2>\n<P>On the <STRONG>Spam</STRONG> management tab, you can perform these actions:</P>\n<UL>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><A href=\"https://community.khoros.com/t5/Moderation/Review-posts-captured-as-spam/ta-p/720368\" target=\"_self\" rel=\"noopener noreferrer\">Review posts captured as spam </A></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><A href=\"https://community.khoros.com/t5/Moderation/Search-for-specific-content-in-Spam-management-page/ta-p/720372\" target=\"_blank\" rel=\"noopener noreferrer\">Search and filter the content that are marked as spam</A></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><A href=\"https://community.khoros.com/t5/Moderation/Hide-reviewed-spam-posts/ta-p/720381\" target=\"_self\" rel=\"noopener noreferrer\">Hide reviewed spam posts from the Spam management list.</A> <BR /><BR /><STRONG>Tip: </STRONG>Hiding posts from the spam lists prevents you from re-evaluating them multiple times. You can still find these hidden posts if you <A href=\"https://community.khoros.com/t5/Moderation/Search-for-specific-content-in-Spam-management-page/ta-p/720372\" target=\"_blank\" rel=\"noopener noreferrer\">search</A> them in the <STRONG>Spam</STRONG> management tab.</LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><A href=\"https://community.khoros.com/t5/Moderation/Recover-a-post-mistakenly-marked-as-spam/ta-p/720376\" target=\"_self\" rel=\"noopener noreferrer\">Recover a post mistakenly marked as spam</A></LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\">Sort the spam posts in the ascending/descending order of post creation date by clicking&nbsp;<STRONG>Date Reported&nbsp;</STRONG>in the column header</LI>\n</UL>\n</DIV>",
+              "litopicurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365",
+              "limessageviewcount": 240,
+              "sysindexeddate": 1748693955000,
+              "permanentid": "9f77779821da723798039205a59299d5c9ad18c171353d01a2a62f2c2f8b",
+              "limessageissolution": "False",
+              "syslanguage": [
+                  "English"
+              ],
+              "transactionid": 889733,
+              "title": "Aurora: Managing spam in your community",
+              "limessagelabels": "communities aurora;moderation;spam",
+              "date": 1667797814000,
+              "objecttype": "Message",
+              "foldingcollection": "d984dff4d67f66adc3668b3dfac304149322fcaca0000c9ab5f300115d50",
+              "liboardid": "khoros-communities-aurora-docs",
+              "limessagerating": 0.0,
+              "litopicviewcount": 240,
+              "litopiclabels": "communities aurora;moderation;spam",
+              "litopiclastedittime": 1730473526000,
+              "liboarddescription": "Learn the Aurora version of Khoros Communities. Utilize user guides to navigate to helpful content.",
+              "limessageauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 720365,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "LauraV",
+              "lithreadreplycount": 0,
+              "rowid": 1748693955370073811,
+              "lithreadhassolution": "false",
+              "limessageauthor": "BhuvanaM",
+              "licommunitytitle": "Atlas",
+              "limessagelasteditauthor": "LauraV",
+              "limessagesubject": "Aurora: Managing spam in your community",
+              "lithreadmessagecount": 1,
+              "size": 7885,
+              "sysdocumenttype": "message",
+              "clickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212615497152474494,
+              "syssize": 7885,
+              "sysdate": 1667797814000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: managing spam in your community\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365\" /><parent name=\"aurora: managing spam in your community\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/BhuvanaM/125588",
+              "licommunityshorttitle": "Atlas",
+              "limessageisreadonly": "False",
+              "liboardinteractionstyle": "tkb",
+              "litopicposttime": 1667797814000,
+              "limessagelasteditauthorurl": "https://community.khoros.com/users/LauraV/107047",
+              "foldingchild": "d984dff4d67f66adc3668b3dfac304149322fcaca0000c9ab5f300115d50",
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/LauraV/107047",
+              "primaryid": "MJRUWQTMMVEDG3BTGNLUKS2UIIXDGOBSGU2C4ZDFMZQXK3DU",
+              "wordcount": 122,
+              "litopicauthor": "BhuvanaM",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Khoros Communities - Aurora Docs",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1748693955000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiummessage",
+              "sysclickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365",
+              "limessageid": 720365,
+              "sysfiletype": "lithiummessage",
+              "language": [
+                  "English"
+              ],
+              "liboardtitle": "Khoros Communities - Aurora Docs",
+              "authorloginname": "BhuvanaM",
+              "sysrowid": 1748693955370073811,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+              "syscollection": "default"
+          },
+          "Title": "Aurora: Managing spam in your community",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+          "ClickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-managing-spam-in-your-community/720365",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:720365/message:720365",
+          "Excerpt": "Managing spam in your community is integral part of keeping it safe and relevant for your members. The Manage Content page Spam management tab lists content that has been identified as ...",
+          "FirstSentences": null
+      },
+      {
+          "title": "Aurora: Manage Content Dashboard",
+          "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+          "printableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+          "clickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402",
+          "uniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+          "excerpt": "Managing drafts & published content: authors can manage blogs & KB drafts as well as published posts/articles. ... Learn more about Content Management and Approval. Content management Spam",
+          "firstSentences": null,
+          "summary": null,
+          "flags": "HasHtmlVersion;HasAllMetaDataStream",
+          "hasHtmlVersion": true,
+          "hasMobileHtmlVersion": false,
+          "score": 5094,
+          "percentScore": 72.58363,
+          "rankingInfo": null,
+          "rating": 0.0,
+          "isTopResult": false,
+          "isRecommendation": false,
+          "isUserActionView": false,
+          "titleHighlights": [
+              {
+                  "length": 6,
+                  "offset": 8
+              }
+          ],
+          "firstSentencesHighlights": [
+          ],
+          "excerptHighlights": [
+              {
+                  "length": 8,
+                  "offset": 0
+              },
+              {
+                  "length": 6,
+                  "offset": 49
+              },
+              {
+                  "length": 10,
+                  "offset": 140
+              },
+              {
+                  "length": 10,
+                  "offset": 173
+              }
+          ],
+          "printableUriHighlights": [
+              {
+                  "length": 8,
+                  "offset": 61
+              }
+          ],
+          "summaryHighlights": [
+          ],
+          "parentResult": null,
+          "childResults": [
+          ],
+          "totalNumberOfChildResults": 0,
+          "absentTerms": [
+          ],
+          "raw": {
+              "systitle": "Aurora: Manage Content Dashboard",
+              "licategoryshorttitle": "Learn",
+              "licommunityid": "lithosphere",
+              "sysurihash": "W9rMyRMñfVwD1Ec4",
+              "licategorytitle": "Learn",
+              "urihash": "W9rMyRMñfVwD1Ec4",
+              "parents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: manage content dashboard\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402\" /><parent name=\"aurora: manage content dashboard\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402\" /></parents>",
+              "limessagekudoscount": 0,
+              "sysuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+              "limessageurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402",
+              "sysprintableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+              "systransactionid": 891189,
+              "sysauthorloginname": "AshaC",
+              "litopickudoscount": 0,
+              "litopicsubject": "Aurora: Manage Content Dashboard",
+              "limessageistopic": "True",
+              "licategoryid": "products",
+              "sysconcepts": [
+                  "moderation ",
+                  " community ",
+                  " posts ",
+                  " management ",
+                  " members ",
+                  " blogs ",
+                  " articles ",
+                  " reviewing ",
+                  " private messages ",
+                  " knowledge base ",
+                  " permissions ",
+                  " engagement ",
+                  " guidelines ",
+                  " appropriateness ",
+                  " misleading ",
+                  " inappropriate"
+              ],
+              "licategorydescription": "Access training and documentation for all of our products",
+              "concepts": [
+                  "moderation ",
+                  " community ",
+                  " posts ",
+                  " management ",
+                  " members ",
+                  " blogs ",
+                  " articles ",
+                  " reviewing ",
+                  " private messages ",
+                  " knowledge base ",
+                  " permissions ",
+                  " engagement ",
+                  " guidelines ",
+                  " appropriateness ",
+                  " misleading ",
+                  " inappropriate"
+              ],
+              "printableuri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+              "limessageposttime": 1668412085000,
+              "documenttype": "message",
+              "liboardurl": "https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs",
+              "limessagelastedittime": 1732718099000,
+              "limessagebody": "<DIV class=\"lia-message-template-content-zone\">\n<P>The <STRONG>Manage Content</STRONG> dashboard is a one-point stop for:</P>\n<UL>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG>Managing drafts &amp; published content</STRONG>: authors can manage blogs &amp; KB drafts as well as published posts/articles.</LI>\n<LI style=\"font-weight: 400;\" aria-level=\"1\"><STRONG style=\"font-family: inherit; background-color: #ffffff;\">Content management</STRONG>: moderators can maintain a healthy community.</LI>\n</UL>\n<P>Read on to learn more.</P>\n<P>&nbsp;</P>\n<H1 id=\"community-721402-toc-hId-1986121089\">Managing drafts &amp; published content</H1>\n<P data-unlink=\"true\">As an author, you may want to save your content to share it with other members for review or come back and edit content&nbsp;later to add more info or make any corrections. After you have saved any drafts, you can access them from the <STRONG>Drafts</STRONG> tab in the <STRONG>Manage </STRONG><STRONG>Content&nbsp;&nbsp;</STRONG>Dashboard.</P>\n<P>Depending on your permissions, you can view all your drafts and other members' drafts. You can also view the author and any co-authors as well as when the article was last updated.</P>\n<P data-unlink=\"true\">Learn more about <A href=\"https://community.khoros.com/t5/Blogs/Edit-blog-posts-nbsp/ta-p/744726\" target=\"_blank\" rel=\"noopener noreferrer\">draft blog content</A>&nbsp;and <A href=\"https://community.khoros.com/t5/Knowledge-Bases/Edit-knowledge-base-articles/ta-p/744725\" target=\"_blank\" rel=\"noopener noreferrer\">draft knowledge base content</A>.</P>\n<span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"BhuvanaM_0-1693281291181.png\"><button aria-labelledby=\"204191i3BB59E5E3D1B744C_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1693281291181.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjE0MDItMjA0MTkxaTNCQjU5RTVFM0QxQjc0NEM?image-dimensions=600x222&amp;revision=17\" width=\"600\" height=\"222\" alt=\"BhuvanaM_0-1693281291181.png\" /></button><span class=\"lia-media-caption-text\" id=\"204191i3BB59E5E3D1B744C_caption\"></span></span></DIV>\n<DIV class=\"lia-message-template-content-zone\"><A href=\"https://community.khoros.com/t5/Content-Workflow/Overview-of-Content-Workflow-and-Approval-feature-for-Knowledge/ta-p/739621\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about Content Management and Approval.</A><BR />\n<H1 id=\"community-721402-toc-hId--566035872\">Content management</H1>\n<H2 id=\"community-721402-toc-hId-980260958\"><STRONG>Spam</STRONG></H2>\n<P>Community spam management tools run in the background and each new post is logged and tested for spam. The tools automatically test posts against a complex set of rules. Our system learns about your site content as it monitors all your boards and forums, enabling it to improve its content filtering over time. All posts classified as spam are moved to the&nbsp;<STRONG>Manage</STRONG> <STRONG>Content </STRONG>dashboard on the <STRONG>Spam</STRONG> tab. Admins and moderators can review and recover the spammed posts, if needed.</P>\n<P><A href=\"https://community.khoros.com/t5/Moderation/About-Khoros-Communities-spam-management/ta-p/720360\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about spam management.</A></P>\n<span class=\"lia-media-object lia-media-is-inline\" data-image-alt=\"BhuvanaM_0-1688628384242.png\"><button aria-labelledby=\"203032i13307E3353F2600F_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_0-1688628384242.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjE0MDItMjAzMDMyaTEzMzA3RTMzNTNGMjYwMEY?image-dimensions=550x232&amp;revision=17\" width=\"550\" height=\"232\" alt=\"BhuvanaM_0-1688628384242.png\" /></button><span class=\"lia-media-caption-text\" id=\"203032i13307E3353F2600F_caption\"></span></span>\n<H2 id=\"community-721402-toc-hId--1571896003\"><STRONG>Abuse</STRONG></H2>\n<P data-unlink=\"true\">To combat abusive content, members with appropriate permissions can report any <A href=\"https://community.khoros.com/t5/Content-Management-Tasks/Report-inappropriate-content/ta-p/719910\" target=\"_blank\" rel=\"noopener noreferrer\">content</A> or <A href=\"https://community.khoros.com/t5/Inbox-and-Notifications/Report-inappropriate-private-messages/ta-p/739984\" target=\"_self\" rel=\"noopener noreferrer\">private messages</A> they find inappropriate in the community.</P>\n<P>You can report any content or private messages that you find violent, harmful, misleading, or other specific reasons. When you report a content, the content is listed on the <STRONG>Abuse</STRONG> tab in the<STRONG> Manage Content </STRONG>dashboard.</P>\n<P>Admins and moderators can manage this reported content with various options available out of the box.</P>\n<P><A href=\"https://community.khoros.com/t5/Moderation/About-Abuse-management/ta-p/720485\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about abuse management</A></P>\n<span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"BhuvanaM_1-1693281347915.png\"><button aria-labelledby=\"204192i0B68BD3B55927FE4_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_1-1693281347915.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjE0MDItMjA0MTkyaTBCNjhCRDNCNTU5MjdGRTQ?image-dimensions=600x210&amp;revision=17\" width=\"600\" height=\"210\" alt=\"BhuvanaM_1-1693281347915.png\" /></button><span class=\"lia-media-caption-text\" id=\"204192i0B68BD3B55927FE4_caption\"></span></span>\n<H2 id=\"community-721402-toc-hId-170914332\"><STRONG>Moderation</STRONG></H2>\n<P>Moderators constantly monitor community activity by reviewing content for appropriateness based on the guidelines you’ve put in place for your community.</P>\n<P>Using the&nbsp;<STRONG>Moderation</STRONG> tab in the<STRONG> Manage Content</STRONG>&nbsp;dashboard, moderators can quickly review and process large volumes of user-generated content. Depending on how you’ve set up your moderation process, content can be reviewed either before or after it is published to the community. From the&nbsp;<STRONG>Moderation</STRONG>&nbsp;tab, you can moderate forum posts and replies, blog comments, and knowledge base comments. Also, you can view the posts or private messages that are rejected as spam, abuse, or for other reasons and take further action on these posts.</P>\n<span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"BhuvanaM_3-1693281578313.png\"><button aria-labelledby=\"204194i6563673C3D6412CC_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_3-1693281578313.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjE0MDItMjA0MTk0aTY1NjM2NzNDM0Q2NDEyQ0M?image-dimensions=600x356&amp;revision=17\" width=\"600\" height=\"356\" alt=\"BhuvanaM_3-1693281578313.png\" /></button><span class=\"lia-media-caption-text\" id=\"204194i6563673C3D6412CC_caption\"></span></span>\n<P><A href=\"https://community.khoros.com/t5/Moderation/About-Moderation/ta-p/729487\" target=\"_self\" rel=\"noopener noreferrer\">Learn more about Moderation.</A></P>\n<H2 id=\"community-721402-toc-hId-1913724667\"><STRONG>Tags</STRONG></H2>\n<P>From time to time, you might want to review the tags used across the community to understand how the content is being categorized and organized. This can also be one of the factors to understand members' engagement and contribution to the community.</P>\n<P>Admins and members with the <STRONG>Manage Tags </STRONG>permission can access the <STRONG>Tags</STRONG> tab in the <STRONG>Manage Content</STRONG> dashboard, where they can review the complete list of tags.</P>\n<span class=\"lia-media-object lia-media-is-inline lia-media-size-large\" data-image-alt=\"BhuvanaM_2-1693281406179.png\"><button aria-labelledby=\"204193i32A336FC2AB6A623_caption\" class=\"lia-media-unstyled-btn\" type=\"button\" aria-haspopup=\"true\" aria-label=\"Enlarge Image BhuvanaM_2-1693281406179.png\"><img src=\"https://community.lithium.com/t5/s/lithosphere/images/bS03MjE0MDItMjA0MTkzaTMyQTMzNkZDMkFCNkE2MjM?image-dimensions=600x391&amp;revision=17\" width=\"600\" height=\"391\" alt=\"BhuvanaM_2-1693281406179.png\" /></button><span class=\"lia-media-caption-text\" id=\"204193i32A336FC2AB6A623_caption\"></span></span></DIV>\n<DIV class=\"lia-message-template-content-zone\">&nbsp;</DIV>\n<DIV class=\"lia-message-template-content-zone\"><A href=\"https://community.khoros.com/t5/Tags/Review-tags-added-in-the-Community/ta-p/740604\" target=\"_blank\" rel=\"noopener noreferrer\">Learn more about reviewing tags added in the community</A>.</DIV>",
+              "litopicurl": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402",
+              "limessageviewcount": 374,
+              "sysindexeddate": 1749298803000,
+              "permanentid": "6d8d22182f11a8469555e4426db92df85fa03e1b1b4b328b3879231d94ab",
+              "limessageissolution": "False",
+              "syslanguage": [
+                  "English"
+              ],
+              "transactionid": 891189,
+              "title": "Aurora: Manage Content Dashboard",
+              "limessagelabels": "communities aurora;content management;general tasks",
+              "date": 1668412085000,
+              "objecttype": "Message",
+              "foldingcollection": "ccb7706716a16aaa946de688cf43bce90aae3a31304167ef2bd2f25747e2",
+              "liboardid": "khoros-communities-aurora-docs",
+              "limessagerating": 0.0,
+              "litopicviewcount": 374,
+              "litopiclabels": "communities aurora;content management;general tasks",
+              "litopiclastedittime": 1732718099000,
+              "liboarddescription": "Learn the Aurora version of Khoros Communities. Utilize user guides to navigate to helpful content.",
+              "limessageauthorurl": "https://community.khoros.com/users/AshaC/89457",
+              "sourcetype": "Lithium",
+              "litopicrating": 0.0,
+              "litopicid": 721402,
+              "sysconnectortype": "LithiumCrawler",
+              "litopiclasteditauthor": "AshaC",
+              "lithreadreplycount": 0,
+              "rowid": 1749298803155394230,
+              "lithreadhassolution": "false",
+              "limessageauthor": "AshaC",
+              "licommunitytitle": "Atlas",
+              "limessagelasteditauthor": "AshaC",
+              "limessagesubject": "Aurora: Manage Content Dashboard",
+              "lithreadmessagecount": 1,
+              "size": 12449,
+              "sysdocumenttype": "message",
+              "clickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402",
+              "syssource": "Coveo Sample - Lithium Community",
+              "orderingid": 212616101935441207,
+              "syssize": 12449,
+              "sysdate": 1668412085000,
+              "licommunitydescription": "Get product support, connect with peers, and be inspired.",
+              "sysparents": "<?xml version=\"1.0\" encoding=\"utf-16\"?><parents><parent name=\"atlas\" uri=\"\" /><parent name=\"learn\" uri=\"\" /><parent name=\"khoros communities - aurora docs\" uri=\"https://community.khoros.com/category/products/kb/khoros-communities-aurora-docs\" /><parent name=\"aurora: manage content dashboard\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402\" /><parent name=\"aurora: manage content dashboard\" uri=\"https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402\" /></parents>",
+              "litopicauthorurl": "https://community.khoros.com/users/AshaC/89457",
+              "licommunityshorttitle": "Atlas",
+              "limessageisreadonly": "False",
+              "liboardinteractionstyle": "tkb",
+              "litopicposttime": 1668412085000,
+              "limessagelasteditauthorurl": "https://community.khoros.com/users/AshaC/89457",
+              "foldingchild": "ccb7706716a16aaa946de688cf43bce90aae3a31304167ef2bd2f25747e2",
+              "litopiclasteditauthorurl": "https://community.khoros.com/users/AshaC/89457",
+              "primaryid": "K44XETLZKJG4HMLGKZ3UIMKFMM2C4MZYGI2TILTEMVTGC5LMOQ",
+              "wordcount": 192,
+              "litopicauthor": "AshaC",
+              "source": "Coveo Sample - Lithium Community",
+              "liboardshorttitle": "Khoros Communities - Aurora Docs",
+              "collection": "default",
+              "syssourcetype": "Lithium",
+              "indexeddate": 1749298803000,
+              "connectortype": "LithiumCrawler",
+              "filetype": "lithiummessage",
+              "sysclickableuri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402",
+              "limessageid": 721402,
+              "sysfiletype": "lithiummessage",
+              "language": [
+                  "English"
+              ],
+              "liboardtitle": "Khoros Communities - Aurora Docs",
+              "authorloginname": "AshaC",
+              "sysrowid": 1749298803155394230,
+              "uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+              "syscollection": "default"
+          },
+          "Title": "Aurora: Manage Content Dashboard",
+          "Uri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+          "PrintableUri": "https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+          "ClickUri": "https://community.khoros.com/kb/khoros-communities-aurora-docs/aurora-manage-content-dashboard/721402",
+          "UniqueId": "42.38254$https://community.lithium.com/community:lithosphere/category:products/board:khoros-communities-aurora-docs/thread:721402/message:721402",
+          "Excerpt": "Managing drafts & published content: authors can manage blogs & KB drafts as well as published posts/articles. ... Learn more about Content Management and Approval. Content management Spam",
+          "FirstSentences": null
+      }
+  ],
+  "questionAnswer": {
+      "answerFound": false,
+      "question": "",
+      "answerSnippet": "",
+      "documentId": {
+          "contentIdKey": "",
+          "contentIdValue": ""
+      },
+      "score": 0.0,
+      "relatedQuestions": [
+      ]
+  },
+  "extendedResults": {
+  }
+}
