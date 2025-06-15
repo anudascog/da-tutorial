@@ -1,12 +1,40 @@
 export default function decorate(block) {
-  // Clear existing content
+  // Default configuration using Coveo's demo environment
+  const config = {
+    accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457',
+    organizationId: 'searchuisamples',
+    fieldsToInclude: '["snrating", "sncost"]',
+    environment: 'demo',
+    debug: true
+  };
+
+  // Parse configuration from Document Authoring table
+  [...block.children].forEach((row) => {
+    if (row.children.length >= 2) {
+      const key = row.children[0]?.textContent?.trim();
+      const value = row.children[1]?.textContent?.trim();
+      
+      if (key && value) {
+        config[key] = value;
+      }
+    }
+  });
+
+  // Clear the configuration content from display
   block.innerHTML = '';
 
-  // Create the search interface structure
-  const searchInterface = document.createElement('atomic-search-interface');
-  searchInterface.setAttribute('fields-to-include', '["snrating", "sncost"]');
+  // Create search interface
+  createSearchInterface(block, config);
+}
 
-  // Build the complete search layout
+function createSearchInterface(block, config) {
+  const searchInterface = document.createElement('atomic-search-interface');
+  
+  if (config.fieldsToInclude) {
+    searchInterface.setAttribute('fields-to-include', config.fieldsToInclude);
+  }
+
+  // Create the complete search layout
   const searchLayout = `
     <atomic-search-layout>
       <div class="header-bg"></div>
@@ -15,18 +43,10 @@ export default function decorate(block) {
       </atomic-layout-section>
       <atomic-layout-section section="facets">
         <atomic-facet-manager>
-          <atomic-category-facet field="geographicalhierarchy" label="World Atlas" with-search></atomic-category-facet>
           <atomic-facet field="author" label="Authors"></atomic-facet>
           <atomic-facet field="source" label="Source" display-values-as="link"></atomic-facet>
+          <atomic-facet field="filetype" label="File Type"></atomic-facet>
           <atomic-facet field="year" label="Year" display-values-as="box"></atomic-facet>
-          <atomic-numeric-facet field="ytviewcount" label="Youtube Views" depends-on-filetype="YouTubeVideo" with-input="integer"></atomic-numeric-facet>
-          <atomic-numeric-facet field="ytlikecount" label="Youtube Likes" depends-on-filetype="YouTubeVideo" display-values-as="link">
-            <atomic-numeric-range start="0" end="1000" label="Unpopular"></atomic-numeric-range>
-            <atomic-numeric-range start="1000" end="8000" label="Well liked"></atomic-numeric-range>
-            <atomic-numeric-range start="8000" end="100000" label="Popular"></atomic-numeric-range>
-            <atomic-numeric-range start="100000" end="999999999" label="Treasured"></atomic-numeric-range>
-          </atomic-numeric-facet>
-          <atomic-color-facet field="filetype" label="Files" number-of-values="6" sort-criteria="occurrences"></atomic-color-facet>
         </atomic-facet-manager>
       </atomic-layout-section>
       <atomic-layout-section section="main">
@@ -43,7 +63,6 @@ export default function decorate(block) {
         </atomic-layout-section>
         <atomic-layout-section section="results">
           <atomic-smart-snippet></atomic-smart-snippet>
-          <atomic-smart-snippet-suggestions></atomic-smart-snippet-suggestions>
           <atomic-result-list>
             <atomic-result-template>
               <template>
@@ -56,6 +75,22 @@ export default function decorate(block) {
                 <atomic-result-section-excerpt>
                   <atomic-result-text field="excerpt"></atomic-result-text>
                 </atomic-result-section-excerpt>
+                <atomic-result-section-bottom-metadata>
+                  <atomic-result-fields-list>
+                    <atomic-field-condition class="field" if-defined="author">
+                      <span class="field-label">Author:</span>
+                      <atomic-result-text field="author"></atomic-result-text>
+                    </atomic-field-condition>
+                    <atomic-field-condition class="field" if-defined="source">
+                      <span class="field-label">Source:</span>
+                      <atomic-result-text field="source"></atomic-result-text>
+                    </atomic-field-condition>
+                    <atomic-field-condition class="field" if-defined="filetype">
+                      <span class="field-label">Type:</span>
+                      <atomic-result-text field="filetype"></atomic-result-text>
+                    </atomic-field-condition>
+                  </atomic-result-fields-list>
+                </atomic-result-section-bottom-metadata>
               </template>
             </atomic-result-template>
           </atomic-result-list>
@@ -72,25 +107,55 @@ export default function decorate(block) {
   searchInterface.innerHTML = searchLayout;
   block.appendChild(searchInterface);
 
-  // Initialize Coveo after DOM is ready
-  initializeCoveo(searchInterface);
+  // Initialize Coveo
+  initializeCoveo(searchInterface, config);
 }
 
-async function initializeCoveo(searchInterface) {
-  // Wait for Coveo components to be defined
-  await customElements.whenDefined('atomic-search-interface');
+async function initializeCoveo(searchInterface, config) {
+  try {
+    // Wait for Coveo components to be defined
+    await customElements.whenDefined('atomic-search-interface');
 
-  // Initialize with your credentials
-  await searchInterface.initialize({
-    accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457', // Replace with your token
-    organizationId: 'searchuisamples', // Replace with your org ID
-  });
+    if (config.debug === 'true' || config.debug === true) {
+      console.log('Initializing Coveo with config:', config);
+    }
 
-  // Add translations if needed
-  searchInterface.i18n.addResourceBundle('en', 'caption-filetype', {
-    '.html': 'html',
-  });
+    // Initialize with the provided configuration
+    await searchInterface.initialize({
+      accessToken: config.accessToken,
+      organizationId: config.organizationId,
+    });
 
-  // Execute first search
-  searchInterface.executeFirstSearch();
+    // Add custom translations/captions
+    searchInterface.i18n.addResourceBundle('en', 'caption-filetype', {
+      '.html': 'HTML Document',
+      '.pdf': 'PDF Document',
+      '.doc': 'Word Document',
+      '.txt': 'Text File'
+    });
+
+    // Execute first search
+    searchInterface.executeFirstSearch();
+    
+    if (config.debug === 'true' || config.debug === true) {
+      console.log('Coveo search initialized successfully');
+    }
+
+  } catch (error) {
+    console.error('Error initializing Coveo:', error);
+    
+    // Show user-friendly error message
+    searchInterface.innerHTML = `
+      <div class="coveo-error">
+        <h3>Search Temporarily Unavailable</h3>
+        <p>Unable to initialize search interface. Please try again later.</p>
+        ${config.debug === 'true' || config.debug === true ? `
+          <details>
+            <summary>Technical Details (Debug Mode)</summary>
+            <pre>${error.message}</pre>
+          </details>
+        ` : ''}
+      </div>
+    `;
+  }
 }

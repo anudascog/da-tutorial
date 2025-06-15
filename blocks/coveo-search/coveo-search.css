@@ -1,60 +1,99 @@
 .coveo-search {
   width: 100%;
   margin: 0;
+  font-family: var(--body-font-family);
 }
 
 .coveo-search .header-bg {
-  background-color: var(--atomic-neutral-light);
+  background-color: var(--atomic-neutral-light, #f8f9fa);
   grid-area: 1 / -1 / 1 / 1;
 }
 
 .coveo-search atomic-search-layout {
-  row-gap: var(--atomic-layout-spacing-y);
+  row-gap: var(--atomic-layout-spacing-y, 1rem);
 }
 
-/* Color facet customizations */
-.coveo-search atomic-color-facet::part(default-color-value) {
-  background-image: url('/icons/document.svg');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: rgb(144, 144, 144);
+/* Search box styling */
+.coveo-search atomic-search-box {
+  margin-bottom: 1rem;
 }
 
-.coveo-search atomic-color-facet::part(value-html) {
-  background-image: url('/icons/html.svg');
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: transparent;
+/* Facets section */
+.coveo-search atomic-layout-section[section="facets"] {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
-/* Result template styles */
+/* Results styling */
 .coveo-search .field {
   display: inline-flex;
   align-items: center;
+  margin-right: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .coveo-search .field-label {
   font-weight: bold;
   margin-right: 0.25rem;
-}
-
-.coveo-search .thumbnail {
-  display: none;
-  width: 100%;
-  height: 100%;
+  color: #666;
 }
 
 .coveo-search .icon {
   display: none;
 }
 
-.coveo-search .result-root.image-small .thumbnail,
-.coveo-search .result-root.image-large .thumbnail {
+.coveo-search .result-root.image-icon .icon {
   display: inline-block;
 }
 
-.coveo-search .result-root.image-icon .icon {
-  display: inline-block;
+/* Error state styling */
+.coveo-search .coveo-error {
+  padding: 2rem;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+.coveo-search .coveo-error h3 {
+  color: #dc3545;
+  margin-bottom: 1rem;
+}
+
+.coveo-search .coveo-error details {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.coveo-search .coveo-error pre {
+  background: #f1f3f4;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .coveo-search atomic-layout-section[section="facets"] {
+    order: 2;
+  }
+  
+  .coveo-search atomic-layout-section[section="main"] {
+    order: 1;
+  }
+}
+
+/* Custom result template styling */
+.coveo-search atomic-result::part(result-root) {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.coveo-search atomic-result::part(result-link):hover {
+  color: #007bff;
+  text-decoration: underline;
 }
