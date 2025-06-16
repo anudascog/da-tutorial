@@ -19,13 +19,13 @@ export async function loadCoveo() {
       // Load Atomic
       if (!window.customElements.get('atomic-search-interface')) {
         await import('./atomic.esm.js');
-        console.log('✅ Coveo Atomic loaded (auto-discovered)');
+        console.log(' Coveo Atomic loaded (auto-discovered)');
       }
 
       coveoLoaded = true;
       resolve(true);
     } catch (error) {
-      console.error('❌ Failed to load Coveo:', error);
+      console.error(' Failed to load Coveo:', error);
       reject(error);
     }
   });

@@ -111,7 +111,7 @@ function findBestFile(packageDir, packageName, fileType) {
     for (const priorityCheck of priorities) {
       const match = jsFiles.find(priorityCheck);
       if (match) {
-        console.log(`   ✅ Selected: ${match.relativePath} (${Math.round(match.size/1024)}KB)`);
+        console.log(` Selected: ${match.relativePath} (${Math.round(match.size/1024)}KB)`);
         return match.path;
       }
     }
@@ -119,7 +119,7 @@ function findBestFile(packageDir, packageName, fileType) {
     // Fallback to largest file
     if (jsFiles.length > 0) {
       const largest = jsFiles[0];
-      console.log(`   ⚠️  Fallback to largest: ${largest.relativePath} (${Math.round(largest.size/1024)}KB)`);
+      console.log(` Fallback to largest: ${largest.relativePath} (${Math.round(largest.size/1024)}KB)`);
       return largest.path;
     }
     
@@ -140,19 +140,19 @@ function findBestFile(packageDir, packageName, fileType) {
     );
     
     if (cssMatch) {
-      console.log(`   ✅ Selected: ${cssMatch.relativePath} (${Math.round(cssMatch.size/1024)}KB)`);
+      console.log(`  Selected: ${cssMatch.relativePath} (${Math.round(cssMatch.size/1024)}KB)`);
       return cssMatch.path;
     }
     
     // Fallback to largest CSS
     if (cssFiles.length > 0) {
       const largest = cssFiles[0];
-      console.log(`   ⚠️  Fallback to largest: ${largest.relativePath} (${Math.round(largest.size/1024)}KB)`);
+      console.log(`   Fallback to largest: ${largest.relativePath} (${Math.round(largest.size/1024)}KB)`);
       return largest.path;
     }
   }
   
-  console.log(`   ❌ No suitable ${fileType} file found`);
+  console.log(`   No suitable ${fileType} file found`);
   return null;
 }
 
@@ -178,13 +178,13 @@ export async function loadCoveo() {
       // Load Atomic
       if (!window.customElements.get('atomic-search-interface')) {
         await import('./atomic.esm.js');
-        console.log('✅ Coveo Atomic loaded (auto-discovered)');
+        console.log(' Coveo Atomic loaded (auto-discovered)');
       }
 
       coveoLoaded = true;
       resolve(true);
     } catch (error) {
-      console.error('❌ Failed to load Coveo:', error);
+      console.error(' Failed to load Coveo:', error);
       reject(error);
     }
   });
@@ -200,7 +200,7 @@ export function isCoveoLoaded() {
   const loaderPath = path.resolve(projectRoot, 'scripts/coveo-loader.js');
   ensureDir(path.dirname(loaderPath));
   fs.writeFileSync(loaderPath, loaderContent);
-  console.log('✅ Created Coveo loader');
+  console.log(' Created Coveo loader');
 }
 
 function buildCoveoAssets() {
@@ -212,14 +212,14 @@ function buildCoveoAssets() {
   const headlessDir = path.resolve(projectRoot, 'node_modules/@coveo/headless');
   
   if (!fs.existsSync(atomicDir)) {
-    console.error('❌ @coveo/atomic package not found');
-    console.log('💡 Run: npm install @coveo/atomic');
+    console.error(' @coveo/atomic package not found');
+    console.log(' Run: npm install @coveo/atomic');
     return;
   }
   
   if (!fs.existsSync(headlessDir)) {
-    console.error('❌ @coveo/headless package not found');
-    console.log('💡 Run: npm install @coveo/headless');
+    console.error(' @coveo/headless package not found');
+    console.log(' Run: npm install @coveo/headless');
     return;
   }
   
@@ -263,14 +263,14 @@ function buildCoveoAssets() {
   
   if (allCopied) {
     createCoveoLoader();
-    console.log('\n✅ Coveo build completed successfully!');
-    console.log('🎉 All files auto-discovered and copied!');
+    console.log('\n Coveo build completed successfully!');
+    console.log('All files auto-discovered and copied!');
   } else {
-    console.error('\n❌ Some files could not be found or copied.');
-    console.log('\n🔍 Debug information:');
+    console.error('\n Some files could not be found or copied.');
+    console.log('\n Debug information:');
     console.log(`Atomic directory: ${atomicDir}`);
     console.log(`Headless directory: ${headlessDir}`);
-    console.log('\n💡 Try running: node tools/find-coveo-files.js for detailed file analysis');
+    console.log('\n Try running: node tools/find-coveo-files.js for detailed file analysis');
     process.exit(1);
   }
 }

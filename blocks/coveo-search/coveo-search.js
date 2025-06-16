@@ -3,7 +3,7 @@ import { loadCoveo } from '../../scripts/coveo-loader.js';
 
 export default async function decorate(block) {
   // Show loading state while Coveo loads
-  block.innerHTML = '<div class="coveo-loading">🔍 Loading search interface...</div>';
+  block.innerHTML = '<div class="coveo-loading"> Loading search interface...</div>';
 
   try {
     // Load Coveo components first (replaces CDN loading)
@@ -193,7 +193,7 @@ async function initializeCoveo(searchInterface, config) {
     await searchInterface.executeFirstSearch();
     
     if (config.debug === 'true' || config.debug === true) {
-      console.log('✅ Coveo search initialized successfully (local implementation)');
+      console.log('Coveo search initialized successfully (local implementation)');
     }
 
   } catch (error) {
