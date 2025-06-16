@@ -1,3 +1,24 @@
+// Browser compatibility shims for Coveo Atomic
+if (typeof exports === 'undefined') {
+  var exports = {};
+}
+if (typeof module === 'undefined') {
+  var module = { exports: exports };
+}
+if (typeof require === 'undefined') {
+  var require = function(id) {
+    console.warn('require() not available in browser for:', id);
+    return {};
+  };
+}
+if (typeof global === 'undefined') {
+  var global = window;
+}
+if (typeof process === 'undefined') {
+  var process = { env: {}, browser: true };
+}
+
+// Original Coveo content below:
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
