@@ -1,90 +1,130 @@
-// blocks/coveo-search/coveo-search.js
-import { loadCoveo } from '../../scripts/coveo-loader.js';
+// blocks/coveo-search/coveo-search.js - Robust version with better error handling
+import { loadCoveo, debugCoveoStatus, resetCoveoLoader } from '../../scripts/coveo-loader.js';
 
 export default async function decorate(block) {
-  // Show loading state while Coveo loads
-  block.innerHTML = '<div class="coveo-loading"> Loading search interface...</div>';
+  console.log('🔍 Initializing Coveo search block...');
+  
+  // Show loading state
+  block.innerHTML = '<div class="coveo-loading">🔍 Loading search interface...</div>';
 
   try {
-    // Load Coveo components first (replaces CDN loading)
-    console.log('Loading Coveo components locally...');
-    await loadCoveo();
+    // Parse configuration first
+    const config = parseConfiguration(block);
+    console.log('📋 Configuration parsed:', config);
     
-    // Small delay to ensure components are fully registered
-    await new Promise(resolve => setTimeout(resolve, 200));
-    
-    // Default configuration using Coveo's demo environment
-    const config = {
-      accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457',
-      organizationId: 'searchuisamples',
-      fieldsToInclude: '["snrating", "sncost"]',
-      environment: 'demo',
-      debug: true
-    };
-
-    // Parse configuration from Document Authoring table
-    [...block.children].forEach((row) => {
-      if (row.children.length >= 2) {
-        const key = row.children[0]?.textContent?.trim();
-        const value = row.children[1]?.textContent?.trim();
-        
-        if (key && value) {
-          config[key] = value;
-        }
-      }
-    });
-
     // Clear the configuration content from display
-    block.innerHTML = '';
-
-    // Create search interface programmatically
+    block.innerHTML = '<div class="coveo-loading">🔍 Loading Coveo components...</div>';
+    
+    // Load Coveo with timeout and retry logic
+    await loadCoveoWithRetry();
+    
+    // Update loading message
+    block.innerHTML = '<div class="coveo-loading">🔍 Creating search interface...</div>';
+    
+    // Create search interface
     await createSearchInterface(block, config);
     
+    console.log('✅ Coveo search block initialized successfully');
+    
   } catch (error) {
-    console.error('Failed to load Coveo search:', error);
-    block.innerHTML = `
-      <div class="coveo-error">
-        <h3>Search Temporarily Unavailable</h3>
-        <p>Unable to load search interface. Please refresh the page and try again.</p>
-        ${config && (config.debug === 'true' || config.debug === true) ? `
-          <details>
-            <summary>Technical Details (Debug Mode)</summary>
-            <pre>${error.message}</pre>
-          </details>
-        ` : ''}
-      </div>
-    `;
+    console.error('❌ Failed to initialize Coveo search:', error);
+    
+    // Show detailed error information
+    const debugInfo = debugCoveoStatus();
+    showErrorState(block, error, config, debugInfo);
   }
 }
 
-async function createSearchInterface(block, config) {
-  // Wait for all required Coveo components to be defined
-  const requiredComponents = [
-    'atomic-search-interface',
-    'atomic-search-layout',
-    'atomic-layout-section',
-    'atomic-search-box',
-    'atomic-facet-manager',
-    'atomic-facet',
-    'atomic-result-list',
-    'atomic-result-template'
-  ];
+function parseConfiguration(block) {
+  // Default configuration
+  const config = {
+    accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457',
+    organizationId: 'searchuisamples',
+    fieldsToInclude: '["snrating", "sncost"]',
+    environment: 'demo',
+    debug: true
+  };
 
-  // Ensure all components are registered
-  for (const component of requiredComponents) {
-    if (!customElements.get(component)) {
-      await customElements.whenDefined(component);
+  // Parse configuration from Document Authoring table
+  [...block.children].forEach((row) => {
+    if (row.children.length >= 2) {
+      const key = row.children[0]?.textContent?.trim();
+      const value = row.children[1]?.textContent?.trim();
+      
+      if (key && value) {
+        config[key] = value;
+      }
+    }
+  });
+
+  return config;
+}
+
+async function loadCoveoWithRetry() {
+  const maxRetries = 3;
+  let lastError;
+  
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      console.log(`🔄 Loading Coveo (attempt ${attempt}/${maxRetries})...`);
+      
+      if (attempt > 1) {
+        // Reset loader state for retry
+        resetCoveoLoader();
+        await new Promise(resolve => setTimeout(resolve, 1000)); // Wait before retry
+      }
+      
+      await loadCoveo();
+      console.log(`✅ Coveo loaded successfully on attempt ${attempt}`);
+      return;
+      
+    } catch (error) {
+      lastError = error;
+      console.warn(`⚠️ Attempt ${attempt} failed:`, error.message);
+      
+      if (attempt < maxRetries) {
+        console.log(`🔄 Retrying in ${attempt * 1000}ms...`);
+        await new Promise(resolve => setTimeout(resolve, attempt * 1000));
+      }
     }
   }
+  
+  throw lastError;
+}
 
+async function createSearchInterface(block, config) {
+  // Wait for essential components with extended timeout
+  const essentialComponents = [
+    'atomic-search-interface',
+    'atomic-search-layout',
+    'atomic-search-box'
+  ];
+
+  console.log('⏳ Waiting for essential components...');
+  await waitForComponents(essentialComponents, 20000); // 20 second timeout
+  
+  console.log('🏗️ Creating search interface...');
+  
   const searchInterface = document.createElement('atomic-search-interface');
   
   if (config.fieldsToInclude) {
     searchInterface.setAttribute('fields-to-include', config.fieldsToInclude);
   }
 
-  // Create the complete search layout (programmatically)
-  const searchLayout = `
+  // Create the search layout
+  const searchLayout = createSearchLayout();
+  searchInterface.innerHTML = searchLayout;
+  
+  // Clear loading and add interface
+  block.innerHTML = '';
+  block.appendChild(searchInterface);
+
+  // Initialize Coveo
+  await initializeCoveo(searchInterface, config);
+}
+
+function createSearchLayout() {
+  return `
     <atomic-search-layout>
       <div class="header-bg"></div>
       <atomic-layout-section section="search">
@@ -152,34 +192,41 @@ async function createSearchInterface(block, config) {
       </atomic-layout-section>
     </atomic-search-layout>
   `;
+}
 
-  searchInterface.innerHTML = searchLayout;
-  block.appendChild(searchInterface);
-
-  // Initialize Coveo programmatically
-  await initializeCoveo(searchInterface, config);
+async function waitForComponents(components, timeout = 15000) {
+  const startTime = Date.now();
+  
+  for (const componentName of components) {
+    while (!window.customElements || !window.customElements.get(componentName)) {
+      if (Date.now() - startTime > timeout) {
+        throw new Error(`Component ${componentName} not available after ${timeout}ms`);
+      }
+      await new Promise(resolve => setTimeout(resolve, 200));
+    }
+    console.log(`✅ Component ready: ${componentName}`);
+  }
 }
 
 async function initializeCoveo(searchInterface, config) {
   try {
-    // Ensure the search interface is fully ready
-    await customElements.whenDefined('atomic-search-interface');
+    console.log('🔧 Initializing Coveo search interface...');
     
     // Wait a bit for the interface to be fully constructed
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     if (config.debug === 'true' || config.debug === true) {
-      console.log('Initializing Coveo with config:', config);
+      console.log('🔧 Initializing with config:', config);
     }
 
-    // Initialize with the provided configuration (programmatic initialization)
+    // Initialize with configuration
     await searchInterface.initialize({
       accessToken: config.accessToken,
       organizationId: config.organizationId,
       environment: config.environment || 'demo'
     });
 
-    // Add custom translations/captions (programmatic setup)
+    // Add custom translations if available
     if (searchInterface.i18n && searchInterface.i18n.addResourceBundle) {
       searchInterface.i18n.addResourceBundle('en', 'caption-filetype', {
         '.html': 'HTML Document',
@@ -189,28 +236,55 @@ async function initializeCoveo(searchInterface, config) {
       });
     }
 
-    // Execute first search (programmatic execution)
+    // Execute first search
     await searchInterface.executeFirstSearch();
     
-    if (config.debug === 'true' || config.debug === true) {
-      console.log('Coveo search initialized successfully (local implementation)');
-    }
-
-  } catch (error) {
-    console.error('Error initializing Coveo:', error);
+    console.log('✅ Coveo search initialized and first search executed');
     
-    // Show user-friendly error message
-    searchInterface.innerHTML = `
-      <div class="coveo-error">
-        <h3>Search Temporarily Unavailable</h3>
-        <p>Unable to initialize search interface. Please try again later.</p>
-        ${config.debug === 'true' || config.debug === true ? `
-          <details>
-            <summary>Technical Details (Debug Mode)</summary>
-            <pre>${error.message}</pre>
-          </details>
+  } catch (error) {
+    console.error('❌ Error during Coveo initialization:', error);
+    throw error;
+  }
+}
+
+function showErrorState(block, error, config, debugInfo) {
+  const isDebug = config && (config.debug === 'true' || config.debug === true);
+  
+  block.innerHTML = `
+    <div class="coveo-error">
+      <h3>🔍 Search Temporarily Unavailable</h3>
+      <p>We're having trouble loading the search interface. This might be a temporary issue.</p>
+      
+      <div class="error-actions">
+        <button onclick="location.reload()" class="retry-button">
+          🔄 Refresh Page
+        </button>
+        <button onclick="this.nextElementSibling.style.display='block'" class="debug-button">
+          🔍 Show Details
+        </button>
+      </div>
+      
+      <div class="error-details" style="display: none;">
+        <h4>Error Details:</h4>
+        <p><strong>Message:</strong> ${error.message}</p>
+        
+        ${isDebug ? `
+          <h4>Debug Information:</h4>
+          <ul>
+            <li><strong>Coveo Loaded:</strong> ${debugInfo.loaded}</li>
+            <li><strong>CustomElements Available:</strong> ${debugInfo.customElementsAvailable}</li>
+            <li><strong>Components:</strong> ${JSON.stringify(debugInfo.components, null, 2)}</li>
+          </ul>
+          
+          <h4>Troubleshooting:</h4>
+          <ol>
+            <li>Check browser console for additional errors</li>
+            <li>Verify network connectivity</li>
+            <li>Try refreshing the page</li>
+            <li>Check if ad blockers are interfering</li>
+          </ol>
         ` : ''}
       </div>
-    `;
-  }
+    </div>
+  `;
 }

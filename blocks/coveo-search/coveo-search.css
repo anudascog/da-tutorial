@@ -199,3 +199,68 @@
 }
 
 /* Your existing Coveo component styles remain the same */
+
+/* Enhanced error and loading states */
+.coveo-loading {
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #666;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+}
+
+.coveo-error {
+  padding: 2rem;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  background: #f8d7da;
+  color: #721c24;
+  margin: 2rem 0;
+}
+
+.coveo-error h3 {
+  margin: 0 0 1rem 0;
+  color: #721c24;
+}
+
+.error-actions {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retry-button, .debug-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.retry-button {
+  background: #007bff;
+  color: white;
+}
+
+.debug-button {
+  background: #6c757d;
+  color: white;
+}
+
+.error-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 4px;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.error-details ul, .error-details ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
