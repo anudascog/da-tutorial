@@ -1,0 +1,10 @@
+{
+  "version": "v3",
+  "downloadDate": "2025-06-16T05:26:56.834Z",
+  "method": "automated-resilient",
+  "files": [
+    "atomic.esm.js",
+    "themes/coveo.css"
+  ],
+  "proxy": "none"
+}

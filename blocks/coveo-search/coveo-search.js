@@ -1,40 +1,89 @@
-export default function decorate(block) {
-  // Default configuration using Coveo's demo environment
-  const config = {
-    accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457',
-    organizationId: 'searchuisamples',
-    fieldsToInclude: '["snrating", "sncost"]',
-    environment: 'demo',
-    debug: true
-  };
+// blocks/coveo-search/coveo-search.js
+import { loadCoveo } from '../../scripts/coveo-loader.js';
 
-  // Parse configuration from Document Authoring table
-  [...block.children].forEach((row) => {
-    if (row.children.length >= 2) {
-      const key = row.children[0]?.textContent?.trim();
-      const value = row.children[1]?.textContent?.trim();
-      
-      if (key && value) {
-        config[key] = value;
+export default async function decorate(block) {
+  // Show loading state while Coveo loads
+  block.innerHTML = '<div class="coveo-loading">🔍 Loading search interface...</div>';
+
+  try {
+    // Load Coveo components first (replaces CDN loading)
+    console.log('Loading Coveo components locally...');
+    await loadCoveo();
+    
+    // Small delay to ensure components are fully registered
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    // Default configuration using Coveo's demo environment
+    const config = {
+      accessToken: 'xx564559b1-0045-48e1-953c-3addd1ee4457',
+      organizationId: 'searchuisamples',
+      fieldsToInclude: '["snrating", "sncost"]',
+      environment: 'demo',
+      debug: true
+    };
+
+    // Parse configuration from Document Authoring table
+    [...block.children].forEach((row) => {
+      if (row.children.length >= 2) {
+        const key = row.children[0]?.textContent?.trim();
+        const value = row.children[1]?.textContent?.trim();
+        
+        if (key && value) {
+          config[key] = value;
+        }
       }
-    }
-  });
+    });
 
-  // Clear the configuration content from display
-  block.innerHTML = '';
+    // Clear the configuration content from display
+    block.innerHTML = '';
 
-  // Create search interface
-  createSearchInterface(block, config);
+    // Create search interface programmatically
+    await createSearchInterface(block, config);
+    
+  } catch (error) {
+    console.error('Failed to load Coveo search:', error);
+    block.innerHTML = `
+      <div class="coveo-error">
+        <h3>Search Temporarily Unavailable</h3>
+        <p>Unable to load search interface. Please refresh the page and try again.</p>
+        ${config && (config.debug === 'true' || config.debug === true) ? `
+          <details>
+            <summary>Technical Details (Debug Mode)</summary>
+            <pre>${error.message}</pre>
+          </details>
+        ` : ''}
+      </div>
+    `;
+  }
 }
 
-function createSearchInterface(block, config) {
+async function createSearchInterface(block, config) {
+  // Wait for all required Coveo components to be defined
+  const requiredComponents = [
+    'atomic-search-interface',
+    'atomic-search-layout',
+    'atomic-layout-section',
+    'atomic-search-box',
+    'atomic-facet-manager',
+    'atomic-facet',
+    'atomic-result-list',
+    'atomic-result-template'
+  ];
+
+  // Ensure all components are registered
+  for (const component of requiredComponents) {
+    if (!customElements.get(component)) {
+      await customElements.whenDefined(component);
+    }
+  }
+
   const searchInterface = document.createElement('atomic-search-interface');
   
   if (config.fieldsToInclude) {
     searchInterface.setAttribute('fields-to-include', config.fieldsToInclude);
   }
 
-  // Create the complete search layout
+  // Create the complete search layout (programmatically)
   const searchLayout = `
     <atomic-search-layout>
       <div class="header-bg"></div>
@@ -107,38 +156,44 @@ function createSearchInterface(block, config) {
   searchInterface.innerHTML = searchLayout;
   block.appendChild(searchInterface);
 
-  // Initialize Coveo
-  initializeCoveo(searchInterface, config);
+  // Initialize Coveo programmatically
+  await initializeCoveo(searchInterface, config);
 }
 
 async function initializeCoveo(searchInterface, config) {
   try {
-    // Wait for Coveo components to be defined
+    // Ensure the search interface is fully ready
     await customElements.whenDefined('atomic-search-interface');
+    
+    // Wait a bit for the interface to be fully constructed
+    await new Promise(resolve => setTimeout(resolve, 100));
 
     if (config.debug === 'true' || config.debug === true) {
       console.log('Initializing Coveo with config:', config);
     }
 
-    // Initialize with the provided configuration
+    // Initialize with the provided configuration (programmatic initialization)
     await searchInterface.initialize({
       accessToken: config.accessToken,
       organizationId: config.organizationId,
+      environment: config.environment || 'demo'
     });
 
-    // Add custom translations/captions
-    searchInterface.i18n.addResourceBundle('en', 'caption-filetype', {
-      '.html': 'HTML Document',
-      '.pdf': 'PDF Document',
-      '.doc': 'Word Document',
-      '.txt': 'Text File'
-    });
+    // Add custom translations/captions (programmatic setup)
+    if (searchInterface.i18n && searchInterface.i18n.addResourceBundle) {
+      searchInterface.i18n.addResourceBundle('en', 'caption-filetype', {
+        '.html': 'HTML Document',
+        '.pdf': 'PDF Document',
+        '.doc': 'Word Document',
+        '.txt': 'Text File'
+      });
+    }
 
-    // Execute first search
-    searchInterface.executeFirstSearch();
+    // Execute first search (programmatic execution)
+    await searchInterface.executeFirstSearch();
     
     if (config.debug === 'true' || config.debug === true) {
-      console.log('Coveo search initialized successfully');
+      console.log('✅ Coveo search initialized successfully (local implementation)');
     }
 
   } catch (error) {

@@ -97,3 +97,105 @@
   color: #007bff;
   text-decoration: underline;
 }
+/* blocks/coveo-search/coveo-search.css */
+
+/* Add these new styles to your existing CSS */
+.coveo-loading {
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+  color: #666;
+}
+
+.coveo-loading::before {
+  content: "🔍";
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.coveo-error {
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid #d73502;
+  border-radius: 4px;
+  background: #fef2f2;
+  color: #d73502;
+}
+
+.coveo-error h3 {
+  margin: 0 0 1rem 0;
+  color: #d73502;
+}
+
+.coveo-error details {
+  margin-top: 1rem;
+  text-align: left;
+}
+
+.coveo-error pre {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  overflow: auto;
+}
+
+/* Your existing styles remain the same */
+
+/* Add to your existing coveo-search.css */
+
+/* Loading state */
+.coveo-loading {
+  padding: 3rem;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  color: #666;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+}
+
+/* Error state */
+.coveo-error {
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  background: #f8d7da;
+  color: #721c24;
+  margin: 2rem 0;
+}
+
+.coveo-error h3 {
+  margin: 0 0 1rem 0;
+  color: #721c24;
+}
+
+.coveo-error details {
+  margin-top: 1rem;
+  text-align: left;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+.coveo-error pre {
+  background: #f8f9fa;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+/* Success indicator */
+.coveo-search.loaded {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Your existing Coveo component styles remain the same */
