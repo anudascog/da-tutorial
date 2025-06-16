@@ -1,0 +1,2 @@
+import{r as t,g as s}from"./p-dc3df5ce.js";const i=class{constructor(s){t(this,s);this.expression="";this.label=undefined;this.name=undefined;this.expression=""}get host(){return s(this)}};export{i as atomic_tab};
+//# sourceMappingURL=p-56adc7d8.entry.js.map

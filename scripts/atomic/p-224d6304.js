@@ -1,0 +1,2 @@
+import{h as t}from"./p-dc3df5ce.js";import{c as s}from"./p-6480b754.js";import{B as r}from"./p-f5982205.js";const i=({bindings:i,onClick:e,...c})=>t("div",{part:"submit-button-wrapper",class:"mr-2 flex items-center justify-center py-2"},t(r,{style:"text-primary",class:"flex h-8 w-8 shrink-0 items-center justify-center rounded-full",part:"submit-button",ariaLabel:i.i18n.t("search"),onClick:()=>{e?.()},...c},t("atomic-icon",{part:"submit-icon",icon:s,class:"h-4 w-4"})));export{i as S};
+//# sourceMappingURL=p-224d6304.js.map

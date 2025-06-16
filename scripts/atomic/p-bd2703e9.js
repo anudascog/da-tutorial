@@ -1,0 +1,2 @@
+import{h as r,F as e}from"./p-dc3df5ce.js";const t=({hasError:t,hasItems:s,firstRequestExecuted:a,hasTemplate:l,templateHasError:o},u)=>{if(t||a&&!s||!l){return}return r(e,null,o&&r("slot",null),...u)};export{t as I};
+//# sourceMappingURL=p-bd2703e9.js.map

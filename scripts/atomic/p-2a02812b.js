@@ -1,0 +1,2 @@
+import{h as e}from"./p-dc3df5ce.js";import{F as r}from"./p-4b1dc787.js";const s=(s,t)=>{if(!s.label){return t}const a=s.i18n.t(s.label);const c=s.query===undefined?s.i18n.t("facet-values",{label:a}):s.i18n.t("facet-search-results",{query:s.query,label:a});return e(r,{label:c},t)};export{s as F};
+//# sourceMappingURL=p-2a02812b.js.map

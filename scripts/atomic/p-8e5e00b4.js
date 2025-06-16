@@ -1,0 +1,2 @@
+import{h as e}from"./p-dc3df5ce.js";const t=t=>{if(!t.displayPlaceholders){return}switch(t.display){case"table":return e(a,{...t});default:return e(r,{...t})}};const r=t=>Array.from({length:t.numberOfPlaceholders},((r,a)=>e("atomic-result-placeholder",{key:`placeholder-${a}`,density:t.density,display:t.display||"list",imageSize:t.imageSize})));const a=t=>e("atomic-result-table-placeholder",{density:t.density,imageSize:t.imageSize,rows:t.numberOfPlaceholders});export{t as R,r as a};
+//# sourceMappingURL=p-8e5e00b4.js.map

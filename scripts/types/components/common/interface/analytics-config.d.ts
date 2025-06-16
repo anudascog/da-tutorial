@@ -1,0 +1,10 @@
+import { SearchEngineConfiguration, AnalyticsConfiguration, EngineConfiguration } from '@coveo/headless';
+import { AnalyticsClientSendEventHook } from '@coveo/headless';
+import { InsightEngineConfiguration } from '@coveo/headless/insight';
+import { RecommendationEngineConfiguration } from '@coveo/headless/recommendation';
+export type AnalyticsPayload = Parameters<AnalyticsClientSendEventHook>[1];
+export declare function augmentWithExternalMiddleware(event: string, payload: AnalyticsPayload, config: InsightEngineConfiguration | SearchEngineConfiguration | RecommendationEngineConfiguration): any;
+export declare function augmentAnalyticsWithAtomicVersion(payload: AnalyticsPayload): any;
+export declare function augmentAnalyticsConfigWithDocument(): AnalyticsConfiguration;
+export declare function augmentAnalyticsConfigWithAtomicVersion(): Required<Pick<AnalyticsConfiguration, 'source'>>;
+export declare function getNextAnalyticsConfig(searchEngineConfig: EngineConfiguration, enabled: boolean): AnalyticsConfiguration;

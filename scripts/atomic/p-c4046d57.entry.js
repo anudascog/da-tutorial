@@ -1,0 +1,2 @@
+import{r as s,g as t}from"./p-dc3df5ce.js";const e=class{constructor(t){s(this,t);this.endInclusive=false;this.label=undefined;this.start=undefined;this.end=undefined;this.endInclusive=false}get host(){return t(this)}};export{e as atomic_numeric_range};
+//# sourceMappingURL=p-c4046d57.entry.js.map

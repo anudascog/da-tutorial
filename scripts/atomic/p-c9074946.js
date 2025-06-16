@@ -1,0 +1,2 @@
+function r(r,n){return r.x===n.x&&r.y===n.y&&r.width===n.width&&r.height===n.height}function n(r){return Array.from(r.children).map((r=>r.outerHTML)).join("")}function t(r,n){if(!r){return null}if(r.matches(n)){return r}if(r.parentNode instanceof ShadowRoot){return t(r.parentNode.host,n)}return t(r.parentElement,n)}export{t as c,n as p,r};
+//# sourceMappingURL=p-c9074946.js.map

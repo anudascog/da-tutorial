@@ -1,0 +1,2 @@
+import{h as e}from"./p-dc3df5ce.js";const t=({setRef:t,selectorForItem:r},o)=>{let c;return e("div",{part:"result-list-grid-clickable-container outline",ref:e=>{c=e;t(e)},onClick:e=>{e.preventDefault();c?.querySelector(r)?.click()}},...o)};export{t as D};
+//# sourceMappingURL=p-187193bb.js.map

@@ -1,0 +1,2 @@
+const css = `@utility aspect-square-*{aspect-ratio: 1/1; height: auto; @supports not (aspect-ratio: 1/1){ height: --value([*]); }}`;
+export default [css];

@@ -1,0 +1,54 @@
+import { GeneratedAnswer, GeneratedAnswerState, InteractiveCitation, InteractiveCitationProps, SearchStatusState } from '@coveo/headless';
+import { GeneratedAnswerData } from '../../../utils/local-storage-utils';
+import { AnyBindings } from '../interface/bindings';
+interface GeneratedAnswerCommonOptions {
+    host: HTMLElement;
+    withToggle?: boolean;
+    collapsible?: boolean;
+    getGeneratedAnswer: () => GeneratedAnswer | undefined;
+    getGeneratedAnswerState: () => GeneratedAnswerState | undefined;
+    getSearchStatusState: () => SearchStatusState | undefined;
+    getBindings: () => AnyBindings;
+    getCopied: () => boolean;
+    setCopied: (isCopied: boolean) => void;
+    getCopyError: () => boolean;
+    setCopyError: (copyError: boolean) => void;
+    setAriaMessage: (message: string) => void;
+    buildInteractiveCitation: (props: InteractiveCitationProps) => InteractiveCitation;
+}
+export declare class GeneratedAnswerCommon {
+    private props;
+    private storage;
+    private _data;
+    private modalRef?;
+    constructor(props: GeneratedAnswerCommonOptions);
+    insertFeedbackModal(): void;
+    readStoredData(): GeneratedAnswerData;
+    writeStoredData(data: GeneratedAnswerData): void;
+    get data(): GeneratedAnswerData;
+    set data(newData: GeneratedAnswerData);
+    getGeneratedAnswerStatus(): string;
+    private get hasRetryableError();
+    private get hasNoAnswerGenerated();
+    private get isAnswerVisible();
+    private get toggleTooltip();
+    private get hasClipboard();
+    private get copyToClipboardTooltip();
+    private get hasCustomNoAnswerMessage();
+    private copyToClipboard;
+    private clickOnShowButton;
+    private getCitation;
+    private renderCitations;
+    private renderFeedbackAndCopyButtons;
+    private setIsAnswerHelpful;
+    private openFeedbackModal;
+    private clickDislike;
+    private clickLike;
+    private renderDisclaimer;
+    private renderShowButton;
+    private renderGeneratingAnswerLabel;
+    private renderContent;
+    private renderCustomNoAnswerMessage;
+    render(): any;
+}
+export {};

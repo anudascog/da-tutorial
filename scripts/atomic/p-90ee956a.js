@@ -1,0 +1,2 @@
+import{I as t,a,i as o}from"./p-62386853.js";function r(a={folded:false}){return t({parentName:"atomic-product",folded:a.folded})}function n(){return a()}function e(t){return o(t,"atomic-product")}export{n as I,r as P,e as p};
+//# sourceMappingURL=p-90ee956a.js.map
