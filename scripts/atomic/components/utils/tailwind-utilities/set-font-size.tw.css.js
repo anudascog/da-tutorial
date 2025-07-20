@@ -1,2 +1,0 @@
-const css = `@utility set-font-size-*{--font-size: --value(--text-*); font-size: var(--font-size); --line-height: calc(var(--font-size)*var(--atomic-line-height-ratio)); line-height: var(--line-height);}`;
-export default [css];

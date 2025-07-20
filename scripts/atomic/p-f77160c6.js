@@ -1,2 +1,0 @@
-class e extends Error{constructor(e){super(`The "${e}" element must be the child of the following elements: ${t.join(", ")}`)}}const t=["atomic-recs-interface","atomic-search-interface","atomic-commerce-interface","atomic-commerce-recommendation-interface","atomic-relevance-inspector","atomic-insight-interface","atomic-external"];const c="atomic/initializeComponent";export{e as M,t as a,c as i};
-//# sourceMappingURL=p-f77160c6.js.map

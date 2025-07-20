@@ -1,2 +1,0 @@
-import{h as t}from"./p-dc3df5ce.js";import{B as r}from"./p-f5982205.js";const a=a=>t("div",{class:"relative",part:`${a.partPrefix}-container`},t(r,{...a,class:"relative h-[2.6rem] w-[2.6rem] p-3",part:`${a.partPrefix}-button`,ref:a.buttonRef},t("atomic-icon",{icon:a.icon,class:"h-4 w-4 shrink-0",part:`${a.partPrefix}-icon`})),a.badge&&t("span",{part:`${a.partPrefix}-badge`,class:"bg-primary text-on-primary absolute -top-2 -right-2 block h-4 w-4 rounded-full text-center text-xs leading-4"},a.badge));export{a as I};
-//# sourceMappingURL=p-c2922642.js.map

@@ -1,3 +1,0 @@
-const css = `/*! tailwindcss v4.1.8 | MIT License | https://tailwindcss.com */
-.box-container{padding-inline:calc(var(--spacing,.25rem)*2);grid-template-columns:repeat(var(--atomic-facet-boxes-per-row,4),minmax(0,1fr));gap:var(--atomic-facet-boxes-gap,.5rem);display:grid}.value-box .value-label,.value-box-count{width:100%;display:block}.value-box.selected{box-shadow:0 0 0 1px var(--atomic-primary)}`;
-export default [css];

@@ -1,2 +1,0 @@
-import{g as e}from"./p-634ca060.js";function t(t,r){const n=e(t,r);if(!n){return}if(n.nodeName!=="A"){console.warn(`Slot named "${r}" should be an "a" tag`,n);return}return Array.from(n.attributes).filter((({nodeName:e})=>{if(e==="slot"){return false}if(e==="href"){console.warn('The "href" attribute set on the "attributes" slot element will be ignored.');return false}return true}))}export{t as g};
-//# sourceMappingURL=p-8ff9d07e.js.map

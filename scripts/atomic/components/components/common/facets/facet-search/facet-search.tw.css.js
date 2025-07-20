@@ -1,3 +1,0 @@
-const css = `/*! tailwindcss v4.1.8 | MIT License | https://tailwindcss.com */
-input[type=text]:focus-visible~.search-icon{color:var(--atomic-primary)}input[type=text]:hover~.search-icon{color:var(--atomic-primary-light)}.search-icon atomic-icon{width:var(--atomic-facet-search-icon-size,.75rem);height:var(--atomic-facet-search-icon-size,.75rem)}.search-clear-button atomic-icon{width:var(--atomic-facet-search-clear-icon-size,.625rem);height:var(--atomic-facet-search-clear-icon-size,.625rem)}`;
-export default [css];

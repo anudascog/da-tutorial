@@ -1,2 +1,0 @@
-const css = `@layer components{atomic-icon{fill:currentColor;aspect-ratio:1;height:auto;display:inline-block;@supports not (aspect-ratio:1/1){height:auto}&>svg{aspect-ratio:1;width:100%;height:auto;max-height:100%}}}`;
-export default [css];

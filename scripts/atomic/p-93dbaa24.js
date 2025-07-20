@@ -1,2 +1,0 @@
-import{h as t,F as c}from"./p-dc3df5ce.js";const n=({i18n:n,key:o,params:s,count:e})=>{const a="";const r="";const p=t=>`${a}${r}${t}${a}`;const l=t=>s[t.slice(1)];const u=Object.fromEntries(Object.keys(s).map((t=>[t,p(t)])));const i=n.t(o,{interpolation:{escapeValue:false},count:e,...u});return t(c,null,i.split(a).map((t=>t.startsWith(r)?l(t):t)))};export{n as L};
-//# sourceMappingURL=p-93dbaa24.js.map

@@ -1,2 +1,0 @@
-import{r as s,g as t}from"./p-dc3df5ce.js";import{h as o}from"./p-0b28074c.js";import"./p-cbd58764.js";import"./p-f284897c.js";import"./p-0462f723.js";const r=class{constructor(t){s(this,t)}componentDidRender(){o(this.host)}get host(){return t(this)}};export{r as atomic_product_section_emphasized};
-//# sourceMappingURL=p-d8ba8ad3.entry.js.map

@@ -1,2 +1,0 @@
-import{r as t,h as r,g as s}from"./p-dc3df5ce.js";import{d as e,b as i}from"./p-f3c1c9a0.js";import"./p-1580513b.js";const o=class{constructor(r){t(this,r);this.error=undefined;this.currency=undefined}componentWillLoad(){this.format=e(this.currency);try{i(((t,r)=>this.format(t,r)),this.host)}catch(t){this.error=t}}render(){if(this.error){return r("atomic-component-error",{key:"210b37eeebfb611f2679cf7c721644d6d8a701f1",element:this.host,error:this.error})}}get host(){return s(this)}};export{o as atomic_format_currency};
-//# sourceMappingURL=p-2effdd37.entry.js.map

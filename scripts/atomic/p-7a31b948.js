@@ -1,2 +1,0 @@
-import{h as s}from"./p-dc3df5ce.js";const t=({display:t,listClasses:i},r)=>{if(t==="table"){return s(l,{listClasses:i},...r)}return s(l,{listClasses:i},s("div",{class:`list-root ${i}`,part:"result-list"},r))};const l=({listClasses:t},l)=>s("div",{class:`list-wrapper ${t}`},...l);export{t as D};
-//# sourceMappingURL=p-7a31b948.js.map

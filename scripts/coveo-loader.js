@@ -1,4 +1,4 @@
-// Comprehensive Local Coveo Loader
+// Local Coveo Loader with Fallback
 let coveoLoaded = false;
 let loadingPromise = null;
 
@@ -8,25 +8,36 @@ export async function loadCoveo() {
 
   loadingPromise = new Promise(async (resolve, reject) => {
     try {
-      console.log('🔍 Loading comprehensive local Coveo...');
+      console.log('🔍 Loading local Coveo components...');
       
       // Load CSS
       await loadCoveoCSS();
       
-      // Load main atomic script
-      await loadAtomicScript();
+      // Load fixed JavaScript
+      await loadFixedAtomic();
       
-      // Wait for components with longer timeout
-      await waitForComponentsComprehensive();
+      // Wait for components
+      await waitForComponents();
       
       coveoLoaded = true;
-      console.log('✅ Comprehensive local Coveo loaded!');
+      console.log('✅ Local Coveo loaded successfully');
       resolve(true);
       
     } catch (error) {
-      console.error('❌ Comprehensive loading failed:', error);
-      loadingPromise = null;
-      reject(error);
+      console.error('❌ Local Coveo loading failed:', error);
+      
+      // Fallback to CDN if local fails
+      try {
+        console.log('🔄 Trying CDN fallback...');
+        await loadCDNFallback();
+        coveoLoaded = true;
+        console.log('✅ CDN fallback successful');
+        resolve(true);
+      } catch (cdnError) {
+        console.error('❌ CDN fallback also failed:', cdnError);
+        loadingPromise = null;
+        reject(cdnError);
+      }
     }
   });
 
@@ -42,10 +53,10 @@ async function loadCoveoCSS() {
   link.rel = 'stylesheet';
   link.href = '/scripts/coveo.css';
   document.head.appendChild(link);
-  console.log('✅ Coveo CSS loaded');
+  console.log('✅ Local Coveo CSS loaded');
 }
 
-async function loadAtomicScript() {
+async function loadFixedAtomic() {
   if (window.customElements && window.customElements.get('atomic-search-interface')) {
     console.log('✅ Coveo components already available');
     return;
@@ -55,56 +66,82 @@ async function loadAtomicScript() {
     const script = document.createElement('script');
     script.src = '/scripts/atomic.esm.js?v=' + Date.now();
     
-    // Much longer timeout since we're loading all files
     const timeout = setTimeout(() => {
-      reject(new Error('Comprehensive script loading timeout'));
-    }, 30000); // 30 seconds
+      reject(new Error('Local atomic loading timeout'));
+    }, 12000);
     
     script.onload = () => {
       clearTimeout(timeout);
-      console.log('📦 Atomic entry script loaded');
-      
-      // Give extra time for all modules to load and register
       setTimeout(() => {
-        resolve();
-      }, 8000); // 8 seconds wait
+        if (window.customElements && window.customElements.get('atomic-search-interface')) {
+          resolve();
+        } else {
+          reject(new Error('Components not registered after local load'));
+        }
+      }, 3000);
     };
     
     script.onerror = () => {
       clearTimeout(timeout);
-      reject(new Error('Failed to load atomic entry script'));
+      reject(new Error('Failed to load local atomic script'));
     };
     
     document.head.appendChild(script);
   });
 }
 
-async function waitForComponentsComprehensive() {
-  console.log('🔍 Comprehensive component check...');
-  
-  const requiredComponents = ['atomic-search-interface'];
-  const maxWaitTotal = 20000; // 20 seconds total
-  const startTime = Date.now();
-  
-  // Check custom elements API
-  if (!window.customElements) {
-    throw new Error('Custom Elements API not available');
-  }
-  
-  for (const component of requiredComponents) {
-    console.log(`⏳ Checking for ${component}...`);
-    
-    while (!window.customElements.get(component)) {
-      if (Date.now() - startTime > maxWaitTotal) {
-        throw new Error(`Component not available after ${maxWaitTotal}ms: ${component}`);
-      }
-      await new Promise(resolve => setTimeout(resolve, 500));
+async function loadCDNFallback() {
+  return new Promise((resolve, reject) => {
+    // Load CDN CSS if local CSS failed
+    if (!document.querySelector('link[href*="atomic.css"]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://static.cloud.coveo.com/atomic/v3/atomic.css';
+      document.head.appendChild(link);
     }
     
-    console.log(`✅ Found: ${component}`);
+    const script = document.createElement('script');
+    script.type = 'module';
+    script.src = 'https://static.cloud.coveo.com/atomic/v3/atomic.esm.js';
+    
+    const timeout = setTimeout(() => {
+      reject(new Error('CDN fallback timeout'));
+    }, 15000);
+    
+    script.onload = () => {
+      clearTimeout(timeout);
+      setTimeout(() => {
+        if (window.customElements && window.customElements.get('atomic-search-interface')) {
+          resolve();
+        } else {
+          reject(new Error('CDN components not registered'));
+        }
+      }, 2000);
+    };
+    
+    script.onerror = () => {
+      clearTimeout(timeout);
+      reject(new Error('CDN fallback failed'));
+    };
+    
+    document.head.appendChild(script);
+  });
+}
+
+async function waitForComponents() {
+  const components = ['atomic-search-interface'];
+  const maxWait = 10000;
+  const startTime = Date.now();
+
+  for (const component of components) {
+    while (!window.customElements || !window.customElements.get(component)) {
+      if (Date.now() - startTime > maxWait) {
+        throw new Error('Component not available: ' + component);
+      }
+      await new Promise(resolve => setTimeout(resolve, 200));
+    }
+    console.log('✅ Component verified: ' + component);
   }
-  
-  console.log('✅ All components verified!');
 }
 
 export function isCoveoLoaded() {
@@ -117,13 +154,11 @@ export function resetCoveoLoader() {
 }
 
 export function debugCoveoStatus() {
-  const components = ['atomic-search-interface', 'atomic-search-box', 'atomic-result-list'];
   const status = {
     loaded: coveoLoaded,
     customElementsAvailable: !!window.customElements,
-    components: window.customElements ? 
-      components.map(name => ({ name, available: !!window.customElements.get(name) })) : []
+    searchInterface: window.customElements ? !!window.customElements.get('atomic-search-interface') : false
   };
-  console.log('🐛 Comprehensive Coveo Status:', status);
+  console.log('🐛 Coveo Status:', status);
   return status;
 }

@@ -1,2 +1,0 @@
-import{r as s}from"./p-dc3df5ce.js";const t=class{constructor(t){s(this,t);this.section=undefined;this.minWidth=undefined;this.maxWidth=undefined}};export{t as atomic_layout_section};
-//# sourceMappingURL=p-39223a2a.entry.js.map

@@ -1,2 +1,0 @@
-function o(o,n){const t=Array.from(o.children);const e=t.filter((o=>o.getAttribute("slot")===n));if(!e.length){return}if(e.length>1){console.warn(`Element should only have 1 slot named "${n}".`,o)}return e[0]}function n(o){const n=Array.from(o.children);const t=n.filter((o=>!o.hasAttribute("slot")||o.getAttribute("slot")===""));if(!t.length){return}if(t.length>1){console.warn("Element should only have 1 default slot.",o)}return t[0]}export{n as a,o as g};
-//# sourceMappingURL=p-634ca060.js.map
