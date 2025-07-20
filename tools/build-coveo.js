@@ -1,4 +1,4 @@
-// tools/build-coveo.js - Local build with proper module handling
+// tools/build-coveo.js - Enhanced version with inline patching
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -13,40 +13,78 @@ function ensureDir(dir) {
   }
 }
 
-function findCoveoFiles(packageDir, fileType) {
-  console.log(`🔍 Finding ${fileType} files in ${path.basename(packageDir)}...`);
-  
+function copyAndPatchFile(src, dest, description, needsPatch = false) {
+  try {
+    const destPath = path.resolve(projectRoot, dest);
+    ensureDir(path.dirname(destPath));
+    
+    let content = fs.readFileSync(src, 'utf8');
+    
+    // If this is a JS file that needs patching, add browser compatibility
+    if (needsPatch && dest.endsWith('.js')) {
+      console.log(`🔧 Adding browser compatibility to ${description}...`);
+      
+      // Add compatibility shims at the beginning
+      content = `// Browser compatibility shims for Coveo Atomic
+if (typeof exports === 'undefined') {
+  var exports = {};
+}
+if (typeof module === 'undefined') {
+  var module = { exports: exports };
+}
+if (typeof require === 'undefined') {
+  var require = function(id) {
+    console.warn('require() not available in browser for:', id);
+    return {};
+  };
+}
+if (typeof global === 'undefined') {
+  var global = window;
+}
+if (typeof process === 'undefined') {
+  var process = { env: {}, browser: true };
+}
+
+// Original Coveo content below:
+${content}`;
+    }
+    
+    fs.writeFileSync(destPath, content);
+    
+    const size = content.length;
+    console.log(`✅ Copied and ${needsPatch ? 'patched ' : ''}${description}: ${path.basename(dest)} (${Math.round(size/1024)}KB)`);
+    return true;
+  } catch (error) {
+    console.error(`❌ Failed to copy ${description}:`, error.message);
+    return false;
+  }
+}
+
+function findAllFiles(dir, extension, minSize = 0) {
   const results = [];
   
-  function searchRecursively(dir, depth = 0) {
-    if (depth > 4 || !fs.existsSync(dir)) return;
+  if (!fs.existsSync(dir)) return results;
+  
+  function searchRecursive(currentDir, depth = 0) {
+    if (depth > 4) return; // Limit depth
     
     try {
-      const items = fs.readdirSync(dir);
+      const items = fs.readdirSync(currentDir);
       
       for (const item of items) {
-        const fullPath = path.join(dir, item);
+        const fullPath = path.join(currentDir, item);
         try {
           const stat = fs.statSync(fullPath);
           
           if (stat.isDirectory() && !item.includes('node_modules')) {
-            searchRecursively(fullPath, depth + 1);
-          } else if (stat.isFile()) {
-            if (fileType === 'js' && item.endsWith('.js') && stat.size > 100000) {
-              results.push({
-                path: fullPath,
-                size: stat.size,
-                name: item,
-                relativePath: path.relative(packageDir, fullPath)
-              });
-            } else if (fileType === 'css' && item.endsWith('.css') && stat.size > 2000) {
-              results.push({
-                path: fullPath,
-                size: stat.size,
-                name: item,
-                relativePath: path.relative(packageDir, fullPath)
-              });
-            }
+            searchRecursive(fullPath, depth + 1);
+          } else if (stat.isFile() && item.endsWith(extension) && stat.size > minSize) {
+            results.push({
+              path: fullPath,
+              relativePath: path.relative(projectRoot, fullPath),
+              size: stat.size,
+              name: item
+            });
           }
         } catch (error) {
           // Skip files we can't access
@@ -57,221 +95,71 @@ function findCoveoFiles(packageDir, fileType) {
     }
   }
   
-  searchRecursively(packageDir);
-  
-  // Sort by size (largest first)
-  results.sort((a, b) => b.size - a.size);
-  
-  console.log(`   Found ${results.length} ${fileType} files`);
-  results.slice(0, 3).forEach(file => {
-    console.log(`     - ${file.relativePath} (${Math.round(file.size/1024)}KB)`);
-  });
-  
-  return results;
+  searchRecursive(dir);
+  return results.sort((a, b) => b.size - a.size); // Sort by size, largest first
 }
 
-function selectBestFile(files, fileType) {
-  if (files.length === 0) {
-    console.log(`   ❌ No ${fileType} files found`);
-    return null;
-  }
+function findBestFile(packageDir, packageName, fileType) {
+  console.log(`🔍 Finding ${fileType} files for ${packageName}...`);
   
   if (fileType === 'js') {
-    // Prefer files with specific names and avoid test/spec files
+    const jsFiles = findAllFiles(packageDir, '.js', 100000); // Min 100KB
+    
+    console.log(`   Found ${jsFiles.length} JS files`);
+    
+    // Prioritize files based on naming and size
     const priorities = [
-      file => file.name.includes('atomic') && file.name.includes('esm'),
-      file => file.name.includes('index') && file.size > 50000,
-      file => file.name.includes('atomic') && file.size > 30000,
-      file => !file.name.includes('test') && !file.name.includes('spec') && file.size > 20000
+      file => file.name.includes('esm') && file.size > 500000,
+      file => file.name.includes('atomic') && file.size > 300000,
+      file => file.name.includes('headless') && file.size > 300000,
+      file => file.name.includes('index') && file.size > 200000,
+      file => file.size > 150000
     ];
     
-    for (const priority of priorities) {
-      const match = files.find(priority);
+    for (const priorityCheck of priorities) {
+      const match = jsFiles.find(priorityCheck);
       if (match) {
         console.log(`   ✅ Selected: ${match.relativePath} (${Math.round(match.size/1024)}KB)`);
-        return match;
+        return match.path;
       }
     }
+    
+    // Fallback to largest file
+    if (jsFiles.length > 0) {
+      const largest = jsFiles[0];
+      console.log(`   ⚠️  Fallback to largest: ${largest.relativePath} (${Math.round(largest.size/1024)}KB)`);
+      return largest.path;
+    }
+    
   } else if (fileType === 'css') {
-    // Prefer atomic or coveo named CSS files
-    const preferred = files.find(file => 
-      file.name.includes('atomic') || file.name.includes('coveo')
+    const cssFiles = findAllFiles(packageDir, '.css', 2000); // Min 20KB
+    
+    console.log(`   Found ${cssFiles.length} CSS files`);
+    
+    const cssMatch = cssFiles.find(file => 
+      file.name.includes('atomic') || 
+      file.name.includes('coveo') ||
+      file.size > 50000
     );
     
-    if (preferred) {
-      console.log(`   ✅ Selected: ${preferred.relativePath} (${Math.round(preferred.size/1024)}KB)`);
-      return preferred;
+    if (cssMatch) {
+      console.log(`   ✅ Selected: ${cssMatch.relativePath} (${Math.round(cssMatch.size/1024)}KB)`);
+      return cssMatch.path;
+    }
+    
+    if (cssFiles.length > 0) {
+      const largest = cssFiles[0];
+      console.log(`   ⚠️  Fallback to largest: ${largest.relativePath} (${Math.round(largest.size/1024)}KB)`);
+      return largest.path;
     }
   }
   
-  // Fallback to largest file
-  const largest = files[0];
-  console.log(`   ⚠️  Using largest: ${largest.relativePath} (${Math.round(largest.size/1024)}KB)`);
-  return largest;
+  console.log(`   ❌ No suitable ${fileType} file found`);
+  return null;
 }
 
-function createFixedAtomicFile(sourceFile, destFile) {
-  console.log('🔧 Creating browser-compatible atomic file...');
-  
-  try {
-    let content = fs.readFileSync(sourceFile.path, 'utf8');
-    
-    // Create a comprehensive browser compatibility wrapper
-    const fixedContent = `// Browser-Compatible Coveo Atomic
-(function() {
-  'use strict';
-  
-  // Browser environment setup
-  if (typeof window !== 'undefined') {
-    // Global variables for Node.js compatibility
-    window.global = window.global || window;
-    window.process = window.process || { 
-      env: {}, 
-      browser: true,
-      version: '16.0.0',
-      versions: { node: '16.0.0' }
-    };
-    
-    // Module system setup
-    const moduleRegistry = new Map();
-    const exportRegistry = new Map();
-    
-    // Enhanced require function that handles relative paths
-    window.require = function(moduleId) {
-      // Handle relative paths by converting them to absolute-ish paths
-      if (moduleId.startsWith('./') || moduleId.startsWith('../')) {
-        // For relative requires, return a mock module
-        console.log('Mock module loaded for:', moduleId);
-        return {
-          default: {},
-          __esModule: true
-        };
-      }
-      
-      // Handle known Node.js modules
-      const nodeModules = {
-        'util': { inspect: () => '[Object]', inherits: () => {} },
-        'events': { 
-          EventEmitter: class EventEmitter {
-            on() { return this; }
-            emit() { return true; }
-            removeListener() { return this; }
-          }
-        },
-        'stream': { 
-          Readable: class {}, 
-          Writable: class {},
-          Transform: class {}
-        },
-        'buffer': { 
-          Buffer: { 
-            from: () => new Uint8Array(), 
-            isBuffer: () => false,
-            alloc: () => new Uint8Array()
-          }
-        },
-        'crypto': { 
-          createHash: () => ({ 
-            update: () => ({}), 
-            digest: () => 'mock-hash' 
-          }) 
-        },
-        'path': { 
-          join: (...args) => args.join('/'),
-          resolve: (...args) => '/' + args.join('/'),
-          dirname: (p) => p.split('/').slice(0, -1).join('/'),
-          basename: (p) => p.split('/').pop()
-        },
-        'fs': { 
-          readFileSync: () => '', 
-          writeFileSync: () => {},
-          existsSync: () => false
-        },
-        'os': { 
-          platform: () => 'browser', 
-          arch: () => 'x64',
-          tmpdir: () => '/tmp'
-        }
-      };
-      
-      if (nodeModules[moduleId]) {
-        return nodeModules[moduleId];
-      }
-      
-      // For unknown modules, return empty object
-      console.log('Unknown module requested:', moduleId);
-      return {};
-    };
-    
-    // Set up exports and module
-    window.exports = window.exports || {};
-    window.module = window.module || { exports: window.exports };
-    
-    // Additional polyfills
-    if (!window.setImmediate) {
-      window.setImmediate = (fn) => setTimeout(fn, 0);
-    }
-    
-    if (!window.clearImmediate) {
-      window.clearImmediate = (id) => clearTimeout(id);
-    }
-  }
-  
-  // Wrap the original content in a try-catch to handle any remaining issues
-  try {
-${content}
-  } catch (error) {
-    console.error('Error in Coveo atomic content:', error);
-    
-    // Fallback: create minimal search interface
-    if (typeof window !== 'undefined' && window.customElements && !window.customElements.get('atomic-search-interface')) {
-      console.log('Creating fallback search interface...');
-      
-      class FallbackSearchInterface extends HTMLElement {
-        connectedCallback() {
-          this.innerHTML = '<div style="padding: 2rem; border: 1px solid #ddd; text-align: center;">Search interface is loading... Please wait or refresh the page.</div>';
-        }
-        
-        async initialize(config) {
-          console.log('Fallback interface initialized with config:', config);
-          this.innerHTML = '<div style="padding: 2rem; border: 1px solid #ddd; text-align: center;">Search interface failed to load properly. Please check console for errors.</div>';
-        }
-        
-        async executeFirstSearch() {
-          console.log('Fallback search execution');
-        }
-      }
-      
-      window.customElements.define('atomic-search-interface', FallbackSearchInterface);
-    }
-  }
-})();`;
-
-    fs.writeFileSync(destFile, fixedContent);
-    
-    const newSize = fs.statSync(destFile).size;
-    console.log(`✅ Created fixed atomic file: ${Math.round(newSize/1024)}KB`);
-    return true;
-    
-  } catch (error) {
-    console.error('❌ Failed to create fixed atomic file:', error.message);
-    return false;
-  }
-}
-
-function copyFile(sourceFile, destFile, description) {
-  try {
-    fs.copyFileSync(sourceFile.path, destFile);
-    console.log(`✅ Copied ${description}: ${Math.round(sourceFile.size/1024)}KB`);
-    return true;
-  } catch (error) {
-    console.error(`❌ Failed to copy ${description}:`, error.message);
-    return false;
-  }
-}
-
-function createLocalCoveoLoader() {
-  const loaderContent = `// Local Coveo Loader with Fallback
+function createCoveoLoader() {
+  const loaderContent = `// Coveo Loader for AEM Block Collection
 let coveoLoaded = false;
 let loadingPromise = null;
 
@@ -281,35 +169,24 @@ export async function loadCoveo() {
 
   loadingPromise = new Promise(async (resolve, reject) => {
     try {
-      console.log('🔍 Loading local Coveo components...');
+      console.log('🔍 Loading Coveo components...');
       
-      // Load CSS
+      // Load CSS first
       await loadCoveoCSS();
       
-      // Load fixed JavaScript
-      await loadFixedAtomic();
+      // Load patched JavaScript
+      await loadCoveoJS();
       
       // Wait for components
-      await waitForComponents();
+      await waitForEssentialComponents();
       
       coveoLoaded = true;
-      console.log('✅ Local Coveo loaded successfully');
+      console.log('✅ Coveo loaded successfully');
       resolve(true);
     } catch (error) {
-      console.error('❌ Local Coveo loading failed:', error);
-      
-      // Fallback to CDN if local fails
-      try {
-        console.log('🔄 Trying CDN fallback...');
-        await loadCDNFallback();
-        coveoLoaded = true;
-        console.log('✅ CDN fallback successful');
-        resolve(true);
-      } catch (cdnError) {
-        console.error('❌ CDN fallback also failed:', cdnError);
-        loadingPromise = null;
-        reject(cdnError);
-      }
+      console.error('❌ Failed to load Coveo:', error);
+      loadingPromise = null;
+      reject(error);
     }
   });
 
@@ -325,32 +202,53 @@ async function loadCoveoCSS() {
   link.rel = 'stylesheet';
   link.href = '/scripts/coveo.css';
   document.head.appendChild(link);
-  console.log('✅ Local Coveo CSS loaded');
+  console.log('✅ Coveo CSS loaded');
 }
 
-async function loadFixedAtomic() {
+async function loadCoveoJS() {
   if (window.customElements && window.customElements.get('atomic-search-interface')) {
     console.log('✅ Coveo components already available');
     return;
   }
 
+  // Try local patched file first
+  try {
+    await loadLocalAtomic();
+    console.log('✅ Loaded local patched Coveo atomic');
+    return;
+  } catch (error) {
+    console.warn('⚠️ Local atomic failed, trying CDN fallback:', error.message);
+  }
+
+  // Fallback to CDN
+  try {
+    await loadCDNAtomic();
+    console.log('✅ Loaded CDN Coveo atomic');
+  } catch (error) {
+    throw new Error('Both local and CDN loading failed');
+  }
+}
+
+function loadLocalAtomic() {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = '/scripts/atomic.esm.js?v=' + Date.now();
+    script.type = 'module';
+    script.src = '/scripts/atomic.esm.js?v=' + Date.now(); // Cache busting
     
     const timeout = setTimeout(() => {
       reject(new Error('Local atomic loading timeout'));
-    }, 12000);
+    }, 8000);
     
     script.onload = () => {
       clearTimeout(timeout);
+      // Give time for components to register
       setTimeout(() => {
         if (window.customElements && window.customElements.get('atomic-search-interface')) {
           resolve();
         } else {
           reject(new Error('Components not registered after local load'));
         }
-      }, 3000);
+      }, 2000);
     };
     
     script.onerror = () => {
@@ -362,23 +260,15 @@ async function loadFixedAtomic() {
   });
 }
 
-async function loadCDNFallback() {
+function loadCDNAtomic() {
   return new Promise((resolve, reject) => {
-    // Load CDN CSS if local CSS failed
-    if (!document.querySelector('link[href*="atomic.css"]')) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'https://static.cloud.coveo.com/atomic/v3/atomic.css';
-      document.head.appendChild(link);
-    }
-    
     const script = document.createElement('script');
     script.type = 'module';
     script.src = 'https://static.cloud.coveo.com/atomic/v3/atomic.esm.js';
     
     const timeout = setTimeout(() => {
-      reject(new Error('CDN fallback timeout'));
-    }, 15000);
+      reject(new Error('CDN loading timeout'));
+    }, 12000);
     
     script.onload = () => {
       clearTimeout(timeout);
@@ -388,31 +278,30 @@ async function loadCDNFallback() {
         } else {
           reject(new Error('CDN components not registered'));
         }
-      }, 2000);
+      }, 3000);
     };
     
     script.onerror = () => {
       clearTimeout(timeout);
-      reject(new Error('CDN fallback failed'));
+      reject(new Error('CDN loading failed'));
     };
     
     document.head.appendChild(script);
   });
 }
 
-async function waitForComponents() {
-  const components = ['atomic-search-interface'];
+async function waitForEssentialComponents() {
+  const components = ['atomic-search-interface', 'atomic-search-box', 'atomic-result-list'];
   const maxWait = 10000;
   const startTime = Date.now();
 
   for (const component of components) {
     while (!window.customElements || !window.customElements.get(component)) {
       if (Date.now() - startTime > maxWait) {
-        throw new Error('Component not available: ' + component);
+        throw new Error(\`Component not available: \${component}\`);
       }
       await new Promise(resolve => setTimeout(resolve, 200));
     }
-    console.log('✅ Component verified: ' + component);
   }
 }
 
@@ -426,10 +315,12 @@ export function resetCoveoLoader() {
 }
 
 export function debugCoveoStatus() {
+  const components = ['atomic-search-interface', 'atomic-search-box', 'atomic-result-list'];
   const status = {
     loaded: coveoLoaded,
     customElementsAvailable: !!window.customElements,
-    searchInterface: window.customElements ? !!window.customElements.get('atomic-search-interface') : false
+    components: window.customElements ? 
+      components.map(name => ({ name, available: !!window.customElements.get(name) })) : []
   };
   console.log('🐛 Coveo Status:', status);
   return status;
@@ -439,12 +330,11 @@ export function debugCoveoStatus() {
   const loaderPath = path.resolve(projectRoot, 'scripts/coveo-loader.js');
   ensureDir(path.dirname(loaderPath));
   fs.writeFileSync(loaderPath, loaderContent);
-  console.log('✅ Created local Coveo loader with CDN fallback');
+  console.log('✅ Created Coveo loader');
 }
 
 function buildCoveoAssets() {
-  console.log('🔨 Building local Coveo assets with proper module handling...');
-  console.log('');
+  console.log('🔨 Building Coveo assets with automatic browser compatibility...\n');
   
   ensureDir(path.resolve(projectRoot, 'scripts'));
   
@@ -452,56 +342,56 @@ function buildCoveoAssets() {
   const headlessDir = path.resolve(projectRoot, 'node_modules/@coveo/headless');
   
   if (!fs.existsSync(atomicDir)) {
-    console.error(' @coveo/atomic package not found');
-    console.log(' Run: npm install @coveo/atomic');
+    console.error('❌ @coveo/atomic package not found');
     return;
   }
   
-  let success = true;
+  if (!fs.existsSync(headlessDir)) {
+    console.error('❌ @coveo/headless package not found');
+    return;
+  }
   
-  // Find and process Atomic JS
-  const jsFiles = findCoveoFiles(atomicDir, 'js');
-  const bestJs = selectBestFile(jsFiles, 'js');
+  let allCopied = true;
   
-  if (bestJs) {
-    const destPath = path.resolve(projectRoot, 'scripts/atomic.esm.js');
-    if (!createFixedAtomicFile(bestJs, destPath)) {
-      success = false;
+  // Find and copy Atomic JS file (with patching)
+  const atomicJs = findBestFile(atomicDir, '@coveo/atomic', 'js');
+  if (atomicJs) {
+    if (!copyAndPatchFile(atomicJs, 'scripts/atomic.esm.js', 'Atomic JS', true)) {
+      allCopied = false;
     }
   } else {
-    console.error('❌ No suitable JS file found');
-    success = false;
+    allCopied = false;
   }
   
   console.log('');
   
-  // Find and copy CSS
-  const cssFiles = findCoveoFiles(atomicDir, 'css');
-  const bestCss = selectBestFile(cssFiles, 'css');
-  
-  if (bestCss) {
-    const destPath = path.resolve(projectRoot, 'scripts/coveo.css');
-    if (!copyFile(bestCss, destPath, 'CSS')) {
-      success = false;
+  // Find and copy Atomic CSS file (no patching needed)
+  const atomicCss = findBestFile(atomicDir, '@coveo/atomic', 'css');
+  if (atomicCss) {
+    if (!copyAndPatchFile(atomicCss, 'scripts/coveo.css', 'Atomic CSS', false)) {
+      allCopied = false;
     }
   } else {
-    console.error('❌ No suitable CSS file found');
-    success = false;
+    allCopied = false;
   }
   
   console.log('');
   
-  // Create loader (with fallback)
-  createLocalCoveoLoader();
+  // Find and copy Headless JS file (optional)
+  const headlessJs = findBestFile(headlessDir, '@coveo/headless', 'js');
+  if (headlessJs) {
+    copyAndPatchFile(headlessJs, 'scripts/headless.esm.js', 'Headless JS', false);
+  }
   
   console.log('');
-  if (success) {
-    console.log('✅ Local Coveo build completed successfully!');
-    console.log('🎉 Fixed module loading issues with local files');
-    console.log('🔄 Includes CDN fallback if local files fail');
+  
+  if (allCopied) {
+    createCoveoLoader();
+    console.log('\n✅ Coveo build completed successfully with browser compatibility!');
+    console.log('🎉 No more "exports is not defined" errors!');
   } else {
-    console.log('⚠️  Build completed with issues');
-    console.log('🔄 CDN fallback will be used if needed');
+    console.error('\n❌ Some files failed to copy.');
+    createCoveoLoader(); // Create loader anyway for CDN fallback
   }
 }
 

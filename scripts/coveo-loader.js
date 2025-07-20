@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 // scripts/coveo-loader.js - Enhanced version with better component detection
 =======
 // Comprehensive Local Coveo Loader
@@ -7,6 +8,9 @@
 =======
 // Local Coveo Loader with Fallback
 >>>>>>> parent of 187890f (all the atomic files in localrepo)
+=======
+// Coveo Loader for AEM Block Collection
+>>>>>>> parent of de298b2 (updated the error handling)
 let coveoLoaded = false;
 let loadingPromise = null;
 
@@ -16,6 +20,7 @@ export async function loadCoveo() {
 
   loadingPromise = new Promise(async (resolve, reject) => {
     try {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
       console.log('🔍 Starting Coveo loading process...');
@@ -40,21 +45,25 @@ export async function loadCoveo() {
 =======
       console.log('🔍 Loading local Coveo components...');
 >>>>>>> parent of 187890f (all the atomic files in localrepo)
+=======
+      console.log('🔍 Loading Coveo components...');
+>>>>>>> parent of de298b2 (updated the error handling)
       
-      // Load CSS
+      // Load CSS first
       await loadCoveoCSS();
       
-      // Load fixed JavaScript
-      await loadFixedAtomic();
+      // Load patched JavaScript
+      await loadCoveoJS();
       
       // Wait for components
-      await waitForComponents();
+      await waitForEssentialComponents();
       
       coveoLoaded = true;
-      console.log('✅ Local Coveo loaded successfully');
+      console.log('✅ Coveo loaded successfully');
       resolve(true);
       
     } catch (error) {
+<<<<<<< HEAD
 <<<<<<< HEAD
       console.error('❌ Comprehensive loading failed:', error);
       loadingPromise = null;
@@ -76,6 +85,11 @@ export async function loadCoveo() {
         reject(cdnError);
       }
 >>>>>>> parent of 187890f (all the atomic files in localrepo)
+=======
+      console.error('❌ Failed to load Coveo:', error);
+      loadingPromise = null;
+      reject(error);
+>>>>>>> parent of de298b2 (updated the error handling)
     }
   });
 
@@ -100,9 +114,10 @@ async function loadCoveoCSS() {
   link.rel = 'stylesheet';
   link.href = '/scripts/coveo.css';
   document.head.appendChild(link);
-  console.log('✅ Local Coveo CSS loaded');
+  console.log('✅ Coveo CSS loaded');
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 async function loadCoveoComponents() {
@@ -175,28 +190,52 @@ async function loadAtomicScript() {
 =======
 async function loadFixedAtomic() {
 >>>>>>> parent of 187890f (all the atomic files in localrepo)
+=======
+async function loadCoveoJS() {
+>>>>>>> parent of de298b2 (updated the error handling)
   if (window.customElements && window.customElements.get('atomic-search-interface')) {
     console.log('✅ Coveo components already available');
     return;
   }
 
+  // Try local patched file first
+  try {
+    await loadLocalAtomic();
+    console.log('✅ Loaded local patched Coveo atomic');
+    return;
+  } catch (error) {
+    console.warn('⚠️ Local atomic failed, trying CDN fallback:', error.message);
+  }
+
+  // Fallback to CDN
+  try {
+    await loadCDNAtomic();
+    console.log('✅ Loaded CDN Coveo atomic');
+  } catch (error) {
+    throw new Error('Both local and CDN loading failed');
+  }
+}
+
+function loadLocalAtomic() {
   return new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = '/scripts/atomic.esm.js?v=' + Date.now();
+    script.type = 'module';
+    script.src = '/scripts/atomic.esm.js?v=' + Date.now(); // Cache busting
     
     const timeout = setTimeout(() => {
       reject(new Error('Local atomic loading timeout'));
-    }, 12000);
+    }, 8000);
     
     script.onload = () => {
       clearTimeout(timeout);
+      // Give time for components to register
       setTimeout(() => {
         if (window.customElements && window.customElements.get('atomic-search-interface')) {
           resolve();
         } else {
           reject(new Error('Components not registered after local load'));
         }
-      }, 3000);
+      }, 2000);
     };
     
     script.onerror = () => {
@@ -213,6 +252,7 @@ async function loadFixedAtomic() {
   });
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 async function loadViaESModule() {
@@ -341,13 +381,17 @@ async function loadCDNFallback() {
 >>>>>>> parent of 187890f (all the atomic files in localrepo)
     }
     
+=======
+function loadCDNAtomic() {
+  return new Promise((resolve, reject) => {
+>>>>>>> parent of de298b2 (updated the error handling)
     const script = document.createElement('script');
     script.type = 'module';
     script.src = 'https://static.cloud.coveo.com/atomic/v3/atomic.esm.js';
     
     const timeout = setTimeout(() => {
-      reject(new Error('CDN fallback timeout'));
-    }, 15000);
+      reject(new Error('CDN loading timeout'));
+    }, 12000);
     
     script.onload = () => {
       clearTimeout(timeout);
@@ -357,31 +401,30 @@ async function loadCDNFallback() {
         } else {
           reject(new Error('CDN components not registered'));
         }
-      }, 2000);
+      }, 3000);
     };
     
     script.onerror = () => {
       clearTimeout(timeout);
-      reject(new Error('CDN fallback failed'));
+      reject(new Error('CDN loading failed'));
     };
     
     document.head.appendChild(script);
   });
 }
 
-async function waitForComponents() {
-  const components = ['atomic-search-interface'];
+async function waitForEssentialComponents() {
+  const components = ['atomic-search-interface', 'atomic-search-box', 'atomic-result-list'];
   const maxWait = 10000;
   const startTime = Date.now();
 
   for (const component of components) {
     while (!window.customElements || !window.customElements.get(component)) {
       if (Date.now() - startTime > maxWait) {
-        throw new Error('Component not available: ' + component);
+        throw new Error(`Component not available: ${component}`);
       }
       await new Promise(resolve => setTimeout(resolve, 200));
     }
-    console.log('✅ Component verified: ' + component);
   }
 <<<<<<< HEAD
   
@@ -406,6 +449,7 @@ export function resetCoveoLoader() {
 
 // Debug function to check component status
 export function debugCoveoStatus() {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   console.log('🐛 Coveo Debug Status:');
@@ -437,10 +481,14 @@ export function debugCoveoStatus() {
   const components = ['atomic-search-interface', 'atomic-search-box', 'atomic-result-list'];
 =======
 >>>>>>> parent of 187890f (all the atomic files in localrepo)
+=======
+  const components = ['atomic-search-interface', 'atomic-search-box', 'atomic-result-list'];
+>>>>>>> parent of de298b2 (updated the error handling)
   const status = {
     loaded: coveoLoaded,
     customElementsAvailable: !!window.customElements,
-    searchInterface: window.customElements ? !!window.customElements.get('atomic-search-interface') : false
+    components: window.customElements ? 
+      components.map(name => ({ name, available: !!window.customElements.get(name) })) : []
   };
   console.log('🐛 Coveo Status:', status);
   return status;
