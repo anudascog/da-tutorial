@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 // blocks/coveo-search/coveo-search.js - Robust version with better error handling
 import { loadCoveo, debugCoveoStatus, resetCoveoLoader } from '../../scripts/coveo-loader.js';
 
@@ -6,10 +7,13 @@ export default async function decorate(block) {
   console.log('🔍 Initializing Coveo search block...');
 =======
 // blocks/coveo-search/coveo-search.js - Fixed syntax errors
+=======
+// blocks/coveo-search/coveo-search.js - Simplified and robust version
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
 import { loadCoveo, debugCoveoStatus, resetCoveoLoader } from '../../scripts/coveo-loader.js';
 
 export default async function decorate(block) {
-  console.log('🔍 Initializing Coveo search block with enhanced debugging...');
+  console.log('🔍 Initializing Coveo search block...');
   
   // Parse configuration first
   const config = parseConfiguration(block);
@@ -20,6 +24,7 @@ export default async function decorate(block) {
   block.innerHTML = '<div class="coveo-loading">🔍 Loading search interface...</div>';
 
   try {
+<<<<<<< HEAD
 <<<<<<< HEAD
     // Parse configuration first
     const config = parseConfiguration(block);
@@ -44,21 +49,22 @@ export default async function decorate(block) {
     
     // Load Coveo components with detailed logging
     console.log('📦 Starting Coveo loading process...');
+=======
+    // Load Coveo components
+    console.log('📦 Loading Coveo components...');
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
     await loadCoveo();
     
-    // Debug: Show state after loading
-    console.log('🐛 Post-loading debug status:');
-    debugCoveoStatus();
-    
-    // Create search interface with additional safety checks
+    // Create search interface
     console.log('🏗️ Creating search interface...');
-    await createSearchInterfaceWithChecks(block, config);
+    await createSearchInterface(block, config);
     
 >>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
     console.log('✅ Coveo search block initialized successfully');
     
   } catch (error) {
     console.error('❌ Failed to initialize Coveo search:', error);
+<<<<<<< HEAD
     
 <<<<<<< HEAD
     // Show detailed error information
@@ -71,6 +77,9 @@ export default async function decorate(block) {
     
     showDetailedErrorState(block, error, config);
 >>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
+=======
+    showErrorState(block, error, config);
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
   }
 }
 
@@ -107,47 +116,43 @@ function parseConfiguration(block) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 async function loadCoveoWithRetry() {
 =======
 async function createSearchInterfaceWithChecks(block, config) {
+=======
+async function createSearchInterface(block, config) {
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
   try {
-    // Pre-check: Verify components are available
-    const requiredComponents = [
-      'atomic-search-interface',
-      'atomic-search-layout',
-      'atomic-search-box'
-    ];
-    
-    console.log('🔍 Pre-creation component check...');
-    for (const comp of requiredComponents) {
-      if (!window.customElements.get(comp)) {
-        throw new Error('Required component not available: ' + comp);
-      }
-      console.log('✅ Verified: ' + comp);
-    }
-    
     // Create search interface element
-    console.log('🏗️ Creating atomic-search-interface element...');
     const searchInterface = document.createElement('atomic-search-interface');
     
     if (config.fieldsToInclude) {
       searchInterface.setAttribute('fields-to-include', config.fieldsToInclude);
     }
 
-    // Create simplified layout first to reduce complexity
-    console.log('🏗️ Creating search layout...');
+    // Create simplified but functional layout
     const searchLayout = `
       <atomic-search-layout>
         <atomic-layout-section section="search">
           <atomic-search-box></atomic-search-box>
         </atomic-layout-section>
+        <atomic-layout-section section="facets">
+          <atomic-facet-manager>
+            <atomic-facet field="author" label="Authors"></atomic-facet>
+            <atomic-facet field="source" label="Source"></atomic-facet>
+            <atomic-facet field="filetype" label="File Type"></atomic-facet>
+          </atomic-facet-manager>
+        </atomic-layout-section>
         <atomic-layout-section section="main">
           <atomic-layout-section section="status">
             <atomic-query-summary></atomic-query-summary>
+            <atomic-refine-toggle></atomic-refine-toggle>
             <atomic-sort-dropdown>
               <atomic-sort-expression label="relevance" expression="relevancy"></atomic-sort-expression>
               <atomic-sort-expression label="most-recent" expression="date descending"></atomic-sort-expression>
             </atomic-sort-dropdown>
+            <atomic-did-you-mean></atomic-did-you-mean>
           </atomic-layout-section>
           <atomic-layout-section section="results">
             <atomic-result-list>
@@ -167,6 +172,7 @@ async function createSearchInterfaceWithChecks(block, config) {
             </atomic-result-list>
             <atomic-query-error></atomic-query-error>
             <atomic-no-results></atomic-no-results>
+            <atomic-load-more-results></atomic-load-more-results>
           </atomic-layout-section>
         </atomic-layout-section>
       </atomic-search-layout>
@@ -175,16 +181,11 @@ async function createSearchInterfaceWithChecks(block, config) {
     searchInterface.innerHTML = searchLayout;
     
     // Clear loading and add interface
-    console.log('🏗️ Adding interface to DOM...');
     block.innerHTML = '';
     block.appendChild(searchInterface);
 
-    // Wait for DOM integration
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    // Initialize Coveo with enhanced error handling
-    console.log('🔧 Initializing Coveo search interface...');
-    await initializeCoveoWithRetries(searchInterface, config);
+    // Initialize Coveo
+    await initializeCoveo(searchInterface, config);
     
   } catch (error) {
     console.error('❌ Error creating search interface:', error);
@@ -192,6 +193,7 @@ async function createSearchInterfaceWithChecks(block, config) {
   }
 }
 
+<<<<<<< HEAD
 async function initializeCoveoWithRetries(searchInterface, config) {
 >>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
   const maxRetries = 3;
@@ -225,11 +227,52 @@ async function initializeCoveoWithRetries(searchInterface, config) {
       if (!searchInterface.isConnected) {
         console.log('⏳ Waiting for element to be connected to DOM...');
         await new Promise(resolve => setTimeout(resolve, 1000));
+=======
+async function initializeCoveo(searchInterface, config) {
+  try {
+    console.log('🔧 Initializing Coveo search interface...');
+    
+    // Wait for the element to be in DOM
+    await new Promise(resolve => {
+      if (searchInterface.isConnected) {
+        resolve();
+      } else {
+        setTimeout(resolve, 100);
       }
-      
-      // Additional wait for component readiness
-      await new Promise(resolve => setTimeout(resolve, 1000 * attempt));
+    });
 
+    // Additional wait for component readiness
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    if (config.debug === 'true' || config.debug === true) {
+      console.log('🔧 Initializing with config');
+    }
+
+    // Initialize search interface
+    await searchInterface.initialize({
+      accessToken: config.accessToken,
+      organizationId: config.organizationId,
+      environment: config.environment || 'demo'
+    });
+
+    console.log('✅ Search interface initialized');
+
+    // Add custom translations (optional)
+    try {
+      if (searchInterface.i18n && searchInterface.i18n.addResourceBundle) {
+        searchInterface.i18n.addResourceBundle('en', 'caption-filetype', {
+          '.html': 'HTML Document',
+          '.pdf': 'PDF Document',
+          '.doc': 'Word Document',
+          '.txt': 'Text File'
+        });
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
+      }
+    } catch (i18nError) {
+      console.warn('⚠️ Could not add custom translations');
+    }
+
+<<<<<<< HEAD
       console.log('🔧 Calling searchInterface.initialize()...');
       await searchInterface.initialize({
         accessToken: config.accessToken,
@@ -442,18 +485,32 @@ function showErrorState(block, error, config, debugInfo) {
 =======
   // All retries failed
   throw new Error('All ' + maxRetries + ' initialization attempts failed. Last error: ' + lastError.message);
+=======
+    // Execute first search
+    await searchInterface.executeFirstSearch();
+    console.log('✅ First search executed');
+    
+  } catch (error) {
+    console.error('❌ Error during Coveo initialization:', error);
+    
+    if (error.message && error.message.includes('initialize')) {
+      throw new Error(`Initialization failed: ${error.message}`);
+    } else if (error.message && error.message.includes('executeFirstSearch')) {
+      throw new Error(`Search execution failed: ${error.message}`);
+    } else {
+      throw new Error(`Unexpected error: ${error.message}`);
+    }
+  }
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
 }
 
-function showDetailedErrorState(block, error, config) {
+function showErrorState(block, error, config) {
   const isDebug = config && (config.debug === 'true' || config.debug === true);
   
-  // Get current component status for debugging
-  const debugStatus = debugCoveoStatus();
-  
-  const errorHTML = `
+  block.innerHTML = `
     <div class="coveo-error">
-      <h3>🔍 Local Coveo Loading Issue</h3>
-      <p>Unable to load the search interface from local files.</p>
+      <h3>🔍 Search Interface Error</h3>
+      <p>Unable to load the search interface.</p>
       
       <div class="error-message">
         <strong>Error:</strong> ${error.message || 'Unknown error'}
@@ -465,6 +522,7 @@ function showDetailedErrorState(block, error, config) {
           🔄 Refresh Page
         </button>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <button onclick="this.nextElementSibling.style.display='block'" class="debug-button">
           🔍 Show Details
 =======
@@ -472,28 +530,19 @@ function showDetailedErrorState(block, error, config) {
           🔍 Debug Console
 >>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
         </button>
+=======
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
         ${isDebug ? `
-          <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'" class="details-button">
-            📋 Show Details
+          <button onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'" class="debug-button">
+            🔍 Debug Info
           </button>
           <div class="error-details" style="display: none;">
             <h4>Debug Information:</h4>
             <pre>${JSON.stringify({
               error: error.message,
-              stack: error.stack ? error.stack.substring(0, 500) : 'No stack trace',
-              customElementsAPI: !!window.customElements,
-              availableComponents: debugStatus.components,
+              config: config,
               timestamp: new Date().toISOString()
             }, null, 2)}</pre>
-            
-            <h4>Troubleshooting Steps:</h4>
-            <ol>
-              <li>Check browser console for detailed error messages</li>
-              <li>Verify that atomic.esm.js file loads without errors</li>
-              <li>Run <code>window.debugCoveo()</code> in console</li>
-              <li>Check if custom elements are being defined</li>
-              <li>Try in an incognito window to rule out extensions</li>
-            </ol>
           </div>
         ` : ''}
       </div>
@@ -525,7 +574,10 @@ function showDetailedErrorState(block, error, config) {
 =======
     </div>
   `;
+<<<<<<< HEAD
   
   block.innerHTML = errorHTML;
 >>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
+=======
+>>>>>>> parent of 187890f (all the atomic files in localrepo)
 }
