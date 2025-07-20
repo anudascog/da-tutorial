@@ -1,1 +1,0 @@
-{"file":"export-parts-878c454a.js","mappings":";;MAAa,yBAAyB,GACpC;;;;","names":[],"sources":["src/components/common/atomic-modal/export-parts.ts"],"sourcesContent":["export const ATOMIC_MODAL_EXPORT_PARTS =\n  'backdrop,container,header-wrapper,header,header-ruler,body-wrapper,body,footer-wrapper,footer';\n"],"version":3}
