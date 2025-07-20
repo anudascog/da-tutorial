@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 // scripts/coveo-loader.js - Enhanced version with better component detection
+=======
+// Comprehensive Local Coveo Loader
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
 let coveoLoaded = false;
 let loadingPromise = null;
 
@@ -8,6 +12,7 @@ export async function loadCoveo() {
 
   loadingPromise = new Promise(async (resolve, reject) => {
     try {
+<<<<<<< HEAD
       console.log('🔍 Starting Coveo loading process...');
       
       // Load CSS first
@@ -25,6 +30,26 @@ export async function loadCoveo() {
       
     } catch (error) {
       console.error('❌ Failed to load Coveo:', error);
+=======
+      console.log('🔍 Loading comprehensive local Coveo...');
+      
+      // Load CSS
+      await loadCoveoCSS();
+      
+      // Load main atomic script
+      await loadAtomicScript();
+      
+      // Wait for components with longer timeout
+      await waitForComponentsComprehensive();
+      
+      coveoLoaded = true;
+      console.log('✅ Comprehensive local Coveo loaded!');
+      resolve(true);
+      
+    } catch (error) {
+      console.error('❌ Comprehensive loading failed:', error);
+      loadingPromise = null;
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
       reject(error);
     }
   });
@@ -33,15 +58,27 @@ export async function loadCoveo() {
 }
 
 async function loadCoveoCSS() {
+<<<<<<< HEAD
   if (!document.querySelector('link[href*="coveo.css"]')) {
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = '/scripts/coveo.css';
     document.head.appendChild(link);
     console.log('✅ Coveo CSS loaded');
+=======
+  if (document.querySelector('link[href*="coveo.css"]')) {
+    return;
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
   }
+
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = '/scripts/coveo.css';
+  document.head.appendChild(link);
+  console.log('✅ Coveo CSS loaded');
 }
 
+<<<<<<< HEAD
 async function loadCoveoComponents() {
   console.log('📦 Loading Coveo components...');
   
@@ -107,12 +144,43 @@ function loadViaScriptTag() {
     
     script.onerror = () => {
       reject(new Error('Failed to load atomic script'));
+=======
+async function loadAtomicScript() {
+  if (window.customElements && window.customElements.get('atomic-search-interface')) {
+    console.log('✅ Coveo components already available');
+    return;
+  }
+
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = '/scripts/atomic.esm.js?v=' + Date.now();
+    
+    // Much longer timeout since we're loading all files
+    const timeout = setTimeout(() => {
+      reject(new Error('Comprehensive script loading timeout'));
+    }, 30000); // 30 seconds
+    
+    script.onload = () => {
+      clearTimeout(timeout);
+      console.log('📦 Atomic entry script loaded');
+      
+      // Give extra time for all modules to load and register
+      setTimeout(() => {
+        resolve();
+      }, 8000); // 8 seconds wait
+    };
+    
+    script.onerror = () => {
+      clearTimeout(timeout);
+      reject(new Error('Failed to load atomic entry script'));
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
     };
     
     document.head.appendChild(script);
   });
 }
 
+<<<<<<< HEAD
 async function loadViaESModule() {
   // Set up global environment for CommonJS compatibility
   if (!window.exports) window.exports = {};
@@ -206,6 +274,34 @@ async function verifyComponents() {
   }
   
   console.log('✅ All required components verified');
+=======
+async function waitForComponentsComprehensive() {
+  console.log('🔍 Comprehensive component check...');
+  
+  const requiredComponents = ['atomic-search-interface'];
+  const maxWaitTotal = 20000; // 20 seconds total
+  const startTime = Date.now();
+  
+  // Check custom elements API
+  if (!window.customElements) {
+    throw new Error('Custom Elements API not available');
+  }
+  
+  for (const component of requiredComponents) {
+    console.log(`⏳ Checking for ${component}...`);
+    
+    while (!window.customElements.get(component)) {
+      if (Date.now() - startTime > maxWaitTotal) {
+        throw new Error(`Component not available after ${maxWaitTotal}ms: ${component}`);
+      }
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
+    
+    console.log(`✅ Found: ${component}`);
+  }
+  
+  console.log('✅ All components verified!');
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
 }
 
 export function isCoveoLoaded() {
@@ -215,11 +311,15 @@ export function isCoveoLoaded() {
 export function resetCoveoLoader() {
   coveoLoaded = false;
   loadingPromise = null;
+<<<<<<< HEAD
   console.log('🔄 Coveo loader reset');
+=======
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
 }
 
 // Debug function to check component status
 export function debugCoveoStatus() {
+<<<<<<< HEAD
   console.log('🐛 Coveo Debug Status:');
   console.log('- Loaded:', coveoLoaded);
   console.log('- CustomElements available:', !!window.customElements);
@@ -245,3 +345,15 @@ export function debugCoveoStatus() {
       })) : []
   };
 }
+=======
+  const components = ['atomic-search-interface', 'atomic-search-box', 'atomic-result-list'];
+  const status = {
+    loaded: coveoLoaded,
+    customElementsAvailable: !!window.customElements,
+    components: window.customElements ? 
+      components.map(name => ({ name, available: !!window.customElements.get(name) })) : []
+  };
+  console.log('🐛 Comprehensive Coveo Status:', status);
+  return status;
+}
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)

@@ -263,4 +263,64 @@
 .error-details ul, .error-details ol {
   margin: 0.5rem 0;
   padding-left: 1.5rem;
+<<<<<<< HEAD
+=======
+}
+
+.coveo-error {
+  padding: 2rem;
+  border: 1px solid #dc3545;
+  border-radius: 8px;
+  background: #f8d7da;
+  color: #721c24;
+  margin: 2rem 0;
+}
+
+.error-message {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+.error-actions {
+  margin: 1rem 0;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.retry-button, .debug-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.retry-button {
+  background: #007bff;
+  color: white;
+}
+
+.debug-button {
+  background: #6c757d;
+  color: white;
+}
+
+.error-details {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 4px;
+  text-align: left;
+}
+
+.error-details pre {
+  font-size: 0.75rem;
+  overflow: auto;
+  white-space: pre-wrap;
+>>>>>>> parent of 2d4bfee (all the atomic files in localrepo)
 }
