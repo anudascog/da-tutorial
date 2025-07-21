@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # Simplified Coveo Headless SDK Download Script for AEM Edge Delivery Services
-# Place this file in the plugins folder at your project root
+# Place this file in the plugin folder: /c/aem-live/da-tutorial-main/plugin/download-coveo.sh
+# This script will download files to: /c/aem-live/da-tutorial-main/scripts/coveo/
 
 set -e  # Exit on any error
 
 # Configuration
-DOWNLOAD_DIR="./scripts/coveo"
+DOWNLOAD_DIR="../scripts/coveo"
 NPM_REGISTRY_URL="https://registry.npmjs.org/@coveo/headless/latest"
 COVEO_CDN_BASE="https://static.cloud.coveo.com/headless"
 
@@ -109,10 +110,10 @@ check_prerequisites() {
 create_directories() {
     print_status "Creating directory structure..."
     
-    # Create scripts directory if it doesn't exist
+    # Create scripts/coveo directory from plugin folder (goes up one level first)
     mkdir -p "$DOWNLOAD_DIR"
     
-    print_success "Directory structure created."
+    print_success "Directory structure created at: $(realpath "$DOWNLOAD_DIR" 2>/dev/null || echo "$DOWNLOAD_DIR")"
 }
 
 # Download Coveo headless SDK
@@ -214,8 +215,8 @@ main() {
     print_success "Coveo Headless SDK download completed!"
     echo
     echo "Downloaded files:"
-    echo "  - scripts/coveo/headless.esm.js (latest version)"
-    echo "  - scripts/coveo/headless.esm.js.map (source map)"
+    echo "  - /c/aem-live/da-tutorial-main/scripts/coveo/headless.esm.js (latest version)"
+    echo "  - /c/aem-live/da-tutorial-main/scripts/coveo/headless.esm.js.map (source map)"
     echo
     echo "The file is ready to be imported in your AEM Edge Delivery project:"
     echo "  import * as coveo from '/scripts/coveo/headless.esm.js';"
