@@ -125,6 +125,514 @@ verify_downloads() {
     fi
 }
 
+# Create integration documentation
+create_documentation() {
+    print_status "Creating integration documentation..."
+    
+    cat > "$DOWNLOAD_DIR/COVEO_INTEGRATION_GUIDE.md" << 'EOF'
+# Coveo Integration Guide for AEM Edge Delivery Services
+
+## Overview
+This guide provides comprehensive instructions for integrating Coveo Headless SDK v3.27.4 into your AEM Edge Delivery Services project.
+
+## Project Structure
+```
+/c/aem-live/da-tutorial-main/
+├── plugin/
+│   └── download-coveo.sh              # Download script
+├── scripts/
+│   └── coveo/
+│       ├── headless.esm.js            # Coveo Headless SDK v3.27.4
+│       ├── headless.esm.js.map        # Source map for debugging
+│       └── COVEO_INTEGRATION_GUIDE.md # This documentation
+```
+
+## Getting Started
+
+### 1. Basic Integration
+Import the Coveo Headless SDK in your JavaScript files:
+
+```javascript
+// Import the SDK
+import * as coveo from '/scripts/coveo/headless.esm.js';
+
+// Initialize search engine
+const { buildSearchEngine } = coveo;
+const engine = buildSearchEngine({
+  configuration: {
+    organizationId: 'YOUR_COVEO_ORG_ID',
+    accessToken: 'YOUR_COVEO_ACCESS_TOKEN',
+    // Optional: Add environment if not production
+    // environment: 'development'
+  }
+});
+```
+
+### 2. Basic Search Implementation
+
+```javascript
+// Import necessary components
+import { 
+  buildSearchEngine,
+  buildSearchBox,
+  buildResultList,
+  buildPager
+} from '/scripts/coveo/headless.esm.js';
+
+// Initialize engine
+const engine = buildSearchEngine({
+  configuration: {
+    organizationId: 'YOUR_COVEO_ORG_ID',
+    accessToken: 'YOUR_COVEO_ACCESS_TOKEN',
+  }
+});
+
+// Build search components
+const searchBox = buildSearchBox(engine);
+const resultList = buildResultList(engine);
+const pager = buildPager(engine);
+
+// Subscribe to state changes
+searchBox.subscribe(() => renderSearchBox());
+resultList.subscribe(() => renderResults());
+pager.subscribe(() => renderPager());
+
+// Example render functions
+function renderSearchBox() {
+  const state = searchBox.state;
+  // Update your search input UI
+  document.querySelector('#search-input').value = state.value;
+}
+
+function renderResults() {
+  const state = resultList.state;
+  const resultsContainer = document.querySelector('#search-results');
+  
+  resultsContainer.innerHTML = state.results.map(result => `
+    <div class="search-result">
+      <h3><a href="${result.clickUri}">${result.title}</a></h3>
+      <p>${result.excerpt}</p>
+      <span class="result-uri">${result.uri}</span>
+    </div>
+  `).join('');
+}
+
+function renderPager() {
+  const state = pager.state;
+  // Update pagination UI
+  console.log('Current page:', state.currentPage);
+  console.log('Total pages:', state.maxPage);
+}
+
+// Execute search
+function performSearch(query) {
+  searchBox.updateText(query);
+  searchBox.submit();
+}
+```
+
+### 3. AEM Edge Delivery Block Integration
+
+Create a Coveo search block in your AEM project:
+
+#### Create Block Directory Structure
+```
+blocks/
+└── coveo-search/
+    ├── coveo-search.js
+    ├── coveo-search.css
+```
+
+#### JavaScript Block Implementation (`blocks/coveo-search/coveo-search.js`)
+```javascript
+import { 
+  buildSearchEngine,
+  buildSearchBox,
+  buildResultList 
+} from '/scripts/coveo/headless.esm.js';
+
+export default async function decorate(block) {
+  const orgId = block.dataset.orgId || 'YOUR_DEFAULT_ORG_ID';
+  const accessToken = block.dataset.accessToken || 'YOUR_DEFAULT_ACCESS_TOKEN';
+  
+  try {
+    // Initialize Coveo engine
+    const engine = buildSearchEngine({
+      configuration: {
+        organizationId: orgId,
+        accessToken: accessToken,
+      }
+    });
+    
+    // Build components
+    const searchBox = buildSearchBox(engine);
+    const resultList = buildResultList(engine);
+    
+    // Create UI
+    const searchInterface = createSearchInterface();
+    block.innerHTML = '';
+    block.appendChild(searchInterface);
+    
+    // Set up event listeners and state subscriptions
+    setupSearchInterface(searchBox, resultList);
+    
+  } catch (error) {
+    console.error('Error initializing Coveo search:', error);
+    block.innerHTML = '<p class="error">Error loading search functionality</p>';
+  }
+}
+
+function createSearchInterface() {
+  const container = document.createElement('div');
+  container.className = 'coveo-search-container';
+  
+  container.innerHTML = `
+    <div class="search-box">
+      <input type="text" id="coveo-search-input" placeholder="Search..." class="search-input">
+      <button id="coveo-search-button" class="search-button">Search</button>
+    </div>
+    <div class="search-loading" id="search-loading" style="display: none;">
+      Searching...
+    </div>
+    <div class="search-results" id="coveo-search-results"></div>
+    <div class="search-pagination" id="coveo-search-pagination"></div>
+  `;
+  
+  return container;
+}
+
+function setupSearchInterface(searchBox, resultList) {
+  const input = document.getElementById('coveo-search-input');
+  const button = document.getElementById('coveo-search-button');
+  const results = document.getElementById('coveo-search-results');
+  const loading = document.getElementById('search-loading');
+  
+  // Handle search submission
+  function performSearch() {
+    const query = input.value.trim();
+    if (query) {
+      loading.style.display = 'block';
+      searchBox.updateText(query);
+      searchBox.submit();
+    }
+  }
+  
+  // Event listeners
+  button.addEventListener('click', performSearch);
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') performSearch();
+  });
+  
+  // State subscriptions
+  resultList.subscribe(() => {
+    loading.style.display = 'none';
+    const state = resultList.state;
+    
+    if (state.results.length === 0) {
+      results.innerHTML = '<p class="no-results">No results found</p>';
+    } else {
+      results.innerHTML = state.results.map(result => `
+        <article class="search-result">
+          <h3><a href="${result.clickUri}" target="_blank">${result.title}</a></h3>
+          <p class="excerpt">${result.excerpt || ''}</p>
+          <span class="result-source">${result.source || result.uri}</span>
+        </article>
+      `).join('');
+    }
+  });
+}
+```
+
+#### CSS Styles (`blocks/coveo-search/coveo-search.css`)
+```css
+.coveo-search-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.search-box {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.search-button {
+  padding: 12px 24px;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #0052a3;
+}
+
+.search-button:active {
+  transform: translateY(1px);
+}
+
+.search-loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-style: italic;
+}
+
+.search-results {
+  min-height: 200px;
+}
+
+.search-result {
+  padding: 20px;
+  border-bottom: 1px solid #e1e5e9;
+  transition: background-color 0.2s ease;
+}
+
+.search-result:hover {
+  background-color: #f8f9fa;
+}
+
+.search-result h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.search-result h3 a {
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.search-result h3 a:hover {
+  text-decoration: underline;
+}
+
+.excerpt {
+  margin: 8px 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.result-source {
+  font-size: 14px;
+  color: #28a745;
+  font-weight: 500;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-style: italic;
+}
+
+.error {
+  text-align: center;
+  padding: 20px;
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .coveo-search-container {
+    padding: 16px;
+  }
+  
+  .search-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .search-button {
+    margin-top: 8px;
+  }
+}
+```
+
+### 4. Usage in AEM Documents
+
+Add the following to your AEM document to use the Coveo search block:
+
+```
+| coveo-search |
+|--------------|
+| data-org-id: your-actual-org-id |
+| data-access-token: your-actual-access-token |
+```
+
+## Configuration
+
+### Required Coveo Settings
+1. **Organization ID**: Your unique Coveo organization identifier
+2. **Access Token**: API token with search permissions
+3. **CORS Configuration**: Ensure your domain is allowed in Coveo admin panel
+
+### Environment-Specific Configuration
+
+#### Development
+```javascript
+const engine = buildSearchEngine({
+  configuration: {
+    organizationId: 'YOUR_ORG_ID',
+    accessToken: 'YOUR_DEV_ACCESS_TOKEN',
+    environment: 'development'
+  }
+});
+```
+
+#### Production
+```javascript
+const engine = buildSearchEngine({
+  configuration: {
+    organizationId: 'YOUR_ORG_ID',
+    accessToken: 'YOUR_PROD_ACCESS_TOKEN'
+    // environment defaults to 'production'
+  }
+});
+```
+
+## Advanced Features
+
+### 1. Faceted Search
+```javascript
+import { buildFacet } from '/scripts/coveo/headless.esm.js';
+
+const authorFacet = buildFacet(engine, {
+  options: {
+    field: 'author'
+  }
+});
+
+// Subscribe to facet state changes
+authorFacet.subscribe(() => {
+  const state = authorFacet.state;
+  renderFacet(state);
+});
+```
+
+### 2. Search Analytics
+```javascript
+import { buildSearchStatus } from '/scripts/coveo/headless.esm.js';
+
+const searchStatus = buildSearchStatus(engine);
+searchStatus.subscribe(() => {
+  const state = searchStatus.state;
+  console.log('Search duration:', state.duration);
+  console.log('Total results:', state.totalNumberOfResults);
+});
+```
+
+### 3. Query Suggestions
+```javascript
+import { buildQuerySuggest } from '/scripts/coveo/headless.esm.js';
+
+const querySuggest = buildQuerySuggest(engine);
+
+querySuggest.subscribe(() => {
+  const state = querySuggest.state;
+  renderSuggestions(state.completions);
+});
+```
+
+## Troubleshooting
+
+### Common Issues
+
+1. **CORS Errors**: Ensure your domain is added to allowed origins in Coveo admin
+2. **Authentication Errors**: Verify your organization ID and access token
+3. **No Results**: Check if your content is properly indexed in Coveo
+
+### Debug Mode
+Enable debug logging:
+
+```javascript
+const engine = buildSearchEngine({
+  configuration: {
+    organizationId: 'YOUR_ORG_ID',
+    accessToken: 'YOUR_ACCESS_TOKEN',
+  },
+  loggerOptions: {
+    level: 'debug'
+  }
+});
+```
+
+## Performance Optimization
+
+### 1. Lazy Loading
+```javascript
+// Dynamically import Coveo only when needed
+async function initializeSearch() {
+  const coveo = await import('/scripts/coveo/headless.esm.js');
+  // Initialize search components
+}
+```
+
+### 2. Debounced Search
+```javascript
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+const debouncedSearch = debounce((query) => {
+  searchBox.updateText(query);
+  searchBox.submit();
+}, 300);
+```
+
+## Resources
+
+- [Coveo Headless SDK Documentation](https://docs.coveo.com/en/headless/)
+- [AEM Edge Delivery Services Documentation](https://www.adobe.com/experience-manager/edge-delivery-services.html)
+- [Coveo Platform Documentation](https://docs.coveo.com/)
+
+## Support
+
+For issues related to:
+- **Coveo Headless SDK**: Check [Coveo Community](https://community.coveo.com/)
+- **AEM Edge Delivery**: Consult Adobe documentation
+- **This Integration**: Review this guide and verify configuration
+
+---
+*Generated by Coveo Integration Script v3.27.4*
+EOF
+
+    print_success "Integration documentation created at: $(realpath "$DOWNLOAD_DIR/COVEO_INTEGRATION_GUIDE.md" 2>/dev/null || echo "$DOWNLOAD_DIR/COVEO_INTEGRATION_GUIDE.md")"
+}
+
 # Main execution
 main() {
     echo "======================================================="
@@ -137,15 +645,19 @@ main() {
     create_directories
     download_coveo_sdk
     verify_downloads
+    create_documentation
     
     echo
-    print_success "Coveo Headless SDK v3.27.4 download completed!"
+    print_success "Coveo Headless SDK v3.27.4 download and documentation completed!"
     echo
     echo "Downloaded files:"
     echo "  - /c/aem-live/da-tutorial-main/scripts/coveo/headless.esm.js (v3.27.4)"
     echo "  - /c/aem-live/da-tutorial-main/scripts/coveo/headless.esm.js.map (source map)"
     echo
-    echo "The file is ready to be imported in your AEM Edge Delivery project:"
+    echo "Documentation created:"
+    echo "  - /c/aem-live/da-tutorial-main/scripts/coveo/COVEO_INTEGRATION_GUIDE.md (comprehensive guide)"
+    echo
+    echo "Quick start - Import in your AEM Edge Delivery project:"
     echo "  import * as coveo from '/scripts/coveo/headless.esm.js';"
     echo
     echo "Example usage:"
@@ -156,6 +668,8 @@ main() {
     echo "      accessToken: 'YOUR_ACCESS_TOKEN',"
     echo "    }"
     echo "  });"
+    echo
+    echo "📖 For detailed integration steps, see scripts/coveo/COVEO_INTEGRATION_GUIDE.md"
     echo
 }
 
