@@ -59,22 +59,13 @@ detect_project_root() {
     if [[ "$(basename "$current_dir")" == "plugin" ]]; then
         # We're in a plugin folder, so project root is parent directory
         project_root="$(dirname "$current_dir")"
-        log_info "Detected script running from plugin directory"
-        log_info "Project root: $project_root"
     else
         # We're in project root
         project_root="$current_dir"
     fi
     
-    # Verify this looks like an EDS project
-    if [[ -f "$project_root/fstab.yaml" ]] || [[ -f "$project_root/head.html" ]] || [[ -d "$project_root/blocks" ]]; then
-        log_success "AEM EDS project detected at: $project_root"
-        echo "$project_root"
-    else
-        log_warning "This doesn't appear to be an AEM EDS project root"
-        log_info "Expected files: fstab.yaml, head.html, or blocks/ directory"
-        echo "$project_root"
-    fi
+    # Just return the project root path - no logging here
+    echo "$project_root"
 }
 
 print_header() {
@@ -799,6 +790,20 @@ parse_arguments() {
     # Auto-detect project root if BASE_DIR not specified
     if [[ -z "$BASE_DIR" ]]; then
         BASE_DIR=$(detect_project_root)
+        
+        # Log the detection results after capturing the path
+        if [[ "$(basename "$SCRIPT_DIR")" == "plugin" ]]; then
+            log_info "Detected script running from plugin directory"
+            log_info "Auto-detected project root: $BASE_DIR"
+        fi
+        
+        # Verify this looks like an EDS project
+        if [[ -f "$BASE_DIR/fstab.yaml" ]] || [[ -f "$BASE_DIR/head.html" ]] || [[ -d "$BASE_DIR/blocks" ]]; then
+            log_success "AEM EDS project detected at: $BASE_DIR"
+        else
+            log_warning "This doesn't appear to be an AEM EDS project root"
+            log_info "Expected files: fstab.yaml, head.html, or blocks/ directory"
+        fi
     fi
     
     # Validate arguments
