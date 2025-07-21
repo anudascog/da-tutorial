@@ -153,28 +153,6 @@ log_error() {
     echo -e "${RED}[ERROR]${NC} $1" >&2
 }
 
-progress_bar() {
-    local duration=$1
-    local columns=$(tput cols)
-    local bar_length=$((columns - 20))
-    local fill_char="█"
-    local empty_char="░"
-    
-    for ((i=0; i<=duration; i++)); do
-        local progress=$((i * 100 / duration))
-        local filled=$((progress * bar_length / 100))
-        local empty=$((bar_length - filled))
-        
-        printf "\r${CYAN}Progress: ${NC}["
-        printf "%*s" $filled | tr ' ' "$fill_char"
-        printf "%*s" $empty | tr ' ' "$empty_char"
-        printf "] %3d%%" $progress
-        
-        sleep 0.1
-    done
-    echo
-}
-
 #################################################################
 # Download Functions
 #################################################################
@@ -199,7 +177,7 @@ check_dependencies() {
     local missing_deps=()
     
     # Check required commands
-    for cmd in curl jq; do
+    for cmd in curl; do
         if ! command -v "$cmd" &> /dev/null; then
             missing_deps+=("$cmd")
         fi
@@ -211,7 +189,6 @@ check_dependencies() {
         for dep in "${missing_deps[@]}"; do
             case "$dep" in
                 "curl") echo "  - Ubuntu/Debian: sudo apt-get install curl" ;;
-                "jq") echo "  - Ubuntu/Debian: sudo apt-get install jq" ;;
             esac
         done
         exit 1
@@ -222,7 +199,7 @@ get_latest_version() {
     log_info "Fetching latest Coveo Headless version..."
     
     local latest_version
-    latest_version=$(curl -s "https://registry.npmjs.org/@coveo/headless/latest" | jq -r '.version')
+    latest_version=$(curl -s "https://registry.npmjs.org/@coveo/headless/latest" | grep -o '"version":"[^"]*"' | cut -d'"' -f4)
     
     if [[ -z "$latest_version" || "$latest_version" == "null" ]]; then
         log_warning "Could not fetch latest version, using fallback"
@@ -278,7 +255,17 @@ download_file() {
     
     if curl -L --fail --silent --show-error -o "$output_path" "$url"; then
         local file_size
-        file_size=$(stat -f%z "$output_path" 2>/dev/null || stat -c%s "$output_path" 2>/dev/null || echo "unknown")
+        if command -v stat >/dev/null 2>&1; then
+            if stat -c%s "$output_path" >/dev/null 2>&1; then
+                file_size=$(stat -c%s "$output_path")
+            elif stat -f%z "$output_path" >/dev/null 2>&1; then
+                file_size=$(stat -f%z "$output_path")
+            else
+                file_size="unknown"
+            fi
+        else
+            file_size="unknown"
+        fi
         log_success "$description downloaded (${file_size} bytes)"
         return 0
     else
@@ -300,13 +287,6 @@ verify_file_integrity() {
     if [[ ! -f "$file_path" || ! -s "$file_path" ]]; then
         log_error "$description verification failed: file missing or empty"
         return 1
-    fi
-    
-    # Check if it's a valid JavaScript file
-    if [[ "$file_path" == *.js ]]; then
-        if ! node -c "$file_path" 2>/dev/null; then
-            log_warning "$description may not be valid JavaScript"
-        fi
     fi
     
     log_success "$description verified"
@@ -402,14 +382,14 @@ EOF
     local first=true
     for file in "$base_dir"/scripts/coveo/libs/*.js; do
         if [[ -f "$file" ]]; then
-            local basename
-            basename=$(basename "$file")
+            local basename_file
+            basename_file=$(basename "$file")
             if [[ "$first" == true ]]; then
                 first=false
             else
                 echo "," >> "$base_dir/scripts/coveo/config/version.json"
             fi
-            echo -n "    \"$basename\"" >> "$base_dir/scripts/coveo/config/version.json"
+            echo -n "    \"$basename_file\"" >> "$base_dir/scripts/coveo/config/version.json"
         fi
     done
     
@@ -643,7 +623,66 @@ EOF
 
 ## Core Files Downloaded
 
-$(ls -la "$base_dir/scripts/coveo/libs/" | grep -E '\.(js|ts)
+$(ls -la "$base_dir/scripts/coveo/libs/" 2>/dev/null | grep -E '\.(js|ts)$' | awk '{print "- " $9 " (" $5 " bytes)"}' || echo "- Files will be listed after download")
+
+## What's Included
+
+The core library (\`headless.esm.js\`) provides everything needed for basic search:
+
+✅ **Search Engine** - Core search functionality
+✅ **Search Box** - Input and query suggestions  
+✅ **Results Display** - Search results and interaction
+✅ **Faceted Search** - Filters and refinements
+✅ **Pagination** - Page navigation controls
+✅ **Sorting** - Sort options for results
+✅ **Analytics** - Usage tracking and insights
+
+## Quick Start
+
+1. Update configuration in \`config/config.js\` with your Coveo credentials:
+   \`\`\`javascript
+   organizationId: 'your-org-id',
+   searchToken: 'your-api-token'
+   \`\`\`
+
+2. Use the loader in your AEM EDS blocks:
+   \`\`\`javascript
+   import { coveoLoader } from '../../scripts/coveo/loader.js';
+   const searchBox = await coveoLoader.loadController('searchBox');
+   \`\`\`
+
+3. Review the example search-box block implementation
+
+## Available Controllers
+
+- \`searchBox\` - Search input and suggestions
+- \`resultList\` - Display search results  
+- \`facet\` - Faceted search filters
+- \`pager\` - Pagination controls
+- \`sort\` - Sort options
+- \`queryError\` - Error handling
+- \`querySummary\` - Results summary
+
+## Next Steps
+
+- Configure your Coveo organization credentials
+- Customize the search interface blocks
+- Add additional controllers as needed
+- Test search functionality on your AEM EDS site
+
+## Documentation
+
+- [Coveo Headless Documentation](https://docs.coveo.com/en/headless/latest/)
+- [AEM EDS Documentation](https://www.aem.live/docs/)
+
+## File Size Optimization
+
+This core-only approach provides:
+- **Small footprint**: ~600KB vs 2.5MB full SDK
+- **Fast loading**: Essential functionality only
+- **Easy maintenance**: Single library file
+- **Full functionality**: Complete search capabilities
+EOF
     
     log_success "Configuration files created"
 }
@@ -664,7 +703,7 @@ COVEO_DIR="$SCRIPT_DIR/scripts/coveo"
 
 # Read current version
 if [[ -f "$COVEO_DIR/config/version.json" ]]; then
-    CURRENT_VERSION=$(jq -r '.version' "$COVEO_DIR/config/version.json")
+    CURRENT_VERSION=$(grep -o '"version":"[^"]*"' "$COVEO_DIR/config/version.json" | cut -d'"' -f4)
     echo "Current version: $CURRENT_VERSION"
 else
     echo "No version information found"
@@ -673,7 +712,7 @@ fi
 
 # Check for updates
 echo "Checking for updates..."
-LATEST_VERSION=$(curl -s "https://registry.npmjs.org/@coveo/headless/latest" | jq -r '.version')
+LATEST_VERSION=$(curl -s "https://registry.npmjs.org/@coveo/headless/latest" | grep -o '"version":"[^"]*"' | cut -d'"' -f4)
 
 if [[ "$CURRENT_VERSION" != "$LATEST_VERSION" ]]; then
     echo "Update available: $CURRENT_VERSION -> $LATEST_VERSION"
@@ -814,11 +853,11 @@ main() {
     echo "  Project Root: $BASE_DIR"
     echo "  Script Location: $SCRIPT_DIR"
     echo "  Coveo Files: $BASE_DIR/scripts/coveo/"
-    echo "  JavaScript: $(find "$BASE_DIR/scripts/coveo/libs" -name "*.js" | wc -l) files"
+    echo "  JavaScript: $(find "$BASE_DIR/scripts/coveo/libs" -name "*.js" 2>/dev/null | wc -l) files"
     if [[ "$INCLUDE_TYPES" == true ]]; then
-        echo "  TypeScript: $(find "$BASE_DIR/scripts/coveo/libs" -name "*.d.ts" | wc -l) definition files"
+        echo "  TypeScript: $(find "$BASE_DIR/scripts/coveo/libs" -name "*.d.ts" 2>/dev/null | wc -l) definition files"
     fi
-    echo "  Size: $(du -sh "$BASE_DIR/scripts/coveo/libs" | cut -f1)"
+    echo "  Size: $(du -sh "$BASE_DIR/scripts/coveo/libs" 2>/dev/null | cut -f1 || echo "Unknown")"
     echo
     echo -e "${YELLOW}Files Created:${NC}"
     echo "  📁 $BASE_DIR/scripts/coveo/libs/headless.esm.js"
@@ -832,237 +871,6 @@ main() {
     echo
     echo -e "${YELLOW}Next Steps:${NC}"
     echo "  1. Update configuration: $BASE_DIR/scripts/coveo/config/config.js"
-    echo "  2. Review example block: $BASE_DIR/blocks/search-box/"
-    echo "  3. Read documentation: $BASE_DIR/scripts/coveo/README.md"
-    echo "  4. To update later: $BASE_DIR/update-coveo.sh"
-    echo
-    echo -e "${GREEN}Ready for core search functionality! 🔍${NC}"
-}
-
-# Run main function with all arguments
-main "$@" | awk '{print "- " $9 " (" $5 " bytes)"}')
-
-## What's Included
-
-The core library (\`headless.esm.js\`) provides everything needed for basic search:
-
-✅ **Search Engine** - Core search functionality
-✅ **Search Box** - Input and query suggestions  
-✅ **Results Display** - Search results and interaction
-✅ **Faceted Search** - Filters and refinements
-✅ **Pagination** - Page navigation controls
-✅ **Sorting** - Sort options for results
-✅ **Analytics** - Usage tracking and insights
-
-## Quick Start
-
-1. Update configuration in \`config/config.js\` with your Coveo credentials:
-   \`\`\`javascript
-   organizationId: 'your-org-id',
-   searchToken: 'your-api-token'
-   \`\`\`
-
-2. Use the loader in your AEM EDS blocks:
-   \`\`\`javascript
-   import { coveoLoader } from '../../scripts/coveo/loader.js';
-   const searchBox = await coveoLoader.loadController('searchBox');
-   \`\`\`
-
-3. Review the example search-box block implementation
-
-## Available Controllers
-
-- \`searchBox\` - Search input and suggestions
-- \`resultList\` - Display search results  
-- \`facet\` - Faceted search filters
-- \`pager\` - Pagination controls
-- \`sort\` - Sort options
-- \`queryError\` - Error handling
-- \`querySummary\` - Results summary
-
-## Next Steps
-
-- Configure your Coveo organization credentials
-- Customize the search interface blocks
-- Add additional controllers as needed
-- Test search functionality on your AEM EDS site
-
-## Documentation
-
-- [Coveo Headless Documentation](https://docs.coveo.com/en/headless/latest/)
-- [AEM EDS Documentation](https://www.aem.live/docs/)
-
-## File Size Optimization
-
-This core-only approach provides:
-- **Small footprint**: ~600KB vs 2.5MB full SDK
-- **Fast loading**: Essential functionality only
-- **Easy maintenance**: Single library file
-- **Full functionality**: Complete search capabilities
-EOF
-    
-    log_success "Configuration files created"
-}
-
-#################################################################
-# Update Functions
-#################################################################
-
-create_update_script() {
-    local base_dir=$1
-    
-    cat > "$base_dir/update-coveo.sh" << 'EOF'
-#!/bin/bash
-
-# Coveo Headless Update Script
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-COVEO_DIR="$SCRIPT_DIR/scripts/coveo"
-
-# Read current version
-if [[ -f "$COVEO_DIR/config/version.json" ]]; then
-    CURRENT_VERSION=$(jq -r '.version' "$COVEO_DIR/config/version.json")
-    echo "Current version: $CURRENT_VERSION"
-else
-    echo "No version information found"
-    exit 1
-fi
-
-# Check for updates
-echo "Checking for updates..."
-LATEST_VERSION=$(curl -s "https://registry.npmjs.org/@coveo/headless/latest" | jq -r '.version')
-
-if [[ "$CURRENT_VERSION" != "$LATEST_VERSION" ]]; then
-    echo "Update available: $CURRENT_VERSION -> $LATEST_VERSION"
-    read -p "Do you want to update? (y/N): " -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        echo "Running update..."
-        ./download-coveo.sh -v "$LATEST_VERSION" -f
-    fi
-else
-    echo "Coveo Headless is up to date ($CURRENT_VERSION)"
-fi
-EOF
-    
-    chmod +x "$base_dir/update-coveo.sh"
-    log_success "Update script created"
-}
-
-#################################################################
-# Main Functions
-#################################################################
-
-parse_arguments() {
-    while [[ $# -gt 0 ]]; do
-        case $1 in
-            -v|--version)
-                COVEO_VERSION="$2"
-                shift 2
-                ;;
-            -c|--cdn)
-                CDN_SOURCE="$2"
-                shift 2
-                ;;
-            -d|--dir)
-                BASE_DIR="$2"
-                shift 2
-                ;;
-            -f|--force)
-                FORCE_DOWNLOAD=true
-                shift
-                ;;
-            --no-verify)
-                VERIFY_DOWNLOADS=false
-                shift
-                ;;
-            --no-config)
-                CREATE_CONFIG=false
-                shift
-                ;;
-            --include-types)
-                INCLUDE_TYPES=true
-                shift
-                ;;
-            -q|--quiet)
-                QUIET=true
-                shift
-                ;;
-            -h|--help)
-                print_usage
-                exit 0
-                ;;
-            *)
-                log_error "Unknown option: $1"
-                print_usage
-                exit 1
-                ;;
-        esac
-    done
-    
-    # Set defaults for unspecified options
-    COVEO_VERSION=${COVEO_VERSION:-$DEFAULT_VERSION}
-    CDN_SOURCE=${CDN_SOURCE:-$DEFAULT_CDN}
-    BASE_DIR=${BASE_DIR:-$(pwd)}
-    
-    # Validate arguments
-    if [[ ! "$CDN_SOURCE" =~ ^(unpkg|jsdelivr)$ ]]; then
-        log_error "Invalid CDN source: $CDN_SOURCE (must be 'unpkg' or 'jsdelivr')"
-        exit 1
-    fi
-}
-
-main() {
-    print_header
-    
-    parse_arguments "$@"
-    
-    log_info "Starting Coveo Headless Core download..."
-    log_info "Version: $COVEO_VERSION"
-    log_info "CDN: $CDN_SOURCE"
-    log_info "Include Types: $INCLUDE_TYPES"
-    log_info "Directory: $BASE_DIR"
-    echo
-    
-    # Check dependencies
-    check_dependencies
-    
-    # Resolve version
-    if [[ "$COVEO_VERSION" == "latest" ]]; then
-        COVEO_VERSION=$(get_latest_version)
-        log_info "Resolved latest version: $COVEO_VERSION"
-    fi
-    
-    # Verify version exists
-    if ! verify_version_exists "$COVEO_VERSION"; then
-        exit 1
-    fi
-    
-    # Create directory structure
-    create_directory_structure "$BASE_DIR"
-    
-    # Download files
-    download_files "$BASE_DIR" "$COVEO_VERSION"
-    
-    # Create configuration files
-    create_config_files "$BASE_DIR" "$COVEO_VERSION"
-    
-    # Create update script
-    create_update_script "$BASE_DIR"
-    
-    echo
-    log_success "Coveo Headless Core download completed!"
-    echo
-    echo -e "${CYAN}Summary:${NC}"
-    echo "  Version: $COVEO_VERSION"
-    echo "  Location: $BASE_DIR/scripts/coveo/"
-    echo "  Files: $(find "$BASE_DIR/scripts/coveo/libs" -name "*.js" | wc -l) JavaScript files"
-    if [[ "$INCLUDE_TYPES" == true ]]; then
-        echo "  TypeScript: $(find "$BASE_DIR/scripts/coveo/libs" -name "*.d.ts" | wc -l) definition files"
-    fi
-    echo "  Size: $(du -sh "$BASE_DIR/scripts/coveo/libs" | cut -f1)"
-    echo
-    echo -e "${YELLOW}Next Steps:${NC}"
-    echo "  1. Update configuration in: $BASE_DIR/scripts/coveo/config/config.js"
     echo "  2. Review example block: $BASE_DIR/blocks/search-box/"
     echo "  3. Read documentation: $BASE_DIR/scripts/coveo/README.md"
     echo "  4. To update later: $BASE_DIR/update-coveo.sh"
