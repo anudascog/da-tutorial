@@ -179,7 +179,8 @@ get_file_url() {
                     echo "https://cdn.jsdelivr.net/npm/@coveo/headless@${version}/+esm"
                     ;;
                 "dist/definitions/headless.d.ts")
-                    echo "https://cdn.jsdelivr.net/npm/@coveo/headless@${version}/dist/definitions/headless.d.ts"
+                    # Try alternative paths for TypeScript definitions
+                    echo "https://cdn.jsdelivr.net/npm/@coveo/headless@${version}/lib/headless.d.ts"
                     ;;
                 *)
                     echo "https://cdn.jsdelivr.net/npm/@coveo/headless@${version}/${filepath}"
@@ -271,15 +272,18 @@ download_file() {
     
     log_info "Downloading $description..."
     log_info "URL: $url"
+    log_info "Output: $output_path"
     
     # Test URL accessibility first
+    log_info "Testing URL accessibility..."
     if ! curl -s --head --max-time 10 "$url" >/dev/null 2>&1; then
         log_error "URL not accessible: $url"
         return 1
     fi
+    log_info "URL is accessible, starting download..."
     
     # Download with timeout and progress
-    if curl -L --fail --max-time 300 --connect-timeout 30 -o "$output_path" "$url" 2>/dev/null; then
+    if curl -L --fail --max-time 300 --connect-timeout 30 -o "$output_path" "$url"; then
         local file_size
         if command -v stat >/dev/null 2>&1; then
             if stat -c%s "$output_path" >/dev/null 2>&1; then
@@ -295,7 +299,8 @@ download_file() {
         log_success "$description downloaded (${file_size} bytes)"
         return 0
     else
-        log_error "Failed to download $description from $url"
+        local exit_code=$?
+        log_error "Failed to download $description from $url (exit code: $exit_code)"
         log_error "This could be due to network issues or URL problems"
         rm -f "$output_path"
         return 1
