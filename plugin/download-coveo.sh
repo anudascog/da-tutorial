@@ -24,7 +24,7 @@ set -e  # Exit on any error
 # Configuration
 SCRIPT_VERSION="1.0.0"
 DEFAULT_VERSION="latest"
-DEFAULT_CDN="unpkg"
+DEFAULT_CDN="jsdelivr"
 DEFAULT_MODE="core"
 
 # Colors for output
@@ -164,6 +164,35 @@ get_cdn_base_url() {
     esac
 }
 
+get_file_url() {
+    local version=$1
+    local filepath=$2
+    
+    case "$CDN_SOURCE" in
+        "unpkg")
+            echo "https://unpkg.com/@coveo/headless@${version}/${filepath}"
+            ;;
+        "jsdelivr")
+            # jsDelivr uses different paths for different file types
+            case "$filepath" in
+                "dist/headless.esm.js")
+                    echo "https://cdn.jsdelivr.net/npm/@coveo/headless@${version}/+esm"
+                    ;;
+                "dist/definitions/headless.d.ts")
+                    echo "https://cdn.jsdelivr.net/npm/@coveo/headless@${version}/dist/definitions/headless.d.ts"
+                    ;;
+                *)
+                    echo "https://cdn.jsdelivr.net/npm/@coveo/headless@${version}/${filepath}"
+                    ;;
+            esac
+            ;;
+        *)
+            log_error "Unknown CDN source: $CDN_SOURCE"
+            exit 1
+            ;;
+    esac
+}
+
 check_dependencies() {
     local missing_deps=()
     
@@ -199,12 +228,13 @@ get_latest_version() {
 
 verify_version_exists() {
     local version=$1
-    local base_url
-    base_url=$(get_cdn_base_url "$version")
     
     log_info "Verifying version $version exists..."
     
-    if curl -s --head "$base_url/package.json" | head -n 1 | grep -q "200 OK"; then
+    local base_url
+    base_url=$(get_cdn_base_url "$version")
+    
+    if curl -s --head --max-time 10 "$base_url/package.json" | head -n 1 | grep -q "200 OK"; then
         log_success "Version $version verified"
         return 0
     else
@@ -240,8 +270,16 @@ download_file() {
     fi
     
     log_info "Downloading $description..."
+    log_info "URL: $url"
     
-    if curl -L --fail --silent --show-error -o "$output_path" "$url"; then
+    # Test URL accessibility first
+    if ! curl -s --head --max-time 10 "$url" >/dev/null 2>&1; then
+        log_error "URL not accessible: $url"
+        return 1
+    fi
+    
+    # Download with timeout and progress
+    if curl -L --fail --max-time 300 --connect-timeout 30 -o "$output_path" "$url" 2>/dev/null; then
         local file_size
         if command -v stat >/dev/null 2>&1; then
             if stat -c%s "$output_path" >/dev/null 2>&1; then
@@ -258,6 +296,7 @@ download_file() {
         return 0
     else
         log_error "Failed to download $description from $url"
+        log_error "This could be due to network issues or URL problems"
         rm -f "$output_path"
         return 1
     fi
@@ -302,9 +341,6 @@ download_files() {
     local base_dir=$1
     local version=$2
     
-    local base_url
-    base_url=$(get_cdn_base_url "$version")
-    
     local files_to_download=""
     
     if [[ "$INCLUDE_TYPES" == true ]]; then
@@ -326,7 +362,8 @@ download_files() {
         if [[ -n "$filename" ]]; then
             ((current_file++))
             
-            local url="$base_url/$filepath"
+            local url
+            url=$(get_file_url "$version" "$filepath")
             local output_path="$base_dir/scripts/coveo/libs/$filename"
             
             printf "[%2d/%2d] " "$current_file" "$total_files"
