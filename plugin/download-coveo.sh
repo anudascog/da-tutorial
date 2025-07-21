@@ -196,14 +196,11 @@ check_dependencies() {
 }
 
 get_latest_version() {
-    log_info "Fetching latest Coveo Headless version..."
-    
     local latest_version
     latest_version=$(curl -s "https://registry.npmjs.org/@coveo/headless/latest" | grep -o '"version":"[^"]*"' | cut -d'"' -f4)
     
     if [[ -z "$latest_version" || "$latest_version" == "null" ]]; then
-        log_warning "Could not fetch latest version, using fallback"
-        echo "3.25.0"
+        echo "3.27.4"
     else
         echo "$latest_version"
     fi
@@ -714,6 +711,11 @@ fi
 echo "Checking for updates..."
 LATEST_VERSION=$(curl -s "https://registry.npmjs.org/@coveo/headless/latest" | grep -o '"version":"[^"]*"' | cut -d'"' -f4)
 
+if [[ -z "$LATEST_VERSION" ]]; then
+    echo "Could not fetch latest version"
+    exit 1
+fi
+
 if [[ "$CURRENT_VERSION" != "$LATEST_VERSION" ]]; then
     echo "Update available: $CURRENT_VERSION -> $LATEST_VERSION"
     read -p "Do you want to update? (y/N): " -n 1 -r
@@ -824,6 +826,7 @@ main() {
     
     # Resolve version
     if [[ "$COVEO_VERSION" == "latest" ]]; then
+        log_info "Fetching latest Coveo Headless version..."
         COVEO_VERSION=$(get_latest_version)
         log_info "Resolved latest version: $COVEO_VERSION"
     fi
