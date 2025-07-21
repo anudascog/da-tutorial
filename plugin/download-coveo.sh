@@ -336,10 +336,18 @@ EOF
 }
 
 get_core_files_with_types() {
-    cat << 'EOF'
+    # Check if TypeScript definitions are available for this CDN/version
+    if [[ "$CDN_SOURCE" == "jsdelivr" ]]; then
+        # jsDelivr with Coveo 3.27.4 doesn't have TypeScript definitions
+        log_warning "TypeScript definitions not available for this version via jsDelivr"
+        log_info "Using core library only"
+        get_core_files
+    else
+        cat << 'EOF'
 headless.esm.js|dist/headless.esm.js|Core Headless Library (ES Module)
 headless.d.ts|dist/definitions/headless.d.ts|TypeScript Definitions
 EOF
+    fi
 }
 
 download_files() {
@@ -350,7 +358,12 @@ download_files() {
     
     if [[ "$INCLUDE_TYPES" == true ]]; then
         files_to_download=$(get_core_files_with_types)
-        log_info "Downloading core libraries with TypeScript definitions"
+        if [[ "$(echo "$files_to_download" | wc -l)" == "1" ]]; then
+            log_warning "TypeScript definitions not available for version $version via $CDN_SOURCE"
+            log_info "Downloading core library only"
+        else
+            log_info "Downloading core libraries with TypeScript definitions"
+        fi
     else
         files_to_download=$(get_core_files)
         log_info "Downloading core libraries only"
@@ -925,6 +938,13 @@ main() {
     echo "  3. Read documentation: $BASE_DIR/scripts/coveo/README.md"
     echo "  4. To update later: $BASE_DIR/update-coveo.sh"
     echo
+    if [[ "$INCLUDE_TYPES" == true ]] && [[ ! -f "$BASE_DIR/scripts/coveo/libs/headless.d.ts" ]]; then
+        echo -e "${YELLOW}TypeScript Note:${NC}"
+        echo "  • TypeScript definitions not available via $CDN_SOURCE"
+        echo "  • Check if @types/coveo__headless package exists"
+        echo "  • Or use JSDoc comments in your IDE for type hints"
+        echo
+    fi
     echo -e "${GREEN}Ready for core search functionality! 🔍${NC}"
 }
 
